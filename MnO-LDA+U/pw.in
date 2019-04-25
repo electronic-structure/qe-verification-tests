@@ -1,0 +1,57 @@
+&control
+calculation         = 'scf',
+!restart_mode        = 'restart',
+wf_collect          = .true.,
+nstep               = 500
+pseudo_dir          = './'
+!prefix              = 'cubic-U-relax'
+outdir              = './tmp'
+etot_conv_thr       = 1.0d-6
+forc_conv_thr       = 1.0d-3
+verbosity           = 'high'
+tstress             = .true.
+tprnfor             = .true.
+max_seconds         = 86100
+/
+&system
+ibrav               = 0,
+celldm(1) = 7.88,
+nat                 = 4,
+ntyp                = 3,
+ecutwfc             = 40,
+ecutrho             = 320,
+occupations         = 'smearing',
+degauss             = 0.01
+lda_plus_u                = .true.
+Hubbard_U(1)              = 1.0d-8
+Hubbard_U(2)              = 1.0d-8
+nspin=2
+starting_magnetization(1) = 1.0
+starting_magnetization(2) = -1.0
+/
+&electrons
+diagonalization     = 'david',
+mixing_beta         = 0.6,
+conv_thr            = 1.0d-8
+/
+&ions
+/
+&cell
+!cell_dofree = 'shape'
+/
+ATOMIC_SPECIES
+ Mn1  54.94  Mn.pbesol-spn-rrkjus_psl.0.3.1.UPF
+ Mn2  54.94  Mn.pbesol-spn-rrkjus_psl.0.3.1.UPF
+ O    15.99  O.pbesol-n-rrkjus_psl.1.0.0.UPF
+ATOMIC_POSITIONS {alat}
+ Mn1  0.0000000   0.0000000   0.0000000
+ Mn2  0.5000000   0.5000000   0.0000000
+ O    0.5000000   0.0000000   0.0000000
+ O    1.0000000   0.5000000   0.0000000
+CELL_PARAMETERS
+ 1.00000000  0.50000000  0.50000000
+ 0.50000000  1.00000000  0.50000000
+ 0.50000000  0.50000000  1.00000000
+K_POINTS automatic
+6 6 6 0 0 0
+
