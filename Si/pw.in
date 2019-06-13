@@ -1,0 +1,36 @@
+&control
+calculation='scf',
+restart_mode='from_scratch',
+pseudo_dir = './',
+outdir='./',
+prefix = 'scf_',
+verbosity='low'
+/
+&system
+ibrav=0, celldm(1)=1, ecutwfc=10, ecutrho = 100,
+occupations = 'smearing', smearing = 'gauss', degauss = 0.002
+nat=2 ntyp=1, nbnd=8
+/
+&electrons
+conv_thr =  1.0d-11,
+diago_thr_init = 1d-2,
+mixing_beta = 0.7,
+electron_maxstep = 100
+/
+&IONS
+ ion_dynamics='bfgs',
+/
+&CELL
+ cell_dynamics='bfgs',
+/
+ATOMIC_SPECIES
+Si 0.0 Si.pz-n-nc.UPF
+CELL_PARAMETERS
+        0.00000000        5.130000000       5.13000000
+        5.130000000       0.00000000        5.13000000
+        5.13000000        5.13000000        0.00000000
+ATOMIC_POSITIONS (crystal)
+Si          0.00000000         0.00000000         0.00000000
+Si          0.25000000         0.25000000         0.25000000
+K_POINTS (automatic)
+4 4 4 0 0 0
