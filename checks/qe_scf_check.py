@@ -111,6 +111,10 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         #                             self.stdout, 'wall', float)
         #}
 
+    def setup(self, partition, environ, **job_opts):
+        super().setup(partition, environ, **job_opts)
+        if self.current_system.name in ['daint']:
+            self.job.launcher.options = ["-c %i"%self.num_cpus_per_task, "-n %i"%self.num_tasks, '--hint=nomultithread']
 
 @rfm.simple_test
 class qe_Si(qe_scf_base_test):
