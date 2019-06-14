@@ -72,7 +72,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         #    #sn.assert_lt(forces_diff(fout, data_ref), 1e-5, msg="Atomic forces are different")
         #])
 
-        self.executable_opts = ["-i %s"%input_file_name]
+        self.executable_opts = ["-i %s"%input_file_name, "-npool %i"%num_ranks]
         if use_sirius:
             self.executable_opts.append('-sirius')
 
@@ -97,7 +97,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         ])
 
         self.perf_patterns = {
-            'time': sn.extractsingle(r'global_timer                                                     :\s+(?P<num>\S+)\s+(?P<time>\S+)',
+            'time': sn.extractsingle(r'global_timer\s+:\s+(?P<num>\S+)\s+(?P<time>\S+)',
                                      self.stdout, 'time', float)
         }
 
@@ -107,8 +107,14 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
             self.job.launcher.options = ["-c %i"%self.num_cpus_per_task, "-n %i"%self.num_tasks, '--hint=nomultithread']
 
 @rfm.simple_test
-class qe_sirius_Si63Ge_scf(qe_scf_base_test):
+class qe_sirius_Si63Ge_scf_1(qe_scf_base_test):
     def __init__(self):
         super().__init__(1, 'Si63Ge-scf', 'pw.in', True, -819.77988571, 86.0)
         self.tags = {'serial'}
+
+@rfm.simple_test
+class qe_sirius_Si63Ge_scf_2(qe_scf_base_test):
+    def __init__(self):
+        super().__init__(2, 'Si63Ge-scf', 'pw.in', True, -819.77988571, 53.0)
+        self.tags = {'parallel'}
 
