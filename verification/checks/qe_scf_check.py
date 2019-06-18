@@ -65,51 +65,18 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         self.executable = 'pw.x'
         self.sourcesdir = '../' + test_folder
 
-        #self.sanity_patterns = sn.all([
-        #    sn.assert_found(r'JOB DONE', self.stdout, msg="Calculation didn't converge"),
-        #    #sn.assert_lt(energy_diff(fout, data_ref), 1e-5, msg="Total energy is different"),
-        #    #sn.assert_lt(stress_diff(fout, data_ref), 1e-5, msg="Stress tensor is different"),
-        #    #sn.assert_lt(forces_diff(fout, data_ref), 1e-5, msg="Atomic forces are different")
-        #])
-
         self.executable_opts = ["-i %s"%input_file_name]
         if use_sirius:
             self.executable_opts.append('-sirius')
 
-        #self.reference = {
-        #    'osx:cpu': {
-        #        'time': (0.67, None, 0.05, 'sec')
-        #    }
-        #}
-
-        #self.reference = {
-        #    'dom:mc': {
-        #        'time': (159.0, None, 0.05, 's'),
-        #    },
-        #    'daint:mc': {
-        #        'time': (151.6, None, 0.05, 's')
-        #    },
-        #}
-
-        self.extra_resources = {
-            'switches': {
-                'num_switches': 1
-            }
-        }
-
-        energy_all = sn.extractall(r'!\s+total energy\s+=\s+(?P<energy>\S+) Ry',
-                                  self.stdout, 'energy', float)
-        energy = energy_all[-1]
+        # take last energy value (is case of vc-relax)
+        energy = sn.extractall(r'!\s+total energy\s+=\s+(?P<energy>\S+) Ry',
+                                  self.stdout, 'energy', float)[-1]
 
         self.sanity_patterns = sn.all([
             sn.assert_found(r'convergence has been achieved', self.stdout),
             sn.assert_reference(energy, etot, -1e-9, 1e-9)
         ])
-
-        #self.perf_patterns = {
-        #    'time': sn.extractsingle(r'PWSCF        :\s+(?P<cpu>\S+)s CPU \s+(?P<wall>\S+)s WALL',
-        #                             self.stdout, 'wall', float)
-        #}
 
     def setup(self, partition, environ, **job_opts):
         super().setup(partition, environ, **job_opts)
@@ -139,4 +106,23 @@ class qe_sirius_Si_vc_relax(qe_scf_base_test):
     def __init__(self):
         super().__init__(1, 'Si-vc-relax', 'pw.in', True, -19.31469019)
         self.tags = {'serial'}
+
+@rfm.simple_test
+class qe_LiF_nc_vc_relax(qe_scf_base_test):
+    def __init__(self):
+        super().__init__(1, 'LiF-nc', 'pw.in', False, -49.19540885)
+        self.tags = {'serial'}
+
+@rfm.simple_test
+class qe_sirius_LiF_nc_vc_relax(qe_scf_base_test):
+    def __init__(self):
+        super().__init__(1, 'LiF-nc', 'pw.in', True, -49.19541319)
+        self.tags = {'serial'}
+
+@rfm.simple_test
+class qe_LiF_paw_vc_relax(qe_scf_base_test):
+    def __init__(self):
+        super().__init__(1, 'LiF-paw', 'pw.in', False, -73.36174370)
+        self.tags = {'serial'}
+
 
