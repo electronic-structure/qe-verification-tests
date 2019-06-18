@@ -125,4 +125,22 @@ class qe_LiF_paw_vc_relax(qe_scf_base_test):
         super().__init__(1, 'LiF-paw', 'pw.in', False, -73.36174370)
         self.tags = {'serial'}
 
+#@rfm.simple_test
+#class qe_sirius_LiF_paw_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-paw', 'pw.in', True, -73.36174370)
+#        self.tags = {'serial'}
+
+@rfm.simple_test
+class qe_LiF_uspp_vc_relax(qe_scf_base_test):
+    def __init__(self):
+        super().__init__(1, 'LiF-uspp', 'pw.in', False, -63.36417257)
+        self.tags = {'serial'}
+
+#@rfm.simple_test
+#class qe_sirius_LiF_uspp_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-uspp', 'pw.in', True, -63.36417257)
+#        self.tags = {'serial'}
+
 
