@@ -143,15 +143,15 @@ class qe_sirius_LiF_uspp_vc_relax(qe_scf_base_test):
         super().__init__(1, 'LiF-uspp', 'pw.in', True, -63.36416794)
         self.tags = {'serial'}
 
-#@rfm.simple_test
-#class qe_MnO_ldapu(qe_scf_base_test):
-#    def __init__(self):
-#        super().__init__(1, 'MnO-LDA+U', 'pw.in', False, -491.66032746)
-#        self.tags = {'serial'}
-#
-#@rfm.simple_test
-#class qe_sirius_MnO_ldapu(qe_scf_base_test):
-#    def __init__(self):
-#        super().__init__(1, 'MnO-LDA+U', 'pw.in', True, -491.65511939)
-#        self.tags = {'serial'}
+@rfm.simple_test
+class qe_MnO_ldapu(qe_scf_base_test):
+    def __init__(self):
+        super().__init__(1, 'MnO-LDA+U', 'pw.in', False, -491.62880878)
+        self.tags = {'serial'}
+
+@rfm.simple_test
+class qe_sirius_MnO_ldapu(qe_scf_base_test):
+    def __init__(self):
+        super().__init__(1, 'MnO-LDA+U', 'pw.in', True, -491.62465892)
+        self.tags = {'serial'}
 
