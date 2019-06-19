@@ -1,38 +1,35 @@
 &control
 calculation         = 'scf',
-!restart_mode        = 'restart',
 wf_collect          = .true.,
 nstep               = 500
 pseudo_dir          = './'
-!prefix              = 'cubic-U-relax'
-outdir              = './tmp'
 etot_conv_thr       = 1.0d-6
 forc_conv_thr       = 1.0d-3
 verbosity           = 'high'
 tstress             = .true.
 tprnfor             = .true.
-max_seconds         = 86100
 /
 &system
 ibrav               = 0,
 celldm(1) = 7.88,
 nat                 = 4,
 ntyp                = 3,
-ecutwfc             = 40,
-ecutrho             = 320,
+ecutwfc             = 30,
+ecutrho             = 300,
 occupations         = 'smearing',
-degauss             = 0.01
+degauss             = 0.1
 lda_plus_u                = .true.
-Hubbard_U(1)              = 1.0d-8
-Hubbard_U(2)              = 1.0d-8
+Hubbard_U(1)              = 1.d-8
+Hubbard_U(2)              = 1.d-8
 nspin=2
 starting_magnetization(1) = 1.0
 starting_magnetization(2) = -1.0
 /
 &electrons
 diagonalization     = 'david',
-mixing_beta         = 0.6,
-conv_thr            = 1.0d-8
+!mixing_beta         = 0.6,
+!conv_thr            = 1.0d-10
+diago_full_acc = .true.
 /
 &ions
 /
@@ -53,5 +50,5 @@ CELL_PARAMETERS
  0.50000000  1.00000000  0.50000000
  0.50000000  0.50000000  1.00000000
 K_POINTS automatic
-6 6 6 0 0 0
+3 3 3 0 0 0
 
