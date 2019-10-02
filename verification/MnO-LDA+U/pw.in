@@ -14,6 +14,7 @@ ibrav               = 0,
 celldm(1) = 7.88,
 nat                 = 4,
 ntyp                = 3,
+nbnd                = 30
 ecutwfc             = 30,
 ecutrho             = 300,
 occupations         = 'smearing',
