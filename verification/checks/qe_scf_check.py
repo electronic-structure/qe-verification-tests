@@ -1,53 +1,74 @@
 import itertools
 import os
+import re
 import json
 
 import reframe as rfm
 import reframe.utility.sanity as sn
 
-test_folders = ['test1', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8',
-    'test9', 'test10', 'test11', 'test12', 'test13', 'test14', 'test15', 'test16', 'test17']
+@sn.sanity_function
+def energy_diff(ostream, energy_ref):
+    ''' Return the difference between obtained and reference total energies'''
+
+    # take last energy value (is case of vc-relax)
+    energy = sn.extractsingle(r'!\s+total energy\s+=\s+(?P<energy>\S+) Ry',
+                              ostream, 'energy', float, item=-1)
+    return sn.abs(energy - energy_ref)
+
+@sn.sanity_function
+def pressure_diff(ostream, pressure_ref):
+    ''' Return the difference between obtained and reference total energies'''
+
+    # take last pressure value (is case of vc-relax)
+    pressure = sn.extractsingle(r'\s+total\s+stress.+\(kbar\)\s+P\=\s+(?P<pressure>\S+)',
+                                ostream, 'pressure', float, item=-1)
+    return sn.abs(pressure - pressure_ref)
+
+@sn.sanity_function
+def stress_diff(ostream, stress_ref):
+    ''' Return the difference between obtained and reference stress tensor components'''
+
+    # take last match (is case of vc-relax)
+    raw_data = sn.extractsingle(r'total\s+stress.+\(kbar\)\s+P\=.+\s+.+\s+.+\s+.+', ostream, item=-1).evaluate()
+    lines = raw_data.splitlines()
+
+    stress = []
+    for i in range(2):
+        vals = lines[i + 1].split()
+        stress.append([float(vals[j]) for j in range(2)])
+
+    return sn.sum(sn.abs(stress_ref[i][j] - stress[i][j]) for i in range(2) for j in range(2))
 
 
-#@sn.sanity_function
-#def load_json(filename):
-#    '''This will load a json data from a file.'''
-#    raw_data = sn.extractsingle(r'(?s).+', filename).evaluate()
-#    try:
-#        return json.loads(raw_data)
-#    except json.JSONDecodeError as e:
-#        raise SanityError('failed to parse JSON file') from e
-#
-#@sn.sanity_function
-#def energy_diff(filename, data_ref):
-#    ''' Return the difference between obtained and reference total energies'''
-#    parsed_output = load_json(filename)
-#    return sn.abs(parsed_output['ground_state']['energy']['total'] -
-#                       data_ref['ground_state']['energy']['total'])
-#
-#@sn.sanity_function
-#def stress_diff(filename, data_ref):
-#    ''' Return the difference between obtained and reference stress tensor components'''
-#    parsed_output = load_json(filename)
-#    if 'stress' in parsed_output['ground_state'] and 'stress' in data_ref['ground_state']:
-#        return sn.sum(sn.abs(parsed_output['ground_state']['stress'][i][j] -
-#                             data_ref['ground_state']['stress'][i][j]) for i in [0, 1, 2] for j in [0, 1, 2])
-#    else:
-#        return sn.abs(0)
-#
-#@sn.sanity_function
-#def forces_diff(filename, data_ref):
-#    ''' Return the difference between obtained and reference atomic forces'''
-#    parsed_output = load_json(filename)
-#    if 'forces' in parsed_output['ground_state'] and 'forces' in data_ref['ground_state']:
-#        na = parsed_output['ground_state']['num_atoms'].evaluate()
-#        return sn.sum(sn.abs(parsed_output['ground_state']['forces'][i][j] -
-#                             data_ref['ground_state']['forces'][i][j]) for i in range(na) for j in [0, 1, 2])
-#    else:
-#        return sn.abs(0)
-#
+@sn.sanity_function
+def forces_diff(ostream, forces_ref):
+    ''' Return the difference between obtained and reference atomic forces'''
+
+    # get number of atoms
+    natoms = sn.extractsingle(r'\s+number\sof\satoms\/cell\s+\=\s+(?P<natoms>\S+)', ostream, 'natoms', int).evaluate()
+
+    fmt = r'     Forces acting on atoms \(cartesian axes, Ry\/au\):\s+'
+    for i in range(natoms):
+        fmt += r'.+\s+'
+
+    # take last match (is case of vc-relax)
+    raw_data = sn.extractsingle(fmt, ostream, item=-1).evaluate()
+
+    lines = raw_data.splitlines()[2:]
+    forces = []
+    ia = 1
+    for line in lines:
+        result = re.search(r'\s+atom\s+(?P<atom>\S+)\s+type\s+\S+\s+force\s+\=\s+(?P<force>.+)', line)
+        if result:
+            sn.assert_eq(ia, int(result.group('atom')), msg='Wrong index of atom: {0} != {1}').evaluate()
+            vals = result.group('force').split()
+            forces.append([float(vals[i]) for i in range(2)])
+            ia += 1
+
+    return sn.sum(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(natoms) for j in range(2))
+
 class qe_scf_base_test(rfm.RunOnlyRegressionTest):
-    def __init__(self, num_ranks, test_folder, input_file_name, use_sirius, etot):
+    def __init__(self, num_ranks, test_folder, input_file_name, use_sirius, energy_ref, P_ref, stress_ref, forces_ref):
         super().__init__()
         self.descr = 'SCF check'
         self.valid_systems = ['osx', 'daint']
@@ -69,13 +90,12 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         if use_sirius:
             self.executable_opts.append('-sirius')
 
-        # take last energy value (is case of vc-relax)
-        energy = sn.extractall(r'!\s+total energy\s+=\s+(?P<energy>\S+) Ry',
-                                  self.stdout, 'energy', float)[-1]
-
         self.sanity_patterns = sn.all([
             sn.assert_found(r'convergence has been achieved', self.stdout),
-            sn.assert_reference(energy, etot, -1e-9, 1e-9)
+            sn.assert_lt(energy_diff(self.stdout, energy_ref), 1e-8, msg="Total energy is different"),
+            sn.assert_lt(pressure_diff(self.stdout, P_ref), 1e-2, msg="Pressure is different"),
+            sn.assert_lt(stress_diff(self.stdout, stress_ref), 1e-5, msg="Stress tensor is different"),
+            sn.assert_lt(forces_diff(self.stdout, forces_ref), 1e-5, msg="Atomic forces are different")
         ])
 
     def setup(self, partition, environ, **job_opts):
@@ -83,70 +103,83 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         if self.current_system.name in ['daint']:
             self.job.launcher.options = ["-c %i"%self.num_cpus_per_task, "-n %i"%self.num_tasks, '--hint=nomultithread']
 
-@rfm.simple_test
-class qe_Si(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'Si', 'pw.in', False, -19.31899683)
+#--------------------------#
+# Example of a simple test #
+#--------------------------#
+#@rfm.simple_test
+#class qe_Si(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'Si', 'pw.in', use_sirius=False,
+#            energy_ref=-19.31881789,
+#            P_ref=-55.34,
+#            stress_ref=[[-0.00033422, -7.453e-05, -7.453e-05], [-7.453e-05, -0.00039715, 2.31e-06], [-7.453e-05, 2.31e-06, -0.00039715]],
+#            forces_ref=[[-0.00021611, 0.00516719, 0.00516719], [0.00021611, -0.00516719, -0.00516719]])
+#        self.tags = {'serial', 'qe-native'}
+
+
+@rfm.parameterized_test(*([use_sirius]
+                          for use_sirius in [False, True]))
+class qe_Si_scf(qe_scf_base_test):
+    def __init__(self, use_sirius):
+        super().__init__(1, 'Si', 'pw.in', use_sirius=use_sirius,
+            energy_ref=-19.31881789,
+            P_ref=-55.34,
+            stress_ref=[[-0.00033422, -7.453e-05, -7.453e-05], [-7.453e-05, -0.00039715, 2.31e-06], [-7.453e-05, 2.31e-06, -0.00039715]],
+            forces_ref=[[-0.00021611, 0.00516719, 0.00516719], [0.00021611, -0.00516719, -0.00516719]])
         self.tags = {'serial'}
 
-@rfm.simple_test
-class qe_sirius_Si(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'Si', 'pw.in', True, -19.31899883)
-        self.tags = {'serial'}
-
-@rfm.simple_test
+@rfm.parameterized_test(*([use_sirius]
+                          for use_sirius in [False, True]))
 class qe_Si_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'Si-vc-relax', 'pw.in', False, -19.31468808)
+    def __init__(self, use_sirius):
+        super().__init__(1, 'Si-vc-relax', 'pw.in', use_sirius=use_sirius,
+            energy_ref=-19.31469883,
+            P_ref=-4.44,
+            stress_ref=[[-3.164e-05, -5.7e-07, -5.7e-07], [-5.7e-07, -2.949e-05, 1.19e-06], [-5.7e-07, 1.19e-06, -2.949e-05]],
+            forces_ref=[[-7.916e-05, 0.00014243, 0.00014243], [7.916e-05, -0.00014243, -0.00014243]])
         self.tags = {'serial'}
 
-@rfm.simple_test
-class qe_sirius_Si_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'Si-vc-relax', 'pw.in', True, -19.31469019)
-        self.tags = {'serial'}
 
-@rfm.simple_test
-class qe_LiF_nc_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'LiF-nc', 'pw.in', False, -49.19540885)
-        self.tags = {'serial'}
-
-@rfm.simple_test
-class qe_sirius_LiF_nc_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'LiF-nc', 'pw.in', True, -49.19541319)
-        self.tags = {'serial'}
-
-@rfm.simple_test
-class qe_LiF_paw_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'LiF-paw', 'pw.in', False, -73.36174370)
-        self.tags = {'serial'}
-
-@rfm.simple_test
-class qe_sirius_LiF_paw_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'LiF-paw', 'pw.in', True, -73.36174696)
-        self.tags = {'serial'}
-
-@rfm.simple_test
-class qe_LiF_uspp_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'LiF-uspp', 'pw.in', False, -63.36417257)
-        self.tags = {'serial'}
-
-@rfm.simple_test
-class qe_sirius_LiF_uspp_vc_relax(qe_scf_base_test):
-    def __init__(self):
-        super().__init__(1, 'LiF-uspp', 'pw.in', True, -63.36416794)
-        self.tags = {'serial'}
-
+#@rfm.simple_test
+#class qe_LiF_nc_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-nc', 'pw.in', False, -49.19540885)
+#        self.tags = {'serial'}
+#
+#@rfm.simple_test
+#class qe_sirius_LiF_nc_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-nc', 'pw.in', True, -49.19541319)
+#        self.tags = {'serial'}
+#
+#@rfm.simple_test
+#class qe_LiF_paw_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-paw', 'pw.in', False, -73.36174370)
+#        self.tags = {'serial'}
+#
+#@rfm.simple_test
+#class qe_sirius_LiF_paw_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-paw', 'pw.in', True, -73.36174696)
+#        self.tags = {'serial'}
+#
+#@rfm.simple_test
+#class qe_LiF_uspp_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-uspp', 'pw.in', False, -63.36417257)
+#        self.tags = {'serial'}
+#
+#@rfm.simple_test
+#class qe_sirius_LiF_uspp_vc_relax(qe_scf_base_test):
+#    def __init__(self):
+#        super().__init__(1, 'LiF-uspp', 'pw.in', True, -63.36416794)
+#        self.tags = {'serial'}
+#
 #@rfm.simple_test
 #class qe_MnO_ldapu(qe_scf_base_test):
 #    def __init__(self):
-#        super().__init__(1, 'MnO-LDA+U', 'pw.in', False, -491.62880878)
+#        super().__init__(1, 'MnO-LDA+U', 'pw.in', False, -491.69850186)
 #        self.tags = {'serial'}
 #
 #@rfm.simple_test
@@ -154,4 +187,4 @@ class qe_sirius_LiF_uspp_vc_relax(qe_scf_base_test):
 #    def __init__(self):
 #        super().__init__(1, 'MnO-LDA+U', 'pw.in', True, -491.62465892)
 #        self.tags = {'serial'}
-
+#

@@ -4,7 +4,9 @@ restart_mode='from_scratch',
 pseudo_dir = './',
 outdir='./',
 prefix = 'scf_',
-verbosity='low'
+verbosity='high'
+tstress = true
+tprnfor = true
 /
 &system
 ibrav=0, celldm(1)=1, ecutwfc=10, ecutrho = 100,
@@ -27,11 +29,11 @@ electron_maxstep = 100
 ATOMIC_SPECIES
 Si 0.0 Si.pz-n-nc.UPF
 CELL_PARAMETERS
-        0.00000000        5.130000000       5.13000000
+        0.10000000        5.130000000       5.13000000
         5.130000000       0.00000000        5.13000000
         5.13000000        5.13000000        0.00000000
 ATOMIC_POSITIONS (crystal)
 Si          0.00000000         0.00000000         0.00000000
-Si          0.25000000         0.25000000         0.25000000
+Si          0.25100000         0.25000000         0.25000000
 K_POINTS (automatic)
 4 4 4 0 0 0
