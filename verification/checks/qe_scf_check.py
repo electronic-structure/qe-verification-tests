@@ -68,7 +68,7 @@ def forces_diff(ostream, forces_ref):
     return sn.sum(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(natoms) for j in range(2))
 
 class qe_scf_base_test(rfm.RunOnlyRegressionTest):
-    def __init__(self, num_ranks, test_folder, input_file_name, use_sirius, energy_ref, P_ref, stress_ref, forces_ref):
+    def __init__(self, num_ranks, test_folder, input_file_name, variant, energy_ref, P_ref, stress_ref, forces_ref):
         super().__init__()
         self.descr = 'SCF check'
         self.valid_systems = ['osx', 'daint']
@@ -87,16 +87,20 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         self.sourcesdir = '../' + test_folder
 
         self.executable_opts = ["-i %s"%input_file_name]
-        if use_sirius:
+        if variant == 'sirius':
             self.executable_opts.append('-sirius')
 
-        self.sanity_patterns = sn.all([
+        patterns = [
             sn.assert_found(r'convergence has been achieved', self.stdout),
             sn.assert_lt(energy_diff(self.stdout, energy_ref), 1e-8, msg="Total energy is different"),
             sn.assert_lt(pressure_diff(self.stdout, P_ref), 1e-2, msg="Pressure is different"),
             sn.assert_lt(stress_diff(self.stdout, stress_ref), 1e-5, msg="Stress tensor is different"),
             sn.assert_lt(forces_diff(self.stdout, forces_ref), 1e-5, msg="Atomic forces are different")
-        ])
+        ]
+        if variant == 'sirius':
+            patterns.append(sn.assert_found(r'SIRIUS.+git\shash', self.stdout))
+
+        self.sanity_patterns = sn.all(patterns)
 
     def setup(self, partition, environ, **job_opts):
         super().setup(partition, environ, **job_opts)
@@ -117,28 +121,37 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 #        self.tags = {'serial', 'qe-native'}
 
 
-@rfm.parameterized_test(*([use_sirius]
-                          for use_sirius in [False, True]))
+@rfm.parameterized_test(['native'], ['sirius'])
 class qe_Si_scf(qe_scf_base_test):
-    def __init__(self, use_sirius):
-        super().__init__(1, 'Si', 'pw.in', use_sirius=use_sirius,
+    def __init__(self, variant):
+        super().__init__(1, 'Si', 'pw.in', variant,
             energy_ref=-19.31881789,
             P_ref=-55.34,
             stress_ref=[[-0.00033422, -7.453e-05, -7.453e-05], [-7.453e-05, -0.00039715, 2.31e-06], [-7.453e-05, 2.31e-06, -0.00039715]],
             forces_ref=[[-0.00021611, 0.00516719, 0.00516719], [0.00021611, -0.00516719, -0.00516719]])
-        self.tags = {'serial'}
+        self.tags = {'qe-%s'%variant, 'serial'}
 
-@rfm.parameterized_test(*([use_sirius]
-                          for use_sirius in [False, True]))
+
+@rfm.parameterized_test(['native'], ['sirius'])
 class qe_Si_vc_relax(qe_scf_base_test):
-    def __init__(self, use_sirius):
-        super().__init__(1, 'Si-vc-relax', 'pw.in', use_sirius=use_sirius,
+    def __init__(self, variant):
+        super().__init__(1, 'Si-vc-relax', 'pw.in', variant,
             energy_ref=-19.31469883,
             P_ref=-4.44,
             stress_ref=[[-3.164e-05, -5.7e-07, -5.7e-07], [-5.7e-07, -2.949e-05, 1.19e-06], [-5.7e-07, 1.19e-06, -2.949e-05]],
             forces_ref=[[-7.916e-05, 0.00014243, 0.00014243], [7.916e-05, -0.00014243, -0.00014243]])
-        self.tags = {'serial'}
+        self.tags = {'qe-%s'%variant, 'serial'}
 
+
+@rfm.parameterized_test(['native'], ['sirius'])
+class qe_LiF_nc_scf(qe_scf_base_test):
+    def __init__(self, variant):
+        super().__init__(1, 'LiF-nc', 'pw.in', variant,
+            energy_ref=-47.18970921,
+            P_ref=-3310.56,
+            stress_ref=[[-0.02250471, -1.96e-06, -1.96e-06], [-1.96e-06, -0.02250471, -1.96e-06], [-1.96e-06, -1.96e-06, -0.02250471]],
+            forces_ref=[[0.00351991, 0.00351991, 0.00351991], [-0.00351991, -0.00351991, -0.00351991]])
+        self.tags = {'qe-%s'%variant, 'serial'}
 
 #@rfm.simple_test
 #class qe_LiF_nc_vc_relax(qe_scf_base_test):
