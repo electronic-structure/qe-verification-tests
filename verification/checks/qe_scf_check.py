@@ -20,7 +20,7 @@ def pressure_diff(ostream, pressure_ref):
     ''' Return the difference between obtained and reference total energies'''
 
     # take last pressure value (is case of vc-relax)
-    pressure = sn.extractsingle(r'\s+total\s+stress.+\(kbar\)\s+P\=(?P<pressure>\S+)',
+    pressure = sn.extractsingle(r'\s+total\s+stress.+\(kbar\)\s+P\=\s*(?P<pressure>\S+)',
                                 ostream, 'pressure', float, item=-1)
     return sn.abs(pressure - pressure_ref)
 
