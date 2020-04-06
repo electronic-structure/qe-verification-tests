@@ -68,13 +68,13 @@ def forces_diff(ostream, forces_ref):
     return sn.sum(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(natoms) for j in range(2))
 
 class qe_scf_base_test(rfm.RunOnlyRegressionTest):
-    def __init__(self, num_ranks, test_folder, input_file_name, variant, energy_ref, P_ref, stress_ref, forces_ref):
+    def __init__(self, num_ranks_k, num_ranks_d, test_folder, input_file_name, variant, energy_ref, P_ref, stress_ref, forces_ref):
         super().__init__()
         self.descr = 'SCF check'
         self.valid_systems = ['osx', 'daint']
         self.valid_prog_environs = ['PrgEnv-gnu', 'PrgEnv-intel']
 
-        self.num_tasks = num_ranks
+        self.num_tasks = num_ranks_k * num_ranks_d
         if self.current_system.name == 'daint':
             self.num_tasks_per_node = 1
             self.num_cpus_per_task = 12
@@ -86,7 +86,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         self.executable = 'pw.x'
         self.sourcesdir = '../' + test_folder
 
-        self.executable_opts = ["-i %s"%input_file_name]
+        self.executable_opts = ["-i %s"%input_file_name, "-npool %i"%num_ranks_k, "-ndiag %i"%num_ranks_d]
         if variant == 'sirius':
             self.executable_opts.append('-sirius')
 
@@ -124,7 +124,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 @rfm.parameterized_test(['native'], ['sirius'])
 class qe_Si_scf(qe_scf_base_test):
     def __init__(self, variant):
-        super().__init__(1, 'Si', 'pw.in', variant,
+        super().__init__(1, 1, 'Si', 'pw.in', variant,
             energy_ref=-19.31881789,
             P_ref=-55.34,
             stress_ref=[[-0.00033422, -7.453e-05, -7.453e-05], [-7.453e-05, -0.00039715, 2.31e-06], [-7.453e-05, 2.31e-06, -0.00039715]],
@@ -135,7 +135,7 @@ class qe_Si_scf(qe_scf_base_test):
 @rfm.parameterized_test(['native'], ['sirius'])
 class qe_Si_vc_relax(qe_scf_base_test):
     def __init__(self, variant):
-        super().__init__(1, 'Si-vc-relax', 'pw.in', variant,
+        super().__init__(1, 1, 'Si-vc-relax', 'pw.in', variant,
             energy_ref=-19.31469883,
             P_ref=-4.44,
             stress_ref=[[-3.164e-05, -5.7e-07, -5.7e-07], [-5.7e-07, -2.949e-05, 1.19e-06], [-5.7e-07, 1.19e-06, -2.949e-05]],
@@ -146,12 +146,51 @@ class qe_Si_vc_relax(qe_scf_base_test):
 @rfm.parameterized_test(['native'], ['sirius'])
 class qe_LiF_nc_scf(qe_scf_base_test):
     def __init__(self, variant):
-        super().__init__(1, 'LiF-nc', 'pw.in', variant,
+        super().__init__(1, 1, 'LiF-nc', 'pw.in', variant,
             energy_ref=-47.18970921,
             P_ref=-3310.56,
             stress_ref=[[-0.02250471, -1.96e-06, -1.96e-06], [-1.96e-06, -0.02250471, -1.96e-06], [-1.96e-06, -1.96e-06, -0.02250471]],
             forces_ref=[[0.00351991, 0.00351991, 0.00351991], [-0.00351991, -0.00351991, -0.00351991]])
         self.tags = {'qe-%s'%variant, 'serial'}
+
+@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (1,4)]))
+class qe_Si63Ge_scf(qe_scf_base_test):
+    def __init__(self, variant, ranks):
+        super().__init__(ranks[0], ranks[1], 'Si63Ge', 'pw.in', variant,
+            energy_ref=-933.05993665,
+            P_ref=19.15,
+            stress_ref=[[0.0001302, 0.0, 0.0], [0.0, 0.0001302, 0.0], [0.0, 0.0, 0.0001302]],
+            forces_ref=[[0.0, -0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0],
+                        [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, -0.0, 0.0],
+                        [0.00046938, -2.646e-05, -2.646e-05], [-0.00046938, -2.646e-05, 2.646e-05],
+                        [-0.00046938, 2.646e-05, -2.646e-05], [0.00046938, 2.646e-05, 2.646e-05],
+                        [-3.631e-05, 3.022e-05, 3.022e-05], [3.631e-05, 3.022e-05, -3.022e-05],
+                        [3.631e-05, -3.022e-05, 3.022e-05], [-3.631e-05, -3.022e-05, -3.022e-05],
+                        [-2.646e-05, 0.00046938, -2.646e-05], [-2.646e-05, -0.00046938, 2.646e-05],
+                        [3.022e-05, -3.631e-05, 3.022e-05], [3.022e-05, 3.631e-05, -3.022e-05],
+                        [2.646e-05, -0.00046938, -2.646e-05], [2.646e-05, 0.00046938, 2.646e-05],
+                        [-3.022e-05, 3.631e-05, 3.022e-05], [-3.022e-05, -3.631e-05, -3.022e-05],
+                        [-2.646e-05, -2.646e-05, 0.00046938], [3.022e-05, 3.022e-05, -3.631e-05],
+                        [-2.646e-05, 2.646e-05, -0.00046938], [3.022e-05, -3.022e-05, 3.631e-05],
+                        [2.646e-05, -2.646e-05, -0.00046938], [-3.022e-05, 3.022e-05, 3.631e-05],
+                        [2.646e-05, 2.646e-05, 0.00046938], [-3.022e-05, -3.022e-05, -3.631e-05],
+                        [3.331e-05, 3.331e-05, -6.763e-05], [-2.024e-05, -2.024e-05, 2.024e-05],
+                        [1.52e-06, 1e-05, -1e-05], [3.331e-05, 6.763e-05, -3.331e-05],
+                        [1e-05, 1.52e-06, -1e-05], [6.763e-05, 3.331e-05, -3.331e-05],
+                        [-0.01100845, -0.01100845, 0.01100845], [1e-05, 1e-05, -1.52e-06],
+                        [3.331e-05, -6.763e-05, 3.331e-05], [1.52e-06, -1e-05, 1e-05],
+                        [-2.024e-05, 2.024e-05, -2.024e-05], [3.331e-05, -3.331e-05, 6.763e-05],
+                        [1e-05, -1e-05, 1.52e-06], [-0.01100845, 0.01100845, -0.01100845],
+                        [6.763e-05, -3.331e-05, 3.331e-05], [1e-05, -1.52e-06, 1e-05],
+                        [-6.763e-05, 3.331e-05, 3.331e-05], [-1e-05, 1.52e-06, 1e-05],
+                        [-1e-05, 1e-05, 1.52e-06], [0.01100845, -0.01100845, -0.01100845],
+                        [2.024e-05, -2.024e-05, -2.024e-05], [-3.331e-05, 3.331e-05, 6.763e-05],
+                        [-3.331e-05, 6.763e-05, 3.331e-05], [-1.52e-06, 1e-05, 1e-05],
+                        [0.01100845, 0.01100845, 0.01100845], [-1e-05, -1e-05, -1.52e-06],
+                        [-1e-05, -1.52e-06, -1e-05], [-6.763e-05, -3.331e-05, -3.331e-05],
+                        [-1.52e-06, -1e-05, -1e-05], [-3.331e-05, -6.763e-05, -3.331e-05],
+                        [-3.331e-05, -3.331e-05, -6.763e-05], [2.024e-05, 2.024e-05, 2.024e-05]])
+        self.tags = {'qe-%s'%variant, 'parallel'}
 
 #@rfm.simple_test
 #class qe_LiF_nc_vc_relax(qe_scf_base_test):
