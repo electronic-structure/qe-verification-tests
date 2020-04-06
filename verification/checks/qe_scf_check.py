@@ -37,7 +37,7 @@ def stress_diff(ostream, stress_ref):
         vals = lines[i + 1].split()
         stress.append([float(vals[j]) for j in range(2)])
 
-    return sn.sum(sn.abs(stress_ref[i][j] - stress[i][j]) for i in range(2) for j in range(2))
+    return sn.max(sn.abs(stress_ref[i][j] - stress[i][j]) for i in range(2) for j in range(2))
 
 
 @sn.sanity_function
@@ -65,7 +65,7 @@ def forces_diff(ostream, forces_ref):
             forces.append([float(vals[i]) for i in range(2)])
             ia += 1
 
-    return sn.sum(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(natoms) for j in range(2))
+    return sn.max(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(natoms) for j in range(2))
 
 class qe_scf_base_test(rfm.RunOnlyRegressionTest):
     def __init__(self, num_ranks_k, num_ranks_d, test_folder, input_file_name, variant, energy_ref, P_ref, stress_ref, forces_ref):
@@ -193,7 +193,7 @@ class qe_Si63Ge_scf(qe_scf_base_test):
         self.tags = {'qe-%s'%variant, 'parallel'}
 
 @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(2,4), (2,8)]))
-class qe_Si63Ge_scf(qe_scf_base_test):
+class qe_Au_surf_scf(qe_scf_base_test):
     def __init__(self, variant, ranks):
         super().__init__(ranks[0], ranks[1], 'Au-surf', 'ausurf.in', variant,
             energy_ref=-11427.09402177,
@@ -254,8 +254,9 @@ class qe_Si63Ge_scf(qe_scf_base_test):
                         [-4.62e-06, 0.00013527, -0.00873955], [-4.56e-06, -0.00027586, -0.00880201],
                         [-9.76e-05, 0.00014469, -0.00871022], [-9.808e-05, -0.0002657, -0.00877231],
                         [9.538e-05, 0.00015098, -0.00875939], [9.545e-05, -0.00026018, -0.00882133],
-                        [0.0008951, 0.00023327, -0.00805499], [0.00089848, -0.00016973, -0.00811716]]
-        self.tags = {'qe-%s'%variant, 'parallel'}
+                        [0.0008951, 0.00023327, -0.00805499], [0.00089848, -0.00016973, -0.00811716]])
+        self.tags = {'qe-%s'%variant, 'parallel', 'Au-surf'}
+        self.time_limit = '20m'
 
 #@rfm.simple_test
 #class qe_LiF_nc_vc_relax(qe_scf_base_test):
