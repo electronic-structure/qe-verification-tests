@@ -92,10 +92,10 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 
         patterns = [
             sn.assert_found(r'convergence has been achieved', self.stdout),
-            sn.assert_lt(energy_diff(self.stdout, energy_ref), 1e-7, msg="Total energy is different"),
+            sn.assert_lt(energy_diff(self.stdout, energy_ref), 1e-5, msg="Total energy is different"),
             sn.assert_lt(pressure_diff(self.stdout, P_ref), 2e-2, msg="Pressure is different"),
-            sn.assert_lt(stress_diff(self.stdout, stress_ref), 1e-5, msg="Stress tensor is different"),
-            sn.assert_lt(forces_diff(self.stdout, forces_ref), 1e-5, msg="Atomic forces are different")
+            sn.assert_lt(stress_diff(self.stdout, stress_ref), 1e-4, msg="Stress tensor is different"),
+            sn.assert_lt(forces_diff(self.stdout, forces_ref), 1e-4, msg="Atomic forces are different")
         ]
         if variant == 'sirius':
             patterns.append(sn.assert_found(r'SIRIUS.+git\shash', self.stdout))
@@ -257,6 +257,19 @@ class qe_Au_surf_scf(qe_scf_base_test):
                         [0.0008951, 0.00023327, -0.00805499], [0.00089848, -0.00016973, -0.00811716]])
         self.tags = {'qe-%s'%variant, 'parallel', 'Au-surf'}
         self.time_limit = '20m'
+
+@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
+class qe_Si63Ge_scf(qe_scf_base_test):
+    def __init__(self, variant, ranks):
+        super().__init__(ranks[0], ranks[1], 'HfNi5', 'pw.in', variant,
+            energy_ref=-1829.32458388,
+            P_ref=52.44,
+            stress_ref=[[0.00048669, -9.092e-05, 0.00017916], [-9.092e-05, 0.00037342, 0.0001797], [0.00017916, 0.0001797, 0.00020934]],
+            forces_ref=[[-0.06025067, -0.01561183, -0.00866171], [-0.00930775, -0.01289289, -0.00783269],
+                       [-0.00342628, -0.01078834, -0.07976882], [-0.03836225, 0.11493676, 0.06015426],
+                       [0.01053608, -0.02871813, -0.00419844], [0.10081087, -0.04692557, 0.04030739]])
+        self.tags = {'qe-%s'%variant, 'parallel'}
+
 
 #@rfm.simple_test
 #class qe_LiF_nc_vc_relax(qe_scf_base_test):
