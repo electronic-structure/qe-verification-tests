@@ -2,6 +2,9 @@
     pseudo_dir = './',
     outdir='./'
     prefix='nio',
+    verbosity='high'
+    tstress = true
+    tprnfor = true
  /
  &system
     ibrav=  0, celldm(1)=7.93, nat=  4, ntyp= 3,
@@ -10,12 +13,10 @@
     nspin=2, 
     starting_magnetization(1)= 1.0,
     starting_magnetization(2)=-1.0
-    lda_plus_u                = .true.
-    Hubbard_U(1)              = 8.00
-    Hubbard_U(2)              = 8.00
  /
  &electrons
-    mixing_beta = 0.3 
+    conv_thr =  1.0d-11
+    mixing_beta = 0.3
  /
 CELL_PARAMETERS
 0.50 0.50 1.00
