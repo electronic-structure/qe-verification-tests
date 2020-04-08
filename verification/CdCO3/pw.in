@@ -1,0 +1,46 @@
+&CONTROL
+  calculation = 'scf'
+  outdir = './out/'
+  prefix = 'scf_'
+  pseudo_dir = './'
+  restart_mode = 'from_scratch'
+  tprnfor = .true.
+  tstress = .true.
+  verbosity = 'high'
+/
+&SYSTEM
+  degauss =   1.0000000000d-02
+  ecutrho = 300
+  ecutwfc = 30
+  ibrav = 0
+  nat = 10
+  ntyp = 3
+  occupations = 'smearing'
+  smearing = 'gauss'
+/
+&ELECTRONS
+  conv_thr =   1.0000000000d-12
+  electron_maxstep = 100
+  mixing_beta =   7.0000000000d-01
+/
+ATOMIC_SPECIES
+C      12.011 C.pbe-n-kjpaw_psl.1.0.0.UPF
+Cd     112.41 Cd.pbe-dn-rrkjus_psl.0.3.1.UPF
+O      15.9994 O.pbe-n-kjpaw_psl.0.1.UPF
+ATOMIC_POSITIONS angstrom
+C            0.0000000000       0.0000000000       4.1353571759 
+C            0.0000000000       0.0000000000      12.4060607306 
+Cd           2.4993930897       1.4430252731       5.5138059688 
+Cd           0.0000000000       0.0000000000       8.2707089532 
+O            1.2031511979       1.4430250388       9.6491624584 
+O           -1.2031511979      -1.4430250388       6.8922554481 
+O            0.6481207429      -1.7634720213       9.6491624584 
+O           -0.6481207429       1.7634720213       6.8922554481 
+O           -1.8512719408       0.3204469825       9.6491624584 
+O            1.8512719408      -0.3204469825       6.8922554481 
+K_POINTS automatic
+4 4 4 0 0 0
+CELL_PARAMETERS angstrom
+      2.4993930897       1.4430252731       5.5138059688
+     -2.4993930897       1.4430252731       5.5138059688
+     -0.0000000000      -2.8860505463       5.5138059688
