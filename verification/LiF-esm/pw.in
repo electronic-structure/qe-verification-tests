@@ -1,0 +1,42 @@
+&control
+    calculation='scf',
+    restart_mode='from_scratch',
+    pseudo_dir = './',
+    outdir='./',
+    prefix = 'LiF_',
+    verbosity='high',
+    tstress = true
+    tprnfor = true
+ /
+ &system
+    ibrav=0, celldm(1)=5.60501685, nat=2, ntyp=2,
+    ecutwfc=50.0, ecutrho = 900,
+    nspin=1,
+    occupations = 'smearing', smearing = 'gauss', degauss = 0.02,
+    assume_isolated = 'esm', esm_bc = 'bc1'
+ /
+ &electrons
+    conv_thr =  1.0d-10,
+    mixing_beta = 0.7,
+    electron_maxstep=100
+    diago_full_acc=.true.
+ /
+&IONS
+ ion_dynamics='bfgs',
+/
+&CELL
+ cell_dynamics='bfgs',
+/
+ATOMIC_SPECIES
+ Li 0 li_lda_v1.4.uspp.F.UPF
+ F  0 f_lda_v1.4.uspp.F.UPF
+CELL_PARAMETERS
+   2 0 0
+   0 1 0
+   0 0 2
+ATOMIC_POSITIONS (angstrom)
+Li       0.0           0.0           0.0
+F        2             0             0
+K_POINTS (automatic)
+1 4 1 0 0 0
+
