@@ -1,10 +1,7 @@
-import itertools
-import os
 import re
 
 import reframe as rfm
 import reframe.utility.sanity as sn
-
 
 @sn.sanity_function
 def get_energy(ostream):
@@ -64,111 +61,39 @@ def get_forces(ostream):
 
     return forces
 
-#@sn.sanity_function
-#def parse_qe_out(filename):
-#    '''Parse RAW QE output file.'''
-#    ostream = sn.extractsingle(r'(?s).+', filename).evaluate()
-#
-#    # take last energy value (is case of vc-relax)
-#    energy = sn.extractsingle(r'!\s+total energy\s+=\s+(?P<energy>\S+) Ry',
-#                              ostream, 'energy', float, item=-1)
-#
-#    # take last pressure value (is case of vc-relax)
-#    pressure = sn.extractsingle(r'\s+total\s+stress.+\(kbar\)\s+P\=\s*(?P<pressure>\S+)',
-#                                ostream, 'pressure', float, item=-1)
-#
-#    # take last match (is case of vc-relax)
-#    raw_data = sn.extractsingle(r'total\s+stress.+\(kbar\)\s+P\=.+\s+.+\s+.+\s+.+', ostream, item=-1).evaluate()
-#    lines = raw_data.splitlines()
-#
-#    stress = []
-#    for i in range(2):
-#        vals = lines[i + 1].split()
-#        stress.append([float(vals[j]) for j in range(2)])
-#
-#    # get number of atoms
-#    natoms = sn.extractsingle(r'\s+number\sof\satoms\/cell\s+\=\s+(?P<natoms>\S+)', ostream, 'natoms', int).evaluate()
-#
-#    fmt = r'     Forces acting on atoms \(cartesian axes, Ry\/au\):\s+'
-#    for i in range(natoms):
-#        fmt += r'.+\s+'
-#
-#    # take last match (is case of vc-relax)
-#    raw_data = sn.extractsingle(fmt, ostream, item=-1).evaluate()
-#
-#    lines = raw_data.splitlines()[2:]
-#    forces = []
-#    ia = 1
-#    for line in lines:
-#        result = re.search(r'\s+atom\s+(?P<atom>\S+)\s+type\s+\S+\s+force\s+\=\s+(?P<force>.+)', line)
-#        if result:
-#            sn.assert_eq(ia, int(result.group('atom')), msg='Wrong index of atom: {0} != {1}').evaluate()
-#            vals = result.group('force').split()
-#            forces.append([float(vals[i]) for i in range(2)])
-#            ia += 1
-#
-#    return energy, pressure, stress, forces
-#
-#@sn.sanity_function
-#def energy_diff(ostream, energy_ref):
-#    ''' Return the difference between obtained and reference total energies'''
-#
-#    # take last energy value (is case of vc-relax)
-#    energy = sn.extractsingle(r'!\s+total energy\s+=\s+(?P<energy>\S+) Ry',
-#                              ostream, 'energy', float, item=-1)
-#    return sn.abs(energy - energy_ref)
-#
-#@sn.sanity_function
-#def pressure_diff(ostream, pressure_ref):
-#    ''' Return the difference between obtained and reference total energies'''
-#
-#    # take last pressure value (is case of vc-relax)
-#    pressure = sn.extractsingle(r'\s+total\s+stress.+\(kbar\)\s+P\=\s*(?P<pressure>\S+)',
-#                                ostream, 'pressure', float, item=-1)
-#    return sn.abs(pressure - pressure_ref)
-#
-#@sn.sanity_function
-#def stress_diff(ostream, stress_ref):
-#    ''' Return the difference between obtained and reference stress tensor components'''
-#
-#    # take last match (is case of vc-relax)
-#    raw_data = sn.extractsingle(r'total\s+stress.+\(kbar\)\s+P\=.+\s+.+\s+.+\s+.+', ostream, item=-1).evaluate()
-#    lines = raw_data.splitlines()
-#
-#    stress = []
-#    for i in range(2):
-#        vals = lines[i + 1].split()
-#        stress.append([float(vals[j]) for j in range(2)])
-#
-#    return sn.max(sn.abs(stress_ref[i][j] - stress[i][j]) for i in range(2) for j in range(2))
-#
-#
-#@sn.sanity_function
-#def forces_diff(ostream, forces_ref):
-#    ''' Return the difference between obtained and reference atomic forces'''
-#
-#    # get number of atoms
-#    natoms = sn.extractsingle(r'\s+number\sof\satoms\/cell\s+\=\s+(?P<natoms>\S+)', ostream, 'natoms', int).evaluate()
-#
-#    fmt = r'     Forces acting on atoms \(cartesian axes, Ry\/au\):\s+'
-#    for i in range(natoms):
-#        fmt += r'.+\s+'
-#
-#    # take last match (is case of vc-relax)
-#    raw_data = sn.extractsingle(fmt, ostream, item=-1).evaluate()
-#
-#    lines = raw_data.splitlines()[2:]
-#    forces = []
-#    ia = 1
-#    for line in lines:
-#        result = re.search(r'\s+atom\s+(?P<atom>\S+)\s+type\s+\S+\s+force\s+\=\s+(?P<force>.+)', line)
-#        if result:
-#            sn.assert_eq(ia, int(result.group('atom')), msg='Wrong index of atom: {0} != {1}').evaluate()
-#            vals = result.group('force').split()
-#            forces.append([float(vals[i]) for i in range(2)])
-#            ia += 1
-#
-#    return sn.max(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(natoms) for j in range(2))
+@sn.sanity_function
+def energy_diff(ostream, ostream_ref):
+    ''' Return the difference between obtained and reference total energies'''
+    return sn.abs(get_energy(ostream) - get_energy(ostream_ref))
+
+@sn.sanity_function
+def pressure_diff(ostream, ostream_ref):
+    ''' Return the difference between obtained and reference total energies'''
+    return sn.abs(get_pressure(ostream) - get_pressure(ostream_ref))
+
+@sn.sanity_function
+def stress_diff(ostream, ostream_ref):
+    ''' Return the difference between obtained and reference stress tensor components'''
+
+    stress = get_stress(ostream)
+    stress_ref = get_stress(ostream_ref)
+    return sn.max(sn.abs(stress_ref[i][j] - stress[i][j]) for i in range(2) for j in range(2))
+
+@sn.sanity_function
+def forces_diff(ostream, ostream_ref):
+    ''' Return the difference between obtained and reference atomic forces'''
+
+    forces = get_forces(ostream)
+    forces_ref = get_forces(ostream_ref)
+
+    na = 0
+    for e in forces: na += 1
+    na_ref = 0
+    for e in forces_ref: na_ref += 1
+
+    sn.assert_eq(na, na_ref, msg='Wrong length of forces array: {0} != {1}').evaluate()
+
+    return sn.max(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(na) for j in range(2))
 
 class qe_scf_base_test(rfm.RunOnlyRegressionTest):
     def __init__(self, num_ranks_k, num_ranks_d, test_folder, variant):
@@ -193,14 +118,12 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         if variant == 'sirius':
             self.executable_opts.append('-sirius')
 
-        ostream_ref = sn.extractsingle(r'(?s).+', test_folder + '/out.txt')
-
         patterns = [
             sn.assert_found(r'convergence has been achieved', self.stdout),
-            sn.assert_lt(sn.abs(get_energy(self.stdout) - get_energy(ostream_ref.evaluate())), 1e-5, msg="Total energy is different")
-            #sn.assert_lt(pressure_diff(self.stdout, P_ref), 2e-2, msg="Pressure is different"),
-            #sn.assert_lt(stress_diff(self.stdout, stress_ref), 1e-4, msg="Stress tensor is different"),
-            #sn.assert_lt(forces_diff(self.stdout, forces_ref), 1e-4, msg="Atomic forces are different")
+            sn.assert_lt(energy_diff(self.stdout, 'out.txt'), 1e-5, msg="Total energy is different"),
+            sn.assert_lt(pressure_diff(self.stdout, 'out.txt'), 2e-2, msg="Pressure is different"),
+            sn.assert_lt(stress_diff(self.stdout, 'out.txt'), 1e-4, msg="Stress tensor is different"),
+            sn.assert_lt(forces_diff(self.stdout, 'out.txt'), 1e-4, msg="Atomic forces are different")
         ]
         if variant == 'sirius':
             patterns.append(sn.assert_found(r'SIRIUS.+git\shash', self.stdout))
