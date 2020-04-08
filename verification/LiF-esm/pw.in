@@ -7,6 +7,7 @@
     verbosity='high',
     tstress = true
     tprnfor = true
+    disk_io = 'none'
  /
  &system
     ibrav=0, celldm(1)=5.60501685, nat=2, ntyp=2,

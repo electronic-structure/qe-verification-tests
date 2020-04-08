@@ -7,6 +7,7 @@
   verbosity = 'high'
   tstress=.true.
   tprnfor = .true.
+  disk_io = 'none'
 /
 &SYSTEM
   assume_isolated = '2D'
