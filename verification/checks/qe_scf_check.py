@@ -141,11 +141,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 #@rfm.simple_test
 #class qe_Si(qe_scf_base_test):
 #    def __init__(self):
-#        super().__init__(1, 'Si', 'pw.in', use_sirius=False,
-#            energy_ref=-19.31881789,
-#            P_ref=-55.34,
-#            stress_ref=[[-0.00033422, -7.453e-05, -7.453e-05], [-7.453e-05, -0.00039715, 2.31e-06], [-7.453e-05, 2.31e-06, -0.00039715]],
-#            forces_ref=[[-0.00021611, 0.00516719, 0.00516719], [0.00021611, -0.00516719, -0.00516719]])
+#        super().__init__(1, 1, 'Si', 'native')
 #        self.tags = {'serial', 'qe-native'}
 
 @rfm.parameterized_test(['native'], ['sirius'])
@@ -191,19 +187,12 @@ class qe_Au_surf_scf(qe_scf_base_test):
         self.tags = {'qe-%s'%variant, 'parallel', 'Au-surf'}
         self.time_limit = '20m'
 
-#==@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
-#==class qe_HfNi5_scf(qe_scf_base_test):
-#==    def __init__(self, variant, ranks):
-#==        super().__init__(ranks[0], ranks[1], 'HfNi5', 'pw.in', variant,
-#==            energy_ref=-1829.32458388,
-#==            P_ref=52.44,
-#==            stress_ref=[[0.00048669, -9.092e-05, 0.00017916], [-9.092e-05, 0.00037342, 0.0001797], [0.00017916, 0.0001797, 0.00020934]],
-#==            forces_ref=[[-0.06025067, -0.01561183, -0.00866171], [-0.00930775, -0.01289289, -0.00783269],
-#==                       [-0.00342628, -0.01078834, -0.07976882], [-0.03836225, 0.11493676, 0.06015426],
-#==                       [0.01053608, -0.02871813, -0.00419844], [0.10081087, -0.04692557, 0.04030739]])
-#==        self.tags = {'qe-%s'%variant, 'parallel'}
-#==
-#==
+@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
+class qe_HfNi5_scf(qe_scf_base_test):
+    def __init__(self, variant, ranks):
+        super().__init__(ranks[0], ranks[1], 'HfNi5', variant)
+        self.tags = {'qe-%s'%variant, 'parallel', 'hfni5'}
+
 @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(3,1), (5,1)]))
 class qe_NiO_afm_scf(qe_scf_base_test):
     def __init__(self, variant, ranks):
