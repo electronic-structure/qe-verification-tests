@@ -205,6 +205,12 @@ class qe_FeSe2_2D_scf(qe_scf_base_test):
         super().__init__(ranks[0], ranks[1], 'FeSe2-2D', variant)
         self.tags = {'qe-%s'%variant, 'parallel'}
 
+@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
+class qe_Ni_ldapu_scf(qe_scf_base_test):
+    def __init__(self, variant, ranks):
+        super().__init__(ranks[0], ranks[1], 'Ni-ldapu', variant)
+        self.tags = {'qe-%s'%variant, 'parallel'}
+
 #@rfm.simple_test
 #class qe_LiF_nc_vc_relax(qe_scf_base_test):
 #    def __init__(self):

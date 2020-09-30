@@ -1,0 +1,42 @@
+&control
+calculation='scf',
+restart_mode='from_scratch',
+pseudo_dir = './',
+outdir='./out/',
+prefix = 'aiida',
+tstress = true,
+tprnfor = true,
+verbosity = 'high'
+wf_collect = .false.
+/
+&system
+ibrav=0, celldm(1)=1, ecutwfc=64, ecutrho = 900, nspin=2, starting_magnetization(1)=0.1
+occupations = 'smearing', smearing = 'gauss', degauss = 0.04,
+nat=1, ntyp=1,
+lda_plus_u = .true.,
+lda_plus_u_kind = 0,
+U_projection_type = 'atomic',
+Hubbard_U(1) = 10.0337,
+/
+&electrons
+conv_thr =  1.0d-10,
+mixing_beta = 0.5,
+electron_maxstep = 100,
+diago_full_acc=.true.
+/
+&IONS
+ion_dynamics='bfgs',
+/
+&CELL
+cell_dynamics='bfgs',
+/
+ATOMIC_SPECIES
+Ni 0.0 ni_pbesol_v1.4.uspp.F.UPF
+CELL_PARAMETERS
+        0.00000000        3.32308339        3.32308339
+        3.32308339        0.00000000        3.32308339
+        3.32308339        3.32308339        0.00000000
+ATOMIC_POSITIONS (crystal)
+Ni          0.00000000         0.00000000         0.00000000
+K_POINTS (automatic)
+4 4 4 0 0 0
