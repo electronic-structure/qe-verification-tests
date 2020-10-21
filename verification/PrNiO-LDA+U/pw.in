@@ -1,0 +1,58 @@
+&control 
+    calculation='scf'
+    restart_mode='from_scratch',
+    prefix='PrNiO3'
+    pseudo_dir = './'
+    outdir='tmp'
+    verbosity='low'
+    tstress=.true.
+    tprnfor=.true.
+ /
+ &system
+    ibrav = -12,
+    celldm(1) = 6.452094 
+    celldm(2) = 0.4972992
+    celldm(3) = 1.4065539
+    celldm(5) = -0.001248
+    nat = 7,
+    ntyp = 7,
+    ecutwfc = 50,
+    ecutrho = 400,
+    occupations = 'smearing',
+    smearing = 'gaussian',
+    degauss = 0.001,
+    nspin = 2,
+    starting_magnetization(1) =  1.0,
+    starting_magnetization(2) = -1.0
+    starting_magnetization(3) =  0.0
+    lda_plus_u = .true.,
+    lda_plus_u_kind = 0,
+    U_projection_type = 'atomic',
+    Hubbard_U(1) = 10.0337,
+    Hubbard_U(2) = 10.0337,
+    Hubbard_U(3) = 6.7035,
+ /
+ &electrons
+    electron_maxstep = 100
+    conv_thr =  1.d-9
+    mixing_mode = 'local-TF'
+    mixing_beta = 0.2
+     /
+ATOMIC_SPECIES
+N1u  58.693   ni_pbesol_v1.4.uspp.F.UPF
+N1d  58.693   ni_pbesol_v1.4.uspp.F.UPF
+N2n  58.693   ni_pbesol_v1.4.uspp.F.UPF
+O1   16.000   O.pbesol-n-kjpaw_psl.0.1.UPF
+O2   16.000   O.pbesol-n-kjpaw_psl.0.1.UPF
+O3   16.000   O.pbesol-n-kjpaw_psl.0.1.UPF
+Pr   140.908  Pr.pbesol_ps.uspp.UPF
+ATOMIC_POSITIONS (crystal)
+ N2n    0.000000000      0.00000000      0.000000000
+ N1u    0.50000000      0.50000000      0.500000000 
+ N1d    0.50000000      0.00000000      0.000000000 
+ O1     0.285174996      0.292599994      0.126420006
+ O2     0.107230000      0.278439999       1.82399992E-02
+ O3     0.060944986      0.213819996      0.2481739998
+ Pr     0.747305006       3.26899998E-02  0.125485003
+K_POINTS {automatic}
+ 4 4 4 0 0 0
