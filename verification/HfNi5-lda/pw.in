@@ -1,0 +1,47 @@
+&CONTROL
+  calculation = 'scf'
+  etot_conv_thr =   6.0000000000d-05
+  forc_conv_thr =   1.0000000000d-04
+  max_seconds =   1.2960000000d+04
+  outdir = './out/'
+  prefix = 'scf'
+  pseudo_dir = './'
+  restart_mode = 'from_scratch'
+  tprnfor = .true.
+  tstress = .true.
+  verbosity = 'high'
+/
+&SYSTEM
+  degauss =   1.0000000000d-02
+  ecutrho =   3.6000000000d+02
+  ecutwfc =   5.0000000000d+01
+  ibrav = 0
+  nat = 6
+  nosym = .false.
+  nspin = 1
+  ntyp = 2
+  occupations = 'smearing'
+  smearing = 'cold'
+/
+&ELECTRONS
+  conv_thr =   1.0000000000d-11
+  electron_maxstep = 80
+  mixing_beta =   4.0000000000d-01
+  diago_full_acc = .true.
+/
+ATOMIC_SPECIES
+Hf     178.49 hf_lda_v1.uspp.F.UPF
+Ni     58.6934 ni_lda_v1.4.uspp.F.UPF
+ATOMIC_POSITIONS angstrom
+Hf           0.0701465158      -0.0141289975       0.0243340648 
+Ni           1.7019278077       1.7379160743       5.1126568240 
+Ni           5.7740425243       2.3552281852       5.8825504771 
+Ni           2.4100329036       0.6017189830       0.7373766251 
+Ni           4.0184748208       0.8767531528       5.7950436672 
+Ni           0.6884346537       2.5303190746       0.7320214126 
+K_POINTS automatic
+4 4 4 0 0 0
+CELL_PARAMETERS angstrom
+      0.0000000000       3.3400000000       3.3400000000
+      3.3400000000       0.0000000000       3.3400000000
+      3.3400000000       3.3400000000       0.0000000000
