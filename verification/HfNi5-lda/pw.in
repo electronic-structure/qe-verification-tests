@@ -7,31 +7,30 @@
   prefix = 'scf'
   pseudo_dir = './'
   restart_mode = 'from_scratch'
-  tprnfor = .true.
-  tstress = .true.
+  tprnfor = .false.
+  tstress = .false.
   verbosity = 'high'
 /
 &SYSTEM
   degauss =   1.0000000000d-02
-  ecutrho =   3.6000000000d+02
-  ecutwfc =   5.0000000000d+01
+  ecutrho =   800
+  ecutwfc =   60
   ibrav = 0
   nat = 6
-  nosym = .false.
   nspin = 1
   ntyp = 2
   occupations = 'smearing'
-  smearing = 'cold'
+  smearing = 'gauss'
 /
 &ELECTRONS
   conv_thr =   1.0000000000d-11
   electron_maxstep = 80
-  mixing_beta =   4.0000000000d-01
+  mixing_beta =   0.5
   diago_full_acc = .true.
 /
 ATOMIC_SPECIES
-Hf     178.49 hf_lda_v1.uspp.F.UPF
-Ni     58.6934 ni_lda_v1.4.uspp.F.UPF
+Hf     178.49  Hf.pz-mt_fhi.UPF
+Ni     58.6934 Ni.pz-mt_fhi.UPF
 ATOMIC_POSITIONS angstrom
 Hf           0.0701465158      -0.0141289975       0.0243340648 
 Ni           1.7019278077       1.7379160743       5.1126568240 
