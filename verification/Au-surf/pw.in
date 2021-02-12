@@ -9,6 +9,7 @@
   pseudo_dir = './'
   outdir = './'
   disk_io = 'none'
+  verbosity = 'high'
 /
 
 &SYSTEM
@@ -26,7 +27,7 @@
 
 &ELECTRONS
     diagonalization='david'
-    mixing_beta = 0.7
+    mixing_beta = 0.5
     conv_thr=1.d-10
 /
 

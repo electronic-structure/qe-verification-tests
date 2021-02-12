@@ -9,50 +9,58 @@
     tprnfor=.true.
  /
  &system
-    ibrav = -12,
-    celldm(1) = 6.452094 
-    celldm(2) = 0.4972992
-    celldm(3) = 1.4065539
-    celldm(5) = -0.001248
-    nat = 7,
-    ntyp = 7,
-    ecutwfc = 50,
-    ecutrho = 400,
+    ibrav = 0,
+    celldm(1) = 1
+    nat=20, ntyp=4
+    ecutwfc = 30,
+    ecutrho = 200,
     occupations = 'smearing',
     smearing = 'gaussian',
-    degauss = 0.001,
+    degauss = 0.01,
     nspin = 2,
     starting_magnetization(1) =  1.0,
     starting_magnetization(2) = -1.0
-    starting_magnetization(3) =  0.0
     lda_plus_u = .true.,
     lda_plus_u_kind = 0,
     U_projection_type = 'atomic',
     Hubbard_U(1) = 10.0337,
-    Hubbard_U(2) = 10.0337,
-    Hubbard_U(3) = 6.7035,
+    Hubbard_U(2) = 10.0337
  /
  &electrons
     electron_maxstep = 100
-    conv_thr =  1.d-9
+    conv_thr =  1.d-11
     mixing_mode = 'local-TF'
-    mixing_beta = 0.2
+    mixing_beta = 0.8
      /
 ATOMIC_SPECIES
 N1u  58.693   ni_pbesol_v1.4.uspp.F.UPF
 N1d  58.693   ni_pbesol_v1.4.uspp.F.UPF
-N2n  58.693   ni_pbesol_v1.4.uspp.F.UPF
-O1   16.000   O.pbesol-n-kjpaw_psl.0.1.UPF
-O2   16.000   O.pbesol-n-kjpaw_psl.0.1.UPF
-O3   16.000   O.pbesol-n-kjpaw_psl.0.1.UPF
+O   16.000   O.pbesol-n-kjpaw_psl.0.1.UPF
 Pr   140.908  Pr.pbesol_ps.uspp.UPF
+CELL_PARAMETERS
+  10.22625292        0.00000000        0.00000000
+   0.00000000       10.15973456        0.00000000
+   0.00000000        0.00000000       14.39272108
 ATOMIC_POSITIONS (crystal)
- N2n    0.000000000      0.00000000      0.000000000
- N1u    0.50000000      0.50000000      0.500000000 
- N1d    0.50000000      0.00000000      0.000000000 
- O1     0.285174996      0.292599994      0.126420006
- O2     0.107230000      0.278439999       1.82399992E-02
- O3     0.060944986      0.213819996      0.2481739998
- Pr     0.747305006       3.26899998E-02  0.125485003
+Pr          0.99450000         0.03050000         0.25000000
+Pr          0.50550000         0.53050000         0.25000000
+Pr          0.00550000         0.96950000         0.75000000
+Pr          0.49450000         0.46950000         0.75000000
+N1u          0.50000000         0.00000000         0.00000000
+N1u         0.00000000         0.50000000         0.50000000
+N1d          0.50000000         0.00000000         0.50000000
+N1d          0.00000000         0.50000000         0.00000000
+O          0.06810000         0.49350000         0.25000000
+O          0.43190000         0.99350000         0.25000000
+O          0.93190000         0.50650000         0.75000000
+O          0.56810000         0.00650000         0.75000000
+O          0.71900000         0.28140000         0.03560000
+O          0.78100000         0.78140000         0.46440000
+O          0.28100000         0.71860000         0.53560000
+O          0.21900000         0.21860000         0.96440000
+O          0.28100000         0.71860000         0.96440000
+O          0.21900000         0.21860000         0.53560000
+O          0.71900000         0.28140000         0.46440000
+O          0.78100000         0.78140000         0.03560000
 K_POINTS {automatic}
- 4 4 4 0 0 0
+ 3 3 3 0 0 0

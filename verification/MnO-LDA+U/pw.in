@@ -29,7 +29,7 @@ starting_magnetization(2) = -1.0
 &electrons
 diagonalization     = 'david',
 !mixing_beta         = 0.6,
-!conv_thr            = 1.0d-10
+conv_thr            = 1.0d-11
 diago_full_acc = .true.
 /
 &ions
