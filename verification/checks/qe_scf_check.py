@@ -116,12 +116,12 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 
         self.executable_opts = ["-i pw.in", "-npool %i"%num_ranks_k, "-ndiag %i"%num_ranks_d]
         if variant == 'sirius':
-            self.executable_opts.append('-sirius')
+            self.executable_opts.append('-sirius_scf')
 
         patterns = [
             sn.assert_found(r'convergence has been achieved', self.stdout),
             sn.assert_lt(energy_diff(self.stdout, 'out.txt'), 1e-5, msg="Total energy is different"),
-            sn.assert_lt(pressure_diff(self.stdout, 'out.txt'), 2e-2, msg="Pressure is different"),
+            sn.assert_lt(pressure_diff(self.stdout, 'out.txt'), 1e-1, msg="Pressure is different"),
             sn.assert_lt(stress_diff(self.stdout, 'out.txt'), 1e-4, msg="Stress tensor is different"),
             sn.assert_lt(forces_diff(self.stdout, 'out.txt'), 1e-4, msg="Atomic forces are different")
         ]
@@ -211,6 +211,18 @@ class qe_Ni_ldapu_scf(qe_scf_base_test):
         super().__init__(ranks[0], ranks[1], 'Ni-ldapu', variant)
         self.tags = {'qe-%s'%variant, 'parallel'}
 
+@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
+class qe_PrNiO_ldapu_scf(qe_scf_base_test):
+    def __init__(self, variant, ranks):
+        super().__init__(ranks[0], ranks[1], 'PrNiO-LDA+U', variant)
+        self.tags = {'qe-%s'%variant, 'parallel'}
+
+@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
+class qe_MnO_ldapu_scf(qe_scf_base_test):
+    def __init__(self, variant, ranks):
+        super().__init__(ranks[0], ranks[1], 'MnO-LDA+U', variant)
+        self.tags = {'qe-%s'%variant, 'parallel'}
+
 #@rfm.simple_test
 #class qe_LiF_nc_vc_relax(qe_scf_base_test):
 #    def __init__(self):
@@ -245,17 +257,5 @@ class qe_Ni_ldapu_scf(qe_scf_base_test):
 #class qe_sirius_LiF_uspp_vc_relax(qe_scf_base_test):
 #    def __init__(self):
 #        super().__init__(1, 'LiF-uspp', 'pw.in', True, -63.36416794)
-#        self.tags = {'serial'}
-#
-#@rfm.simple_test
-#class qe_MnO_ldapu(qe_scf_base_test):
-#    def __init__(self):
-#        super().__init__(1, 'MnO-LDA+U', 'pw.in', False, -491.69850186)
-#        self.tags = {'serial'}
-#
-#@rfm.simple_test
-#class qe_sirius_MnO_ldapu(qe_scf_base_test):
-#    def __init__(self):
-#        super().__init__(1, 'MnO-LDA+U', 'pw.in', True, -491.62465892)
 #        self.tags = {'serial'}
 #
