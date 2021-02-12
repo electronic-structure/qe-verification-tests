@@ -1,0 +1,39 @@
+&control
+    calculation='scf',
+    restart_mode='from_scratch',
+    pseudo_dir = './',
+    outdir='./',
+    prefix = 'LiF_',
+    verbosity='high',
+    tstress = true
+    tprnfor = true
+ /
+ &system
+    ibrav=0, celldm(1)=7.60501685, nat=2, ntyp=2, nosym=false
+    ecutwfc=30.0, ecutrho = 800,
+    occupations = 'smearing', smearing = 'gauss', degauss = 0.02
+ /
+ &electrons
+    conv_thr =  1.0d-11,
+    mixing_beta = 0.7,
+    electron_maxstep=100,
+ /
+&IONS
+ ion_dynamics='bfgs',
+/
+&CELL
+ cell_dynamics='bfgs',
+/
+ATOMIC_SPECIES
+ Li 0 Li.pz-n-nc.UPF
+ F  0 F.pz-n-nc.UPF
+CELL_PARAMETERS
+  -0.000000000   0.505414859   0.505414859
+   0.505414859  -0.000000000   0.505414859
+   0.505414859   0.505414859  -0.000000000
+ATOMIC_POSITIONS (alat)
+Li       0.0           0.0           0.0
+F         0.51   0.51   0.51
+K_POINTS (automatic)
+3 3 3 0 0 0
+

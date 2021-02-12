@@ -159,7 +159,19 @@ class qe_Si_vc_relax(qe_scf_base_test):
 @rfm.parameterized_test(['native'], ['sirius'])
 class qe_LiF_nc_scf(qe_scf_base_test):
     def __init__(self, variant):
-        super().__init__(1, 1, 'LiF-nc', variant)
+        super().__init__(1, 1, 'LiF-gga-nc', variant)
+        self.tags = {'qe-%s'%variant, 'serial'}
+
+@rfm.parameterized_test(['native'], ['sirius'])
+class qe_LiF_nc_scf(qe_scf_base_test):
+    def __init__(self, variant):
+        super().__init__(1, 1, 'LiF-lda-nc', variant)
+        self.tags = {'qe-%s'%variant, 'serial'}
+
+@rfm.parameterized_test(['native'], ['sirius'])
+class qe_LiF_nc_scf(qe_scf_base_test):
+    def __init__(self, variant):
+        super().__init__(1, 1, 'LiF-lda-uspp', variant)
         self.tags = {'qe-%s'%variant, 'serial'}
 
 @rfm.parameterized_test(['native'], ['sirius'])
