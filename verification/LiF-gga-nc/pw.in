@@ -4,7 +4,7 @@
     pseudo_dir = './',
     outdir='./',
     prefix = 'LiF_',
-    verbosity='low',
+    verbosity='high',
     tstress = true
     tprnfor = true
  /
