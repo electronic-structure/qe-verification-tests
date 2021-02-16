@@ -24,9 +24,9 @@
   mixing_beta =   7.0000000000d-01
 /
 ATOMIC_SPECIES
-C      12.011 C.pbe-n-kjpaw_psl.1.0.0.UPF
-Cd     112.41 Cd.pbe-dn-rrkjus_psl.0.3.1.UPF
-O      15.9994 O.pbe-n-kjpaw_psl.0.1.UPF
+C      12.011 C.pz-n-kjpaw_psl.0.1.UPF
+Cd     112.41 Cd.pz-dn-kjpaw_psl.0.3.1.UPF
+O      15.9994 O.pz-n-kjpaw_psl.0.1.UPF
 ATOMIC_POSITIONS angstrom
 C            0.0000000000       0.0000000000       4.1353571759 
 C            0.0000000000       0.0000000000      12.4060607306 
