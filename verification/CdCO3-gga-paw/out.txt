@@ -1,71 +1,60 @@
+SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
-     Program PWSCF v.6.4.1 starts on  8Apr2020 at 14:43:48 
+     Program PWSCF v.6.7GPU starts on 16Feb2021 at 16:13:15 
 
      This program is part of the open-source Quantum ESPRESSO suite
      for quantum simulation of materials; please cite
          "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
          "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
           URL http://www.quantum-espresso.org", 
      in publications or presentations arising from this work. More details at
      http://www.quantum-espresso.org/quote
 
-     Parallel version (MPI & OpenMP), running on      48 processor cores
-     Number of MPI processes:                 4
+     Parallel version (MPI & OpenMP), running on      12 processor cores
+     Number of MPI processes:                 1
      Threads/MPI process:                    12
 
-     MPI processes distributed on     4 nodes
-     K-points division:     npool     =       4
+     MPI processes distributed on     1 nodes
      Reading input from pw.in
 
      Current dimensions of program PWSCF are:
      Max number of different atomic species (ntypx) = 10
      Max number of k-points (npk) =  40000
      Max angular momentum in pseudopotentials (lmaxx) =  3
-     Message from routine read_upf::
-     Pseudo file C.pbe-n-kjpaw_psl.1.0.0.UPF has been fixed on the fly.
-To avoid this message in the future, permanently fix 
- your pseudo files following these instructions: 
-https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
-     Message from routine read_upf::
-     Pseudo file Cd.pbe-dn-rrkjus_psl.0.3.1.UPF has been fixed on the fly.
-To avoid this message in the future, permanently fix 
- your pseudo files following these instructions: 
-https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
-     Message from routine read_upf::
-     Pseudo file O.pbe-n-kjpaw_psl.0.1.UPF has been fixed on the fly.
-To avoid this message in the future, permanently fix 
- your pseudo files following these instructions: 
-https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
-               file C.pbe-n-kjpaw_psl.1.0.0.UPF: wavefunction(s)  2S 2P renormalized
-               file Cd.pbe-dn-rrkjus_psl.0.3.1.UPF: wavefunction(s)  4D renormalized
-               file O.pbe-n-kjpaw_psl.0.1.UPF: wavefunction(s)  2P renormalized
+     file C.pbe-n-kjpaw_psl.1.0.0.UPF: wavefunction(s)  2S 2P renormalized
+     file Cd.pbe-dn-rrkjus_psl.0.3.1.UPF: wavefunction(s)  4D renormalized
+     file O.pbe-n-kjpaw_psl.0.1.UPF: wavefunction(s)  2P renormalized
+     Message from routine setup:
+     using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
 
      Subspace diagonalization in iterative solution of the eigenvalue problem:
      a serial algorithm will be used
 
-     Message from routine setup:
-     DEPRECATED: symmetry with ibrav=0, use correct ibrav instead
- 
+
      G-vector sticks info
      --------------------
      sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
      Sum        2429     973    305                70605    17917    3045
- 
+
+     Using Slab Decomposition
+
 
 
      bravais-lattice index     =            0
      lattice parameter (alat)  =      11.7606  a.u.
-     unit-cell volume          =     805.2076 (a.u.)^3
+     unit-cell volume          =     805.2075 (a.u.)^3
      number of atoms/cell      =           10
      number of atomic types    =            3
      number of electrons       =        68.00
      number of Kohn-Sham states=           41
      kinetic-energy cutoff     =      30.0000  Ry
      charge density cutoff     =     300.0000  Ry
-     convergence threshold     =      1.0E-12
+     scf convergence threshold =      1.0E-12
      mixing beta               =       0.7000
      number of iterations used =            8  plain     mixing
-     Exchange-correlation      = SLA PW PBX PBC ( 1  4  3  4 0 0)
+     Exchange-correlation= SLA  PW   PBX  PBC
+                           (   1   4   3   4   0   0   0)
 
      celldm(1)=  11.760618  celldm(2)=   0.000000  celldm(3)=   0.000000
      celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
@@ -73,19 +62,19 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      crystal axes: (cart. coord. in units of alat)
                a(1) = (   0.401609   0.231869   0.885972 )  
                a(2) = (  -0.401609   0.231869   0.885972 )  
-               a(3) = (   0.000000  -0.463738   0.885972 )  
+               a(3) = (  -0.000000  -0.463738   0.885972 )  
 
      reciprocal axes: (cart. coord. in units 2 pi/alat)
                b(1) = (  1.244992  0.718797  0.376234 )  
                b(2) = ( -1.244992  0.718797  0.376234 )  
-               b(3) = ( -0.000000 -1.437593  0.376234 )  
+               b(3) = (  0.000000 -1.437593  0.376234 )  
 
 
      PseudoPot. # 1 for C  read from file:
      ./C.pbe-n-kjpaw_psl.1.0.0.UPF
      MD5 check sum: 8e281b34a927efac7e739263a90d7aed
      Pseudo is Projector augmented-wave + core cor, Zval =  4.0
-     Generated using "atomic" code by A. Dal Corso v.5.1
+     Generated using "atomic" code by A. Dal Corso  v.5.1
      Shape of augmentation charge: PSQ
      Using radial grid of 1073 points,  4 beta functions with: 
                 l(1) =   0
@@ -99,7 +88,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      ./Cd.pbe-dn-rrkjus_psl.0.3.1.UPF
      MD5 check sum: 8b202996c79e9401b29e2d7c4e322951
      Pseudo is Ultrasoft + core correction, Zval = 12.0
-     Generated using "atomic" code by A. Dal Corso v.5.0.99 svn rev. 10869
+     Generated using "atomic" code by A. Dal Corso  v.5.0.99 svn rev. 10869
      Using radial grid of 1239 points,  6 beta functions with: 
                 l(1) =   0
                 l(2) =   0
@@ -114,7 +103,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      ./O.pbe-n-kjpaw_psl.0.1.UPF
      MD5 check sum: 3f94a2996a3169367d6eb21d9b593f20
      Pseudo is Projector augmented-wave + core cor, Zval =  6.0
-     Generated using "atomic" code by A. Dal Corso v.5.0.99 svn rev. 10869
+     Generated using "atomic" code by A. Dal Corso  v.5.0.99 svn rev. 10869
      Shape of augmentation charge: BESSEL
      Using radial grid of 1095 points,  4 beta functions with: 
                 l(1) =   0
@@ -140,9 +129,9 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
                   (     0          1          0      )
                   (     0          0          1      )
 
- cart.    s( 1) = (  1.0000000 -0.0000000  0.0000000 )
-                  (  0.0000000  1.0000000  0.0000000 )
-                  ( -0.0000000  0.0000000  1.0000000 )
+ cart.    s( 1) = (  1.0000000 -0.0000000 -0.0000000 )
+                  ( -0.0000000  1.0000000 -0.0000000 )
+                  ( -0.0000000 -0.0000000  1.0000000 )
 
 
       isym =  2     180 deg rotation - cart. axis [1,0,0]        
@@ -151,9 +140,9 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
                   (    -1          0          0      )       (  0.4999997 )
                   (     0          0         -1      )       (  0.4999997 )
 
- cart.    s( 2) = (  1.0000000  0.0000000 -0.0000000 )    f =(  0.0000000 )
-                  ( -0.0000000 -1.0000000 -0.0000000 )       ( -0.0000000 )
-                  (  0.0000000 -0.0000000 -1.0000000 )       (  1.3289577 )
+ cart.    s( 2) = (  1.0000000  0.0000000  0.0000000 )    f =(  0.0000000 )
+                  (  0.0000000 -1.0000000  0.0000000 )       ( -0.0000000 )
+                  (  0.0000000  0.0000000 -1.0000000 )       (  1.3289577 )
 
 
       isym =  3     120 deg rotation - cryst. axis [0,0,1]       
@@ -175,7 +164,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
  cart.    s( 4) = ( -0.5000000  0.8660254  0.0000000 )
                   ( -0.8660254 -0.5000000 -0.0000000 )
-                  (  0.0000000 -0.0000000  1.0000000 )
+                  ( -0.0000000 -0.0000000  1.0000000 )
 
 
       isym =  5     180 deg rotation - cryst. axis [0,1,0]       
@@ -197,7 +186,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
  cart.    s( 6) = ( -0.5000000  0.8660254  0.0000000 )    f =(  0.0000000 )
                   (  0.8660254  0.5000000  0.0000000 )       ( -0.0000000 )
-                  ( -0.0000000 -0.0000000 -1.0000000 )       (  1.3289577 )
+                  (  0.0000000 -0.0000000 -1.0000000 )       (  1.3289577 )
 
 
       isym =  7     inversion                                    
@@ -206,9 +195,9 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
                   (     0         -1          0      )
                   (     0          0         -1      )
 
- cart.    s( 7) = ( -1.0000000  0.0000000 -0.0000000 )
-                  ( -0.0000000 -1.0000000 -0.0000000 )
-                  (  0.0000000 -0.0000000 -1.0000000 )
+ cart.    s( 7) = ( -1.0000000  0.0000000  0.0000000 )
+                  (  0.0000000 -1.0000000  0.0000000 )
+                  (  0.0000000  0.0000000 -1.0000000 )
 
 
       isym =  8     inv. 180 deg rotation - cart. axis [1,0,0]   
@@ -217,9 +206,9 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
                   (     1          0          0      )       (  0.4999997 )
                   (     0          0          1      )       (  0.4999997 )
 
- cart.    s( 8) = ( -1.0000000 -0.0000000  0.0000000 )    f =( -0.0000000 )
-                  (  0.0000000  1.0000000  0.0000000 )       ( -0.0000000 )
-                  ( -0.0000000  0.0000000  1.0000000 )       (  1.3289577 )
+ cart.    s( 8) = ( -1.0000000 -0.0000000 -0.0000000 )    f =(  0.0000000 )
+                  ( -0.0000000  1.0000000 -0.0000000 )       ( -0.0000000 )
+                  ( -0.0000000 -0.0000000  1.0000000 )       (  1.3289577 )
 
 
       isym =  9     inv. 120 deg rotation - cryst. axis [0,0,1]  
@@ -241,7 +230,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
  cart.    s(10) = (  0.5000000 -0.8660254 -0.0000000 )
                   (  0.8660254  0.5000000  0.0000000 )
-                  ( -0.0000000  0.0000000 -1.0000000 )
+                  (  0.0000000  0.0000000 -1.0000000 )
 
 
       isym = 11     inv. 180 deg rotation - cryst. axis [0,1,0]  
@@ -263,7 +252,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
  cart.    s(12) = (  0.5000000 -0.8660254 -0.0000000 )    f =( -0.0000000 )
                   ( -0.8660254 -0.5000000 -0.0000000 )       ( -0.0000000 )
-                  (  0.0000000  0.0000000  1.0000000 )       (  1.3289577 )
+                  ( -0.0000000  0.0000000  1.0000000 )       (  1.3289577 )
 
 
    Cartesian axes
@@ -294,18 +283,18 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
          9           O   tau(   9) = (  0.2500002  0.9906888  0.5093114  )
         10           O   tau(  10) = (  0.7499998  0.0093112  0.4906886  )
 
-     number of k points=    13  gaussian smearing, width (Ry)=  0.0100
+     number of k points=    13  Gaussian smearing, width (Ry)=  0.0100
                        cart. coord. in units 2pi/alat
         k(    1) = (   0.0000000   0.0000000   0.0000000), wk =   0.0312500
-        k(    2) = (  -0.0000000  -0.3593984   0.0940586), wk =   0.1875000
-        k(    3) = (   0.0000000   0.7187967  -0.1881172), wk =   0.0937500
+        k(    2) = (   0.0000000  -0.3593984   0.0940586), wk =   0.1875000
+        k(    3) = (  -0.0000000   0.7187967  -0.1881172), wk =   0.0937500
         k(    4) = (  -0.3112481  -0.1796992   0.1881172), wk =   0.1875000
         k(    5) = (  -0.3112481   0.8984959  -0.0940586), wk =   0.3750000
         k(    6) = (  -0.3112481   0.5390976   0.0000000), wk =   0.1875000
         k(    7) = (   0.6224962   0.3593984  -0.3762344), wk =   0.0937500
         k(    8) = (  -0.0000000   0.0000000   0.2821758), wk =   0.0625000
-        k(    9) = (   0.0000000   1.0781951   0.0000000), wk =   0.1875000
-        k(   10) = (   0.0000000   0.7187967   0.0940586), wk =   0.1875000
+        k(    9) = (  -0.0000000   1.0781951   0.0000000), wk =   0.1875000
+        k(   10) = (  -0.0000000   0.7187967   0.0940586), wk =   0.1875000
         k(   11) = (   0.9337443   0.5390976  -0.2821758), wk =   0.1875000
         k(   12) = (   0.9337443   0.1796992  -0.1881172), wk =   0.1875000
         k(   13) = (   0.0000000   0.0000000  -0.5643517), wk =   0.0312500
@@ -314,10 +303,10 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
         k(    1) = (   0.0000000   0.0000000   0.0000000), wk =   0.0312500
         k(    2) = (   0.0000000   0.0000000   0.2500000), wk =   0.1875000
         k(    3) = (  -0.0000000  -0.0000000  -0.5000000), wk =   0.0937500
-        k(    4) = (  -0.0000000   0.2500000   0.2500000), wk =   0.1875000
+        k(    4) = (   0.0000000   0.2500000   0.2500000), wk =   0.1875000
         k(    5) = (  -0.0000000   0.2500000  -0.5000000), wk =   0.3750000
         k(    6) = (  -0.0000000   0.2500000  -0.2500000), wk =   0.1875000
-        k(    7) = (   0.0000000  -0.5000000  -0.5000000), wk =   0.0937500
+        k(    7) = (  -0.0000000  -0.5000000  -0.5000000), wk =   0.0937500
         k(    8) = (   0.2500000   0.2500000   0.2500000), wk =   0.0625000
         k(    9) = (   0.2500000   0.2500000  -0.5000000), wk =   0.1875000
         k(   10) = (   0.2500000   0.2500000  -0.2500000), wk =   0.1875000
@@ -331,7 +320,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
      Dynamical RAM for                 wfc:       1.40 MB
 
-     Dynamical RAM for     wfc (w. buffer):       6.99 MB
+     Dynamical RAM for     wfc (w. buffer):      19.57 MB
 
      Dynamical RAM for           str. fact:       3.23 MB
 
@@ -339,7 +328,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
      Dynamical RAM for          nlocal pot:       3.41 MB
 
-     Dynamical RAM for                qrad:       7.80 MB
+     Dynamical RAM for                qrad:       4.17 MB
 
      Dynamical RAM for          rho,v,vnew:      11.78 MB
 
@@ -349,29 +338,27 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
      Dynamical RAM for           G-vectors:       4.18 MB
 
-     Dynamical RAM for          h,s,v(r/c):       1.23 MB
+     Dynamical RAM for          h,s,v(r/c):       0.31 MB
 
      Dynamical RAM for          <psi|beta>:       0.06 MB
 
-     Dynamical RAM for                 psi:       5.59 MB
+     Dynamical RAM for                 psi:       2.80 MB
 
-     Dynamical RAM for                hpsi:       5.59 MB
+     Dynamical RAM for                hpsi:       2.80 MB
 
-     Dynamical RAM for                spsi:       5.59 MB
+     Dynamical RAM for                spsi:       2.80 MB
 
      Dynamical RAM for      wfcinit/wfcrot:       3.47 MB
 
-     Dynamical RAM for           addusdens:      52.52 MB
+     Dynamical RAM for           addusdens:     206.85 MB
 
-     Dynamical RAM for          addusforce:      58.22 MB
+     Dynamical RAM for          addusforce:     218.19 MB
 
-     Dynamical RAM for         addusstress:      54.54 MB
+     Dynamical RAM for         addusstress:     216.55 MB
 
-     Estimated static dynamical RAM per process >      77.09 MB
+     Estimated static dynamical RAM per process >      68.80 MB
 
-     Estimated max dynamical RAM per process >     135.30 MB
-
-     Estimated total dynamical RAM >     541.22 MB
+     Estimated max dynamical RAM per process >     304.23 MB
 
      Check: negative core charge=   -0.000003
 
@@ -380,118 +367,199 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      starting charge   67.99014, renormalised to   68.00000
      Starting wfcs are   50 randomized atomic wfcs
      Checking if some PAW data can be deallocated... 
-       PAW data deallocated on    3 nodes for type:  1
-       PAW data deallocated on    1 nodes for type:  3
 
-     total cpu time spent up to now is        8.2 secs
+     total cpu time spent up to now is        2.9 secs
+
+     per-process dynamical memory:   515.8 Mb
 
      Self-consistent Calculation
 
      iteration #  1     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.00E-02,  avg # of iterations =  2.3
+     ethr =  1.00E-02,  avg # of iterations =  2.0
 
-     total cpu time spent up to now is        9.9 secs
+     total cpu time spent up to now is        4.1 secs
 
-     total energy              =    -530.53238694 Ry
-     Harris-Foulkes estimate   =    -531.41361080 Ry
-     estimated scf accuracy    <       1.29170199 Ry
+     total energy              =    -530.51494509 Ry
+     Harris-Foulkes estimate   =    -531.40551232 Ry
+     estimated scf accuracy    <       1.30238112 Ry
+ 
+     Band energy sum           =     -18.07338918 Ry
 
      iteration #  2     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.90E-03,  avg # of iterations =  2.1
+     ethr =  1.92E-03,  avg # of iterations =  3.5
 
-     total cpu time spent up to now is       11.6 secs
+     total cpu time spent up to now is        5.5 secs
 
-     total energy              =    -530.80618386 Ry
-     Harris-Foulkes estimate   =    -531.37010703 Ry
-     estimated scf accuracy    <       1.08857463 Ry
+     total energy              =    -530.84850761 Ry
+     Harris-Foulkes estimate   =    -531.37900726 Ry
+     estimated scf accuracy    <       1.00847422 Ry
+ 
+     Band energy sum           =      -6.17835435 Ry
 
      iteration #  3     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.60E-03,  avg # of iterations =  2.0
+     ethr =  1.48E-03,  avg # of iterations =  2.0
 
-     total cpu time spent up to now is       13.2 secs
+     total cpu time spent up to now is        6.6 secs
 
-     total energy              =    -531.04760462 Ry
-     Harris-Foulkes estimate   =    -531.05549433 Ry
-     estimated scf accuracy    <       0.01805798 Ry
+     total energy              =    -531.04803820 Ry
+     Harris-Foulkes estimate   =    -531.05309985 Ry
+     estimated scf accuracy    <       0.01176853 Ry
+ 
+     Band energy sum           =      -9.88044877 Ry
 
      iteration #  4     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  2.66E-05,  avg # of iterations =  3.2
+     ethr =  1.73E-05,  avg # of iterations =  8.0
 
-     total cpu time spent up to now is       14.9 secs
+     total cpu time spent up to now is        8.1 secs
 
-     total energy              =    -531.05170459 Ry
-     Harris-Foulkes estimate   =    -531.05235238 Ry
-     estimated scf accuracy    <       0.00166020 Ry
+     total energy              =    -531.05153244 Ry
+     Harris-Foulkes estimate   =    -531.05293025 Ry
+     estimated scf accuracy    <       0.00286596 Ry
+ 
+     Band energy sum           =     -10.34387790 Ry
 
      iteration #  5     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  2.44E-06,  avg # of iterations =  3.8
+     ethr =  4.21E-06,  avg # of iterations =  5.3
 
-     total cpu time spent up to now is       16.6 secs
+     total cpu time spent up to now is        9.6 secs
 
-     total energy              =    -531.05201354 Ry
-     Harris-Foulkes estimate   =    -531.05205905 Ry
-     estimated scf accuracy    <       0.00008078 Ry
+     total energy              =    -531.05199169 Ry
+     Harris-Foulkes estimate   =    -531.05210676 Ry
+     estimated scf accuracy    <       0.00027586 Ry
+ 
+     Band energy sum           =     -10.01812017 Ry
 
      iteration #  6     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.19E-07,  avg # of iterations =  2.7
+     c_bands:  1 eigenvalues not converged
+     ethr =  4.06E-07,  avg # of iterations =  5.4
 
-     total cpu time spent up to now is       18.3 secs
+     total cpu time spent up to now is       11.0 secs
 
-     total energy              =    -531.05204037 Ry
-     Harris-Foulkes estimate   =    -531.05204186 Ry
-     estimated scf accuracy    <       0.00000529 Ry
+     total energy              =    -531.05203516 Ry
+     Harris-Foulkes estimate   =    -531.05204131 Ry
+     estimated scf accuracy    <       0.00001313 Ry
+ 
+     Band energy sum           =      -9.93781738 Ry
 
      iteration #  7     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  7.78E-09,  avg # of iterations =  2.0
+     c_bands:  1 eigenvalues not converged
+     ethr =  1.93E-08,  avg # of iterations =  9.6
 
-     total cpu time spent up to now is       19.9 secs
+     total cpu time spent up to now is       12.7 secs
 
-     total energy              =    -531.05204179 Ry
-     Harris-Foulkes estimate   =    -531.05204163 Ry
-     estimated scf accuracy    <       0.00000013 Ry
+     total energy              =    -531.05204071 Ry
+     Harris-Foulkes estimate   =    -531.05204382 Ry
+     estimated scf accuracy    <       0.00000628 Ry
+ 
+     Band energy sum           =      -9.93544362 Ry
 
      iteration #  8     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.98E-10,  avg # of iterations =  2.6
+     ethr =  9.23E-09,  avg # of iterations =  2.6
 
-     total cpu time spent up to now is       21.6 secs
+     total cpu time spent up to now is       13.9 secs
 
-     total energy              =    -531.05204183 Ry
-     Harris-Foulkes estimate   =    -531.05204183 Ry
-     estimated scf accuracy    <          1.0E-09 Ry
+     total energy              =    -531.05204179 Ry
+     Harris-Foulkes estimate   =    -531.05204187 Ry
+     estimated scf accuracy    <       0.00000011 Ry
+ 
+     Band energy sum           =      -9.93829227 Ry
 
      iteration #  9     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.53E-12,  avg # of iterations =  4.0
+     ethr =  1.61E-10,  avg # of iterations =  8.8
 
-     total cpu time spent up to now is       23.5 secs
+     total cpu time spent up to now is       15.8 secs
 
-     total energy              =    -531.05204183 Ry
-     Harris-Foulkes estimate   =    -531.05204183 Ry
-     estimated scf accuracy    <          4.9E-11 Ry
+     total energy              =    -531.05204186 Ry
+     Harris-Foulkes estimate   =    -531.05204190 Ry
+     estimated scf accuracy    <       0.00000010 Ry
+ 
+     Band energy sum           =      -9.93678814 Ry
 
      iteration # 10     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.00E-13,  avg # of iterations =  2.0
+     ethr =  1.51E-10,  avg # of iterations =  2.0
 
-     total cpu time spent up to now is       25.1 secs
+     total cpu time spent up to now is       16.9 secs
 
-     total energy              =    -531.05204183 Ry
-     Harris-Foulkes estimate   =    -531.05204183 Ry
-     estimated scf accuracy    <          1.7E-12 Ry
+     total energy              =    -531.05204186 Ry
+     Harris-Foulkes estimate   =    -531.05204187 Ry
+     estimated scf accuracy    <          9.3E-09 Ry
+ 
+     Band energy sum           =      -9.93722866 Ry
 
      iteration # 11     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
-     ethr =  1.00E-13,  avg # of iterations =  1.0
+     c_bands:  1 eigenvalues not converged
+     ethr =  1.37E-11,  avg # of iterations =  6.3
 
-     total cpu time spent up to now is       26.4 secs
+     total cpu time spent up to now is       18.4 secs
+
+     total energy              =    -531.05204187 Ry
+     Harris-Foulkes estimate   =    -531.05204187 Ry
+     estimated scf accuracy    <          3.7E-10 Ry
+ 
+     Band energy sum           =      -9.93719925 Ry
+
+     iteration # 12     ecut=    30.00 Ry     beta= 0.70
+     Davidson diagonalization with overlap
+     c_bands:  1 eigenvalues not converged
+     c_bands:  1 eigenvalues not converged
+     c_bands:  3 eigenvalues not converged
+     ethr =  5.50E-13,  avg # of iterations = 10.6
+
+     total cpu time spent up to now is       20.3 secs
+
+     total energy              =    -531.05204187 Ry
+     Harris-Foulkes estimate   =    -531.05204187 Ry
+     estimated scf accuracy    <          1.6E-10 Ry
+ 
+     Band energy sum           =      -9.93716558 Ry
+
+     iteration # 13     ecut=    30.00 Ry     beta= 0.70
+     Davidson diagonalization with overlap
+     c_bands:  1 eigenvalues not converged
+     c_bands:  1 eigenvalues not converged
+     c_bands:  1 eigenvalues not converged
+     ethr =  2.31E-13,  avg # of iterations =  6.8
+
+     total cpu time spent up to now is       21.8 secs
+
+     total energy              =    -531.05204187 Ry
+     Harris-Foulkes estimate   =    -531.05204187 Ry
+     estimated scf accuracy    <          4.8E-11 Ry
+ 
+     Band energy sum           =      -9.93719822 Ry
+
+     iteration # 14     ecut=    30.00 Ry     beta= 0.70
+     Davidson diagonalization with overlap
+     c_bands:  1 eigenvalues not converged
+     c_bands:  1 eigenvalues not converged
+     c_bands:  1 eigenvalues not converged
+     ethr =  1.00E-13,  avg # of iterations =  6.6
+
+     total cpu time spent up to now is       23.1 secs
+
+     total energy              =    -531.05204187 Ry
+     Harris-Foulkes estimate   =    -531.05204187 Ry
+     estimated scf accuracy    <          4.1E-12 Ry
+ 
+     Band energy sum           =      -9.93719651 Ry
+
+     iteration # 15     ecut=    30.00 Ry     beta= 0.70
+     Davidson diagonalization with overlap
+     c_bands:  1 eigenvalues not converged
+     ethr =  1.00E-13,  avg # of iterations =  4.8
+
+     total cpu time spent up to now is       24.2 secs
 
      End of self-consistent calculation
 
@@ -501,7 +569,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
     -2.2231  -2.2231  -1.8359  -1.2388  -1.2388  -1.1400  -1.1400  -0.7340
     -0.7340  -0.5709  -0.5709  -0.5574  -0.2196   0.2478   1.1526   1.1526
      3.0093   3.0093   3.5707   3.6568   3.6568   4.2715   4.2715   4.3064
-     4.5123   4.5123   8.0846   9.6369  10.5723  13.2249  13.7921  15.0543
+     4.5123   4.5123   8.0846   9.6370  10.5723  13.2249  13.7921  15.0543
     15.0543
 
      occupation numbers 
@@ -512,14 +580,14 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      1.0000   1.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
      0.0000
 
-          k =-0.0000-0.3594 0.0941 (  2226 PWs)   bands (ev):
+          k = 0.0000-0.3594 0.0941 (  2226 PWs)   bands (ev):
 
    -16.6772 -16.5110 -13.5847 -13.5665 -13.5286 -13.4872  -3.1066  -3.0960
     -1.9948  -1.9942  -1.6415  -1.4125  -1.3326  -1.1892  -0.8636  -0.7752
     -0.6969  -0.5824  -0.5034  -0.3992  -0.1400   0.2273   0.9661   0.9873
      2.4546   2.5305   3.3517   3.4795   3.7953   4.0980   4.2015   4.2307
      4.4791   5.0408   9.0475   9.8120  10.8100  12.6891  13.9237  14.0194
-    14.8827
+    14.8826
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -529,7 +597,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      1.0000   1.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
      0.0000
 
-          k = 0.0000 0.7188-0.1881 (  2246 PWs)   bands (ev):
+          k =-0.0000 0.7188-0.1881 (  2246 PWs)   bands (ev):
 
    -16.5691 -16.5691 -13.6044 -13.6043 -13.5403 -13.5403  -3.0341  -3.0341
     -1.8996  -1.8994  -1.5611  -1.5610  -0.9526  -0.9524  -0.7650  -0.7648
@@ -587,7 +655,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
     -0.6940  -0.5298  -0.5191  -0.2573  -0.1488   0.1343   0.5845   0.6786
      2.2060   2.3748   2.9622   3.3822   3.6901   3.7205   4.0330   4.0828
      4.9870   5.3928  10.1150  10.2493  11.0088  11.7031  13.1024  13.7245
-    14.9247
+    14.8410
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -631,13 +699,13 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      1.0000   1.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
      0.0000
 
-          k = 0.0000 1.0782 0.0000 (  2222 PWs)   bands (ev):
+          k =-0.0000 1.0782 0.0000 (  2222 PWs)   bands (ev):
 
    -16.6354 -16.5520 -13.5999 -13.5286 -13.5253 -13.5185  -3.2004  -3.0516
     -1.9642  -1.9022  -1.7368  -1.6268  -1.1461  -0.9672  -0.8574  -0.7935
     -0.7721  -0.6739  -0.4488  -0.1466   0.0958   0.1958   0.5292   0.5728
      2.8465   2.9032   3.3723   3.3976   3.5909   4.0242   4.1434   4.2447
-     4.6385   4.7957   9.3226   9.7013  11.0498  12.1418  13.2525  14.0233
+     4.6385   4.7957   9.3226   9.7013  11.0498  12.1418  13.2525  14.0234
     14.7279
 
      occupation numbers 
@@ -648,7 +716,7 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      1.0000   1.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
      0.0000
 
-          k = 0.0000 0.7188 0.0941 (  2233 PWs)   bands (ev):
+          k =-0.0000 0.7188 0.0941 (  2233 PWs)   bands (ev):
 
    -16.5877 -16.5487 -13.6521 -13.5724 -13.5591 -13.5076  -3.2509  -2.7478
     -2.0258  -1.8721  -1.5989  -1.3083  -1.0157  -0.8683  -0.8520  -0.7435
@@ -705,8 +773,8 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
     -1.9219  -1.9219  -1.9218  -1.9218  -1.0592  -1.0591  -0.8291  -0.8291
     -0.8288  -0.8288  -0.0471  -0.0470   0.2889   0.2889   0.2890   0.2890
      3.8313   3.8313   3.8313   3.8313   3.9577   3.9578   3.9882   3.9882
-     3.9883   3.9883   8.8466   8.8466  11.4429  11.4430  15.2274  15.2275
-    15.2568
+     3.9883   3.9883   8.8466   8.8466  11.4429  11.4430  15.2274  15.2274
+    15.2567
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -716,85 +784,90 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      1.0000   1.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
      0.0000
 
-     the Fermi energy is     7.3934 ev
+     the Fermi energy is     6.8526 ev
 
-!    total energy              =    -531.05204183 Ry
-     Harris-Foulkes estimate   =    -531.05204183 Ry
-     estimated scf accuracy    <          4.7E-14 Ry
-
-     The total energy is the sum of the following terms:
-
-     one-electron contribution =    -143.48707426 Ry
-     hartree contribution      =     123.18529766 Ry
-     xc contribution           =    -139.79160071 Ry
-     ewald contribution        =    -301.51813995 Ry
-     one-center paw contrib.   =     -69.44052458 Ry
-      -> PAW hartree energy AE =      17.72486850 Ry
-      -> PAW hartree energy PS =     -17.70856807 Ry
-      -> PAW xc energy AE      =     -21.04177686 Ry
-      -> PAW xc energy PS      =       8.69750040 Ry
-      -> total E_H with PAW    =     123.20159810 Ry
-      -> total E_XC with PAW   =    -152.13587717 Ry
+!    total energy              =    -531.05204187 Ry
+     Harris-Foulkes estimate   =    -531.05204187 Ry
+     estimated scf accuracy    <          4.4E-14 Ry
      smearing contrib. (-TS)   =      -0.00000000 Ry
+     internal energy E=F+TS    =    -531.05204187 Ry
 
-     convergence has been achieved in  11 iterations
+     The total energy is F=E-TS. E is the sum of the following terms:
+     one-electron contribution =    -143.48707150 Ry
+     hartree contribution      =     123.18529596 Ry
+     xc contribution           =    -139.79160048 Ry
+     ewald contribution        =    -301.51814126 Ry
+     one-center paw contrib.   =     -69.44052459 Ry
+      -> PAW hartree energy AE =     203.68472281 Ry
+      -> PAW hartree energy PS =    -203.01499097 Ry
+      -> PAW xc energy AE      =    -125.32147107 Ry
+      -> PAW xc energy PS      =      55.21121464 Ry
+      -> total E_H with PAW    =     123.85502780 Ry
+      -> total E_XC with PAW   =    -209.90185691 Ry
+ 
+     Band energy sum           =      -9.93719095 Ry
+
+     convergence has been achieved in  15 iterations
+
+     evp_work_count     :       5483
+     num_loc_op_applied :      23757
 
      Forces acting on atoms (cartesian axes, Ry/au):
 
-     atom    1 type  1   force =     0.00000000    0.00000000   -0.00000000
-     atom    2 type  1   force =    -0.00000000   -0.00000000   -0.00000000
-     atom    3 type  2   force =     0.00000000    0.00000000    0.00000000
-     atom    4 type  2   force =     0.00000000    0.00000000    0.00000000
-     atom    5 type  3   force =    -0.00013975    0.00000000    0.00000000
-     atom    6 type  3   force =     0.00013975    0.00000000   -0.00000000
-     atom    7 type  3   force =     0.00006987    0.00012103    0.00000000
-     atom    8 type  3   force =    -0.00006987   -0.00012103   -0.00000000
-     atom    9 type  3   force =     0.00006987   -0.00012103   -0.00000000
-     atom   10 type  3   force =    -0.00006987    0.00012103    0.00000000
-     The non-local contrib.  to forces
      atom    1 type  1   force =     0.00000000    0.00000000    0.00000000
-     atom    2 type  1   force =    -0.00000000   -0.00000000    0.00000000
-     atom    3 type  2   force =    -0.00000000    0.00000000    0.00000000
-     atom    4 type  2   force =    -0.00000000   -0.00000000   -0.00000000
-     atom    5 type  3   force =     1.81198805   -0.00000000   -0.00000000
-     atom    6 type  3   force =    -1.81198805    0.00000000    0.00000000
-     atom    7 type  3   force =    -0.90599402   -1.56922768   -0.00000000
-     atom    8 type  3   force =     0.90599402    1.56922768    0.00000000
-     atom    9 type  3   force =    -0.90599402    1.56922768    0.00000000
-     atom   10 type  3   force =     0.90599402   -1.56922768   -0.00000000
+     atom    2 type  1   force =    -0.00000000   -0.00000000   -0.00000000
+     atom    3 type  2   force =    -0.00000000   -0.00000000   -0.00000000
+     atom    4 type  2   force =    -0.00000000    0.00000000    0.00000000
+     atom    5 type  3   force =    -0.00013956    0.00000000    0.00000000
+     atom    6 type  3   force =     0.00013956   -0.00000000    0.00000000
+     atom    7 type  3   force =     0.00006978    0.00012086    0.00000000
+     atom    8 type  3   force =    -0.00006978   -0.00012086   -0.00000000
+     atom    9 type  3   force =     0.00006978   -0.00012086   -0.00000000
+     atom   10 type  3   force =    -0.00006978    0.00012086    0.00000000
+     The non-local contrib.  to forces
+     atom    1 type  1   force =     0.00000000   -0.00000000   -0.00000000
+     atom    2 type  1   force =    -0.00000000    0.00000000    0.00000000
+     atom    3 type  2   force =     0.00000000   -0.00000000   -0.00000000
+     atom    4 type  2   force =    -0.00000000    0.00000000    0.00000000
+     atom    5 type  3   force =     1.81198786    0.00000000    0.00000000
+     atom    6 type  3   force =    -1.81198786    0.00000000    0.00000000
+     atom    7 type  3   force =    -0.90599393   -1.56922751   -0.00000000
+     atom    8 type  3   force =     0.90599393    1.56922751    0.00000000
+     atom    9 type  3   force =    -0.90599393    1.56922751    0.00000000
+     atom   10 type  3   force =     0.90599393   -1.56922751   -0.00000000
      The ionic contribution  to forces
      atom    1 type  1   force =     0.00000000   -0.00000000   -0.00001035
      atom    2 type  1   force =    -0.00000000    0.00000000    0.00001035
      atom    3 type  2   force =     0.00000000    0.00000000    0.00000000
-     atom    4 type  2   force =     0.00000000   -0.00000000    0.00000000
-     atom    5 type  3   force =    -6.05647400   -0.00000684   -0.00003830
-     atom    6 type  3   force =     6.05647400    0.00000684    0.00003830
-     atom    7 type  3   force =     3.02823108    5.24506376   -0.00003830
-     atom    8 type  3   force =    -3.02823108   -5.24506376    0.00003830
-     atom    9 type  3   force =     3.02824292   -5.24505693   -0.00003830
-     atom   10 type  3   force =    -3.02824292    5.24505692    0.00003830
+     atom    4 type  2   force =    -0.00000000   -0.00000000    0.00000000
+     atom    5 type  3   force =    -6.05647406   -0.00000684   -0.00003830
+     atom    6 type  3   force =     6.05647406    0.00000684    0.00003830
+     atom    7 type  3   force =     3.02823111    5.24506381   -0.00003830
+     atom    8 type  3   force =    -3.02823111   -5.24506381    0.00003830
+     atom    9 type  3   force =     3.02824295   -5.24505697   -0.00003830
+     atom   10 type  3   force =    -3.02824295    5.24505697    0.00003830
      The local contribution  to forces
-     atom    1 type  1   force =    -0.00000000    0.00000000   -0.00000000
-     atom    2 type  1   force =    -0.00000000    0.00000000    0.00015213
+     atom    1 type  1   force =     0.00000000    0.00000000   -0.00000000
+     atom    2 type  1   force =     0.00000000    0.00000000    0.00015213
      atom    3 type  2   force =    -0.00000000    0.00000000    0.00041366
      atom    4 type  2   force =    -0.00000000   -0.00000001    0.00040442
-     atom    5 type  3   force =     4.26033694    0.00001598    0.00005610
-     atom    6 type  3   force =    -4.26033347   -0.00003492    0.00039169
-     atom    7 type  3   force =    -2.13015462   -3.68956802    0.00005610
-     atom    8 type  3   force =     2.13013649    3.68957448    0.00039170
-     atom    9 type  3   force =    -2.13018232    3.68955202    0.00005610
-     atom   10 type  3   force =     2.13019698   -3.68953956    0.00039169
+     atom    5 type  3   force =     4.26033701    0.00001598    0.00005610
+     atom    6 type  3   force =    -4.26033354   -0.00003492    0.00039169
+     atom    7 type  3   force =    -2.13015465   -3.68956808    0.00005610
+     atom    8 type  3   force =     2.13013653    3.68957454    0.00039170
+     atom    9 type  3   force =    -2.13018235    3.68955208    0.00005610
+     atom   10 type  3   force =     2.13019702   -3.68953962    0.00039169
      The core correction contribution to forces
      atom    1 type  1   force =    -0.00000000    0.00000000   -0.00000002
      atom    2 type  1   force =     0.00000000    0.00000000   -0.00000051
      atom    3 type  2   force =    -0.00000000    0.00000000    0.00004223
      atom    4 type  2   force =    -0.00000000   -0.00000000    0.00004534
-     atom    5 type  3   force =    -0.01598874    0.00000001    0.00000006
+     atom    5 type  3   force =    -0.01598873    0.00000001    0.00000006
      atom    6 type  3   force =     0.01598898    0.00000010    0.00000035
-     atom    7 type  3   force =     0.00799438    0.01384665    0.00000006
+     atom    7 type  3   force =     0.00799438    0.01384664    0.00000006
      atom    8 type  3   force =    -0.00799441   -0.01384691    0.00000035
      atom    9 type  3   force =     0.00799436   -0.01384666    0.00000006
-     atom   10 type  3   force =    -0.00799457    0.01384682    0.00000035
+     atom   10 type  3   force =    -0.00799457    0.01384681    0.00000035
      The Hubbard contrib.    to forces
      atom    1 type  1   force =     0.00000000    0.00000000    0.00000000
      atom    2 type  1   force =     0.00000000    0.00000000    0.00000000
@@ -807,30 +880,30 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
      atom    9 type  3   force =     0.00000000    0.00000000    0.00000000
      atom   10 type  3   force =     0.00000000    0.00000000    0.00000000
      The SCF correction term to forces
-     atom    1 type  1   force =     0.00000000    0.00000000   -0.00000000
-     atom    2 type  1   force =    -0.00000000    0.00000000    0.00000000
-     atom    3 type  2   force =     0.00000000    0.00000000    0.00000000
-     atom    4 type  2   force =    -0.00000000   -0.00000000    0.00000000
-     atom    5 type  3   force =    -0.00000014   -0.00000000   -0.00000000
-     atom    6 type  3   force =     0.00000014   -0.00000000    0.00000000
-     atom    7 type  3   force =     0.00000007    0.00000012   -0.00000000
-     atom    8 type  3   force =    -0.00000007   -0.00000012    0.00000000
-     atom    9 type  3   force =     0.00000007   -0.00000012   -0.00000000
-     atom   10 type  3   force =    -0.00000007    0.00000012    0.00000000
+     atom    1 type  1   force =     0.00000000   -0.00000000    0.00000000
+     atom    2 type  1   force =    -0.00000000   -0.00000000   -0.00000000
+     atom    3 type  2   force =    -0.00000000   -0.00000000   -0.00000000
+     atom    4 type  2   force =     0.00000000    0.00000000   -0.00000000
+     atom    5 type  3   force =     0.00000022    0.00000000    0.00000000
+     atom    6 type  3   force =    -0.00000022    0.00000000   -0.00000000
+     atom    7 type  3   force =    -0.00000011   -0.00000019    0.00000000
+     atom    8 type  3   force =     0.00000011    0.00000019   -0.00000000
+     atom    9 type  3   force =    -0.00000011    0.00000019    0.00000000
+     atom   10 type  3   force =     0.00000011   -0.00000019   -0.00000000
 
-     Total force =     0.000342     Total SCF correction =     0.000000
+     Total force =     0.000342     Total SCF correction =     0.000001
 
 
      Computing stress (Cartesian axis) and pressure
 
-          total   stress  (Ry/bohr**3)                   (kbar)     P= -456.89
-  -0.00303334   0.00000000   0.00000000       -446.22      0.00      0.00
-   0.00000000  -0.00303334  -0.00000000          0.00   -446.22     -0.00
-  -0.00000000  -0.00000000  -0.00325103         -0.00     -0.00   -478.24
+          total   stress  (Ry/bohr**3)                   (kbar)     P=     -456.89
+  -0.00303334   0.00000000   0.00000000         -446.22        0.00        0.00
+  -0.00000000  -0.00303334  -0.00000000           -0.00     -446.22       -0.00
+   0.00000000  -0.00000000  -0.00325103            0.00       -0.00     -478.24
 
-     kinetic stress (kbar)  23838.47      0.00      0.00
-                                0.00  23838.47      0.00
-                                0.00      0.00  24635.24
+     kinetic stress (kbar)  23838.47     -0.00     -0.00
+                               -0.00  23838.47      0.00
+                               -0.00      0.00  24635.25
 
      local   stress (kbar) -13955.05      0.00      0.00
                                 0.00 -13955.05      0.00
@@ -840,31 +913,27 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
                                 0.00   -179.99     -0.00
                                 0.00     -0.00   -188.50
 
-     hartree stress (kbar)   9324.96     -0.00      0.00
+     hartree stress (kbar)   9324.96     -0.00     -0.00
                                -0.00   9324.96     -0.00
-                                0.00     -0.00   3855.06
+                               -0.00     -0.00   3855.06
 
-     exc-cor stress (kbar)   4895.31     -0.00     -0.00
-                               -0.00   4895.31     -0.00
+     exc-cor stress (kbar)   4895.32     -0.00     -0.00
+                               -0.00   4895.32     -0.00
                                -0.00     -0.00   4850.28
 
      corecor stress (kbar) -10285.50      0.00      0.00
                                 0.00 -10285.50      0.00
-                                0.00      0.00 -10277.23
+                                0.00      0.00 -10277.24
 
      ewald   stress (kbar) -14084.43     -0.00     -0.00
                                -0.00 -14084.43     -0.00
-                               -0.00     -0.00 -26916.13
+                               -0.00     -0.00 -26916.14
 
      hubbard stress (kbar)      0.00      0.00      0.00
                                 0.00      0.00      0.00
                                 0.00      0.00      0.00
 
-     london  stress (kbar)      0.00      0.00      0.00
-                                0.00      0.00      0.00
-                                0.00      0.00      0.00
-
-     DFT-D3  stress (kbar)      0.00      0.00      0.00
+     DFT-D   stress (kbar)      0.00      0.00      0.00
                                 0.00      0.00      0.00
                                 0.00      0.00      0.00
 
@@ -882,70 +951,77 @@ https://gitlab.com/QEF/q-e/blob/master/upftools/how_to_fix_upf.md
 
 
 
-     Writing output data file scf_.save/
- 
-     init_run     :     15.96s CPU      1.81s WALL (       1 calls)
-     electrons    :    219.14s CPU     18.34s WALL (       1 calls)
-     forces       :      2.48s CPU      0.21s WALL (       1 calls)
-     stress       :      5.67s CPU      0.47s WALL (       1 calls)
+     Writing output data file ./out/scf_.save/
+
+     init_run     :      8.95s CPU      2.55s WALL (       1 calls)
+     electrons    :    220.32s CPU     21.27s WALL (       1 calls)
+     forces       :      3.64s CPU      0.39s WALL (       1 calls)
+     stress       :     43.20s CPU      5.12s WALL (       1 calls)
 
      Called by init_run:
-     wfcinit      :      6.67s CPU      0.56s WALL (       1 calls)
-     wfcinit:atom :      0.00s CPU      0.00s WALL (       4 calls)
-     wfcinit:wfcr :      6.46s CPU      0.54s WALL (       4 calls)
-     potinit      :      1.72s CPU      0.14s WALL (       1 calls)
-     hinit0       :      6.70s CPU      1.03s WALL (       1 calls)
+     wfcinit      :      3.29s CPU      0.35s WALL (       1 calls)
+     wfcinit:atom :      0.09s CPU      0.01s WALL (      13 calls)
+     wfcinit:wfcr :      2.76s CPU      0.26s WALL (      13 calls)
+     potinit      :      1.70s CPU      0.18s WALL (       1 calls)
+     hinit0       :      2.38s CPU      1.82s WALL (       1 calls)
 
      Called by electrons:
-     c_bands      :    160.61s CPU     13.40s WALL (      11 calls)
-     sum_band     :     33.62s CPU      2.83s WALL (      11 calls)
-     v_of_rho     :     12.14s CPU      1.01s WALL (      12 calls)
-     v_h          :      1.38s CPU      0.10s WALL (      12 calls)
-     v_xc         :     12.48s CPU      1.05s WALL (      14 calls)
-     newd         :      6.23s CPU      0.54s WALL (      12 calls)
-     PAW_pot      :      2.59s CPU      0.22s WALL (      12 calls)
-     mix_rho      :      2.26s CPU      0.20s WALL (      11 calls)
+     c_bands      :    150.96s CPU     13.63s WALL (      15 calls)
+     sum_band     :     27.27s CPU      3.05s WALL (      15 calls)
+     v_of_rho     :      6.08s CPU      0.87s WALL (      16 calls)
+     v_h          :      0.14s CPU      0.04s WALL (      16 calls)
+     v_xc         :      6.64s CPU      0.92s WALL (      18 calls)
+     newd         :     23.83s CPU      2.62s WALL (      16 calls)
+     PAW_pot      :     13.77s CPU      1.22s WALL (      16 calls)
+     mix_rho      :      0.76s CPU      0.08s WALL (      15 calls)
 
      Called by c_bands:
-     init_us_2    :      0.20s CPU      0.02s WALL (     100 calls)
-     cegterg      :    156.00s CPU     13.02s WALL (      44 calls)
+     init_us_2    :      0.64s CPU      0.09s WALL (     429 calls)
+     cegterg      :    148.47s CPU     13.21s WALL (     195 calls)
 
      Called by sum_band:
-     sum_band:bec :      0.00s CPU      0.00s WALL (      44 calls)
-     addusdens    :      2.18s CPU      0.21s WALL (      11 calls)
+     sum_band:wei :      0.03s CPU      0.00s WALL (      15 calls)
+     sum_band:loo :     15.58s CPU      1.31s WALL (      15 calls)
+     sum_band:buf :      0.52s CPU      0.04s WALL (     195 calls)
+     sum_band:ini :      0.31s CPU      0.03s WALL (     195 calls)
+     sum_band:cal :      0.53s CPU      0.04s WALL (     195 calls)
+     sum_band:bec :      0.10s CPU      0.01s WALL (     195 calls)
+     addusdens    :     11.34s CPU      1.62s WALL (      15 calls)
+     addusd:skk   :      0.01s CPU      0.01s WALL (      45 calls)
+     addusd:dgemm :      0.28s CPU      0.19s WALL (      45 calls)
+     addusd:qvan2 :      8.32s CPU      0.72s WALL (      45 calls)
 
      Called by *egterg:
-     h_psi        :    156.37s CPU     13.03s WALL (     165 calls)
-     s_psi        :      0.38s CPU      0.03s WALL (     165 calls)
-     g_psi        :      0.08s CPU      0.01s WALL (     117 calls)
-     cdiaghg      :      4.60s CPU      0.38s WALL (     161 calls)
-     cegterg:over :      0.32s CPU      0.03s WALL (     117 calls)
-     cegterg:upda :      0.23s CPU      0.02s WALL (     117 calls)
-     cegterg:last :      0.16s CPU      0.01s WALL (      44 calls)
+     cdiaghg      :     46.12s CPU      4.10s WALL (    1293 calls)
+     cegterg:over :      2.12s CPU      0.19s WALL (    1098 calls)
+     cegterg:upda :      0.53s CPU      0.10s WALL (    1098 calls)
+     cegterg:last :      0.70s CPU      0.17s WALL (     456 calls)
+     h_psi        :     71.65s CPU      6.95s WALL (    1306 calls)
+     s_psi        :      2.49s CPU      0.16s WALL (    1306 calls)
+     g_psi        :      0.10s CPU      0.03s WALL (    1098 calls)
 
      Called by h_psi:
-     h_psi:pot    :    156.27s CPU     13.02s WALL (     165 calls)
-     h_psi:calbec :      0.47s CPU      0.03s WALL (     165 calls)
-     vloc_psi     :    155.55s CPU     12.96s WALL (     165 calls)
-     add_vuspsi   :      0.25s CPU      0.03s WALL (     165 calls)
+     h_psi:calbec :      3.19s CPU      0.15s WALL (    1306 calls)
+     vloc_psi     :     66.66s CPU      6.60s WALL (    1306 calls)
+     add_vuspsi   :      1.62s CPU      0.16s WALL (    1306 calls)
 
      General routines
-     calbec       :      0.53s CPU      0.04s WALL (     229 calls)
-     fft          :     15.52s CPU      1.32s WALL (     179 calls)
-     ffts         :      0.67s CPU      0.05s WALL (      23 calls)
-     fftw         :    181.61s CPU     15.08s WALL (   11872 calls)
-     interpolate  :      1.58s CPU      0.13s WALL (      12 calls)
- 
+     calbec       :      3.73s CPU      0.20s WALL (    1566 calls)
+     fft          :      0.51s CPU      0.11s WALL (     231 calls)
+     ffts         :      0.07s CPU      0.00s WALL (      31 calls)
+     fftw         :     58.18s CPU      5.72s WALL (   55509 calls)
+     interpolate  :      0.10s CPU      0.03s WALL (      16 calls)
+
      Parallel routines
 
      PAW routines
-     PAW_pot      :      2.59s CPU      0.22s WALL (      12 calls)
-     PAW_symme    :      0.00s CPU      0.00s WALL (      23 calls)
- 
-     PWSCF        :   4m 9.71s CPU     27.81s WALL
+     PAW_pot      :     13.77s CPU      1.22s WALL (      16 calls)
+     PAW_symme    :      0.00s CPU      0.00s WALL (      31 calls)
 
- 
-   This run was terminated on:  14:44:16   8Apr2020            
+     PWSCF        :   4m36.49s CPU     29.81s WALL
+
+
+   This run was terminated on:  16:13:45  16Feb2021            
 
 =------------------------------------------------------------------------------=
    JOB DONE.

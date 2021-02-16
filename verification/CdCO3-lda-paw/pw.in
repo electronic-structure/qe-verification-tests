@@ -22,6 +22,7 @@
   conv_thr =   1.0000000000d-12
   electron_maxstep = 100
   mixing_beta =   7.0000000000d-01
+  diago_full_acc=.true.
 /
 ATOMIC_SPECIES
 C      12.011 C.pz-n-kjpaw_psl.0.1.UPF
