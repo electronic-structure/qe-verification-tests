@@ -154,7 +154,7 @@ class qe_Si_scf(qe_scf_base_test):
 class qe_Si_vc_relax(qe_scf_base_test):
     def __init__(self, variant):
         super().__init__(1, 1, 'Si-vc-relax', variant)
-        self.tags = {'qe-%s'%variant, 'serial'}
+        self.tags = {'qe-%s'%variant, 'serial', 'vc-relax'}
 
 @rfm.parameterized_test(['native'], ['sirius'])
 class qe_LiF_gga_nc_scf(qe_scf_base_test):
@@ -175,6 +175,12 @@ class qe_LiF_lda_uspp_scf(qe_scf_base_test):
         self.tags = {'qe-%s'%variant, 'serial'}
 
 @rfm.parameterized_test(['native'], ['sirius'])
+class qe_LiF_lda_paw_scf(qe_scf_base_test):
+    def __init__(self, variant):
+        super().__init__(1, 1, 'LiF-lda-paw', variant)
+        self.tags = {'qe-%s'%variant, 'serial', 'paw'}
+
+@rfm.parameterized_test(['native'], ['sirius'])
 class qe_LiF_esm_scf(qe_scf_base_test):
     def __init__(self, variant):
         super().__init__(1, 1, 'LiF-esm', variant)
@@ -184,7 +190,7 @@ class qe_LiF_esm_scf(qe_scf_base_test):
 class qe_CdCO3_scf(qe_scf_base_test):
     def __init__(self, variant, ranks):
         super().__init__(ranks[0], ranks[1], 'CdCO3', variant)
-        self.tags = {'qe-%s'%variant, 'parallel'}
+        self.tags = {'qe-%s'%variant, 'parallel', 'paw'}
 
 @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (1,4)]))
 class qe_Si63Ge_scf(qe_scf_base_test):

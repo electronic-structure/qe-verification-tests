@@ -1,16 +1,16 @@
 &control
-    calculation='vc-relax',
+    calculation='scf',
     restart_mode='from_scratch',
     pseudo_dir = './',
     outdir='./',
     prefix = 'LiF_',
-    verbosity='low',
+    verbosity='high',
     tstress = true
     tprnfor = true
  /
  &system
     ibrav=0, celldm(1)=7.60501685, nat=2, ntyp=2, nosym=false
-    ecutwfc=80.0, ecutrho = 800,
+    ecutwfc=50.0, ecutrho = 400,
     nspin=1,
     occupations = 'smearing', smearing = 'gauss', degauss = 0.02,
       starting_magnetization =   3.3333333333d-01
