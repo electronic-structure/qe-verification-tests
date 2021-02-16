@@ -96,7 +96,7 @@ def forces_diff(ostream, ostream_ref):
     return sn.max(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(na) for j in range(2))
 
 class qe_scf_base_test(rfm.RunOnlyRegressionTest):
-    def __init__(self, num_ranks_k, num_ranks_d, test_folder, variant):
+    def __init__(self, num_ranks_k, num_ranks_d, test_folder, variant, energy_tol = 1e-5):
         super().__init__()
         self.descr = 'SCF check'
         self.valid_systems = ['osx', 'daint']
@@ -120,7 +120,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 
         patterns = [
             sn.assert_found(r'convergence has been achieved', self.stdout),
-            sn.assert_lt(energy_diff(self.stdout, 'out.txt'), 1e-5, msg="Total energy is different"),
+            sn.assert_lt(energy_diff(self.stdout, 'out.txt'), energy_tol, msg="Total energy is different"),
             sn.assert_lt(pressure_diff(self.stdout, 'out.txt'), 1e-1, msg="Pressure is different"),
             sn.assert_lt(stress_diff(self.stdout, 'out.txt'), 1e-4, msg="Stress tensor is different"),
             sn.assert_lt(forces_diff(self.stdout, 'out.txt'), 1e-4, msg="Atomic forces are different")
@@ -187,9 +187,18 @@ class qe_LiF_esm_scf(qe_scf_base_test):
         self.tags = {'qe-%s'%variant, 'serial'}
 
 @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (4,1)]))
-class qe_CdCO3_scf(qe_scf_base_test):
+class qe_CdCO3_gga_paw_scf(qe_scf_base_test):
     def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'CdCO3', variant)
+        # This is GGA PAW test. Right now PAW XC part is done by SIRIUS and for GGA libxc gives a different
+        # result comparing with QE implementation
+        etol = 1e-5 if variant == "native" else 0.01
+        super().__init__(ranks[0], ranks[1], 'CdCO3-gga-paw', variant, energy_tol=etol)
+        self.tags = {'qe-%s'%variant, 'parallel', 'paw'}
+
+@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (4,1)]))
+class qe_CdCO3_lda_paw_scf(qe_scf_base_test):
+    def __init__(self, variant, ranks):
+        super().__init__(ranks[0], ranks[1], 'CdCO3-lda-paw', variant)
         self.tags = {'qe-%s'%variant, 'parallel', 'paw'}
 
 @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (1,4)]))
