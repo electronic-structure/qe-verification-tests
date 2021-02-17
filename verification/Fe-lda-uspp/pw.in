@@ -1,0 +1,37 @@
+&control
+    calculation='scf'
+    restart_mode='from_scratch',
+    pseudo_dir = './',
+    outdir='./',
+    prefix='fe',
+    tstress = .true.,
+    tprnfor = .true.,
+    verbosity = 'high'
+/
+&system
+    ibrav = 0, nat= 1, ntyp= 1,
+    ecutwfc = 100.0, ecutrho = 900.0, nspin=2
+    starting_magnetization(1) = 0.1,
+    occupations='smearing', smearing='gaussian', degauss=0.05
+/
+&electrons
+  electron_maxstep=100,
+  conv_thr = 1.0e-10
+  mixing_beta = 0.8
+/
+&ions
+ ion_dynamics = 'bfgs'
+/
+&cell
+ cell_dynamics = 'bfgs'
+ /
+CELL_PARAMETERS bohr
+0.0          3.4         3.4
+3.4          0.0         3.4
+3.4          3.4         0.0
+ATOMIC_SPECIES
+ Fe 6.941  fe_lda_v1.5.uspp.F.UPF
+ATOMIC_POSITIONS crystal
+ Fe  0.0 0.0 0.0
+K_POINTS (automatic)
+ 4 4 4 0 0 0
