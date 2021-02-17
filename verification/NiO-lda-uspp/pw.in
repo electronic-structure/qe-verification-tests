@@ -1,0 +1,35 @@
+ &control
+    pseudo_dir = './',
+    outdir='./'
+    prefix='nio',
+    verbosity='high'
+    tstress = true
+    tprnfor = true
+ /
+ &system
+    ibrav=  0, celldm(1)=7.93, nat=  4, ntyp= 3,
+    ecutwfc = 40.0, ecutrho = 600.0,
+    occupations='smearing', smearing='gauss', degauss=0.02,
+    nspin=2, 
+    starting_magnetization(1)= 0.1,
+    starting_magnetization(2)=-0.1
+ /
+ &electrons
+    conv_thr =  1.0d-11
+    mixing_beta = 0.3
+ /
+CELL_PARAMETERS
+1.00 0.50 0.50
+0.50 1.00 0.50
+0.50 0.50 1.00
+ATOMIC_SPECIES
+ Ni1  1.  ni_lda_v1.4.uspp.F.UPF
+ Ni2  1.  ni_lda_v1.4.uspp.F.UPF
+ O    1.  o_lda_v1.2.uspp.F.UPF
+ATOMIC_POSITIONS crystal
+ Ni1 0.0  0.0  0.0 
+ Ni2 0.5  0.5  0.5
+ O  0.25 0.25 0.25
+ O  0.75 0.75 0.75
+K_POINTS automatic
+4 4 4 0 0 0
