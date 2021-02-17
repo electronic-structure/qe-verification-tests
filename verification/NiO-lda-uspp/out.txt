@@ -1,6 +1,6 @@
 SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
-     Program PWSCF v.6.7GPU starts on 17Feb2021 at 11:21:56 
+     Program PWSCF v.6.7GPU starts on 17Feb2021 at 15:22: 1 
 
      This program is part of the open-source Quantum ESPRESSO suite
      for quantum simulation of materials; please cite
@@ -50,7 +50,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
      kinetic-energy cutoff     =      40.0000  Ry
      charge density cutoff     =     600.0000  Ry
      scf convergence threshold =      1.0E-11
-     mixing beta               =       0.3000
+     mixing beta               =       0.2500
      number of iterations used =            8  plain     mixing
      Exchange-correlation= SLA  PZ   NOGX NOGC
                            (   1   1   0   0   0   0   0)
@@ -369,13 +369,13 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
      Self-consistent Calculation
 
-     iteration #  1     ecut=    40.00 Ry     beta= 0.30
+     iteration #  1     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
      ethr =  1.00E-02,  avg # of iterations =  3.9
 
      total cpu time spent up to now is        9.2 secs
 
-     total energy              =    -729.77053852 Ry
+     total energy              =    -734.39345305 Ry
      Harris-Foulkes estimate   =    -762.09710941 Ry
      estimated scf accuracy    <      68.67585616 Ry
  
@@ -384,302 +384,274 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
      total magnetization       =     0.00 Bohr mag/cell
      absolute magnetization    =     1.87 Bohr mag/cell
 
-     iteration #  2     ecut=    40.00 Ry     beta= 0.30
+     iteration #  2     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  1.00E-02,  avg # of iterations =  3.1
+     ethr =  1.00E-02,  avg # of iterations =  3.5
 
      total cpu time spent up to now is       15.0 secs
 
-     total energy              =    -748.71460479 Ry
-     Harris-Foulkes estimate   =    -757.20313389 Ry
-     estimated scf accuracy    <      27.03028001 Ry
+     total energy              =    -749.15231058 Ry
+     Harris-Foulkes estimate   =    -753.89713456 Ry
+     estimated scf accuracy    <      16.51133116 Ry
  
-     Band energy sum           =     -80.46669869 Ry
+     Band energy sum           =     -65.97897463 Ry
 
      total magnetization       =     0.00 Bohr mag/cell
-     absolute magnetization    =     0.16 Bohr mag/cell
+     absolute magnetization    =     0.23 Bohr mag/cell
 
-     iteration #  3     ecut=    40.00 Ry     beta= 0.30
+     iteration #  3     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
      ethr =  1.00E-02,  avg # of iterations =  2.1
 
      total cpu time spent up to now is       19.7 secs
 
-     total energy              =    -750.60594271 Ry
-     Harris-Foulkes estimate   =    -750.91574659 Ry
-     estimated scf accuracy    <       0.93161421 Ry
+     total energy              =    -750.80417208 Ry
+     Harris-Foulkes estimate   =    -750.83646952 Ry
+     estimated scf accuracy    <       0.14650463 Ry
  
-     Band energy sum           =     -53.70149480 Ry
+     Band energy sum           =     -49.16346382 Ry
 
      total magnetization       =     0.00 Bohr mag/cell
-     absolute magnetization    =     1.60 Bohr mag/cell
+     absolute magnetization    =     2.29 Bohr mag/cell
 
-     iteration #  4     ecut=    40.00 Ry     beta= 0.30
+     iteration #  4     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  1.94E-03,  avg # of iterations =  2.0
+     ethr =  3.05E-04,  avg # of iterations =  3.5
 
-     total cpu time spent up to now is       24.2 secs
+     total cpu time spent up to now is       24.5 secs
 
-     total energy              =    -750.77717512 Ry
-     Harris-Foulkes estimate   =    -750.85433103 Ry
-     estimated scf accuracy    <       0.21022773 Ry
+     total energy              =    -750.81866560 Ry
+     Harris-Foulkes estimate   =    -750.82818822 Ry
+     estimated scf accuracy    <       0.05530647 Ry
  
-     Band energy sum           =     -49.13697762 Ry
-
-     total magnetization       =    -0.03 Bohr mag/cell
-     absolute magnetization    =     2.67 Bohr mag/cell
-
-     iteration #  5     ecut=    40.00 Ry     beta= 0.30
-     Davidson diagonalization with overlap
-     ethr =  4.38E-04,  avg # of iterations =  2.0
-
-     total cpu time spent up to now is       28.7 secs
-
-     total energy              =    -750.83591567 Ry
-     Harris-Foulkes estimate   =    -750.84173476 Ry
-     estimated scf accuracy    <       0.16509450 Ry
- 
-     Band energy sum           =     -51.35252406 Ry
-
-     total magnetization       =     0.09 Bohr mag/cell
-     absolute magnetization    =     2.18 Bohr mag/cell
-
-     iteration #  6     ecut=    40.00 Ry     beta= 0.30
-     Davidson diagonalization with overlap
-     ethr =  3.44E-04,  avg # of iterations =  1.0
-
-     total cpu time spent up to now is       32.7 secs
-
-     total energy              =    -750.82010310 Ry
-     Harris-Foulkes estimate   =    -750.84338938 Ry
-     estimated scf accuracy    <       0.14911900 Ry
- 
-     Band energy sum           =     -51.39656721 Ry
-
-     total magnetization       =    -0.05 Bohr mag/cell
-     absolute magnetization    =     2.19 Bohr mag/cell
-
-     iteration #  7     ecut=    40.00 Ry     beta= 0.30
-     Davidson diagonalization with overlap
-     ethr =  3.11E-04,  avg # of iterations =  1.0
-
-     total cpu time spent up to now is       36.7 secs
-
-     total energy              =    -750.82271977 Ry
-     Harris-Foulkes estimate   =    -750.82952251 Ry
-     estimated scf accuracy    <       0.00913902 Ry
- 
-     Band energy sum           =     -50.35779435 Ry
+     Band energy sum           =     -49.45978945 Ry
 
      total magnetization       =    -0.01 Bohr mag/cell
-     absolute magnetization    =     2.57 Bohr mag/cell
+     absolute magnetization    =     2.60 Bohr mag/cell
 
-     iteration #  8     ecut=    40.00 Ry     beta= 0.30
+     iteration #  5     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  1.90E-05,  avg # of iterations =  3.7
+     ethr =  1.15E-04,  avg # of iterations =  2.1
 
-     total cpu time spent up to now is       42.0 secs
+     total cpu time spent up to now is       29.0 secs
 
-     total energy              =    -750.82633513 Ry
-     Harris-Foulkes estimate   =    -750.84073734 Ry
-     estimated scf accuracy    <       0.07626747 Ry
+     total energy              =    -750.82766184 Ry
+     Harris-Foulkes estimate   =    -750.83238664 Ry
+     estimated scf accuracy    <       0.07150010 Ry
  
-     Band energy sum           =     -49.28373581 Ry
+     Band energy sum           =     -50.91868735 Ry
 
-     total magnetization       =     0.02 Bohr mag/cell
-     absolute magnetization    =     2.84 Bohr mag/cell
+     total magnetization       =     0.12 Bohr mag/cell
+     absolute magnetization    =     2.47 Bohr mag/cell
 
-     iteration #  9     ecut=    40.00 Ry     beta= 0.30
+     iteration #  6     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  1.90E-05,  avg # of iterations =  2.4
+     ethr =  1.15E-04,  avg # of iterations =  1.0
 
-     total cpu time spent up to now is       46.6 secs
+     total cpu time spent up to now is       33.0 secs
 
-     total energy              =    -750.82879434 Ry
-     Harris-Foulkes estimate   =    -750.83038263 Ry
-     estimated scf accuracy    <       0.01049229 Ry
+     total energy              =    -750.82464676 Ry
+     Harris-Foulkes estimate   =    -750.83057042 Ry
+     estimated scf accuracy    <       0.02818551 Ry
  
-     Band energy sum           =     -49.92288723 Ry
+     Band energy sum           =     -50.89738033 Ry
+
+     total magnetization       =    -0.03 Bohr mag/cell
+     absolute magnetization    =     2.50 Bohr mag/cell
+
+     iteration #  7     ecut=    40.00 Ry     beta= 0.25
+     Davidson diagonalization with overlap
+     ethr =  5.87E-05,  avg # of iterations =  2.7
+
+     total cpu time spent up to now is       37.3 secs
+
+     total energy              =    -750.82912594 Ry
+     Harris-Foulkes estimate   =    -750.82940226 Ry
+     estimated scf accuracy    <       0.00337434 Ry
+ 
+     Band energy sum           =     -50.23701425 Ry
+
+     total magnetization       =    -0.01 Bohr mag/cell
+     absolute magnetization    =     2.72 Bohr mag/cell
+
+     iteration #  8     ecut=    40.00 Ry     beta= 0.25
+     Davidson diagonalization with overlap
+     ethr =  7.03E-06,  avg # of iterations =  2.1
+
+     total cpu time spent up to now is       41.4 secs
+
+     total energy              =    -750.82885722 Ry
+     Harris-Foulkes estimate   =    -750.82920899 Ry
+     estimated scf accuracy    <       0.00209643 Ry
+ 
+     Band energy sum           =     -50.18363462 Ry
+
+     total magnetization       =    -0.01 Bohr mag/cell
+     absolute magnetization    =     2.71 Bohr mag/cell
+
+     iteration #  9     ecut=    40.00 Ry     beta= 0.25
+     Davidson diagonalization with overlap
+     ethr =  4.37E-06,  avg # of iterations =  1.7
+
+     total cpu time spent up to now is       45.5 secs
+
+     total energy              =    -750.82911626 Ry
+     Harris-Foulkes estimate   =    -750.82908131 Ry
+     estimated scf accuracy    <       0.00034674 Ry
+ 
+     Band energy sum           =     -50.30556721 Ry
 
      total magnetization       =    -0.00 Bohr mag/cell
-     absolute magnetization    =     2.76 Bohr mag/cell
+     absolute magnetization    =     2.70 Bohr mag/cell
 
-     iteration # 10     ecut=    40.00 Ry     beta= 0.30
+     iteration # 10     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  1.90E-05,  avg # of iterations =  1.5
+     ethr =  7.22E-07,  avg # of iterations =  2.8
 
-     total cpu time spent up to now is       50.7 secs
+     total cpu time spent up to now is       49.8 secs
 
-     total energy              =    -750.82894372 Ry
-     Harris-Foulkes estimate   =    -750.82931161 Ry
-     estimated scf accuracy    <       0.00169799 Ry
+     total energy              =    -750.82913409 Ry
+     Harris-Foulkes estimate   =    -750.82916501 Ry
+     estimated scf accuracy    <       0.00014375 Ry
  
-     Band energy sum           =     -50.13564581 Ry
+     Band energy sum           =     -50.30547069 Ry
 
-     total magnetization       =    -0.00 Bohr mag/cell
-     absolute magnetization    =     2.75 Bohr mag/cell
+     total magnetization       =     0.00 Bohr mag/cell
+     absolute magnetization    =     2.73 Bohr mag/cell
 
-     iteration # 11     ecut=    40.00 Ry     beta= 0.30
+     iteration # 11     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  3.54E-06,  avg # of iterations =  2.0
+     ethr =  2.99E-07,  avg # of iterations =  2.9
 
-     total cpu time spent up to now is       55.1 secs
+     total cpu time spent up to now is       54.5 secs
 
-     total energy              =    -750.82915334 Ry
-     Harris-Foulkes estimate   =    -750.82914667 Ry
-     estimated scf accuracy    <       0.00002707 Ry
+     total energy              =    -750.82915020 Ry
+     Harris-Foulkes estimate   =    -750.82915555 Ry
+     estimated scf accuracy    <       0.00003593 Ry
  
-     Band energy sum           =     -50.22675059 Ry
+     Band energy sum           =     -50.23119986 Ry
 
      total magnetization       =    -0.00 Bohr mag/cell
      absolute magnetization    =     2.74 Bohr mag/cell
 
-     iteration # 12     ecut=    40.00 Ry     beta= 0.30
+     iteration # 12     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  5.64E-08,  avg # of iterations =  2.0
+     ethr =  7.49E-08,  avg # of iterations =  2.6
 
-     total cpu time spent up to now is       59.4 secs
+     total cpu time spent up to now is       58.7 secs
 
-     total energy              =    -750.82914752 Ry
-     Harris-Foulkes estimate   =    -750.82915898 Ry
-     estimated scf accuracy    <       0.00005584 Ry
+     total energy              =    -750.82914766 Ry
+     Harris-Foulkes estimate   =    -750.82915294 Ry
+     estimated scf accuracy    <       0.00001794 Ry
  
-     Band energy sum           =     -50.19840815 Ry
+     Band energy sum           =     -50.25350477 Ry
 
      total magnetization       =    -0.00 Bohr mag/cell
      absolute magnetization    =     2.75 Bohr mag/cell
 
-     iteration # 13     ecut=    40.00 Ry     beta= 0.30
+     iteration # 13     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  5.64E-08,  avg # of iterations =  2.0
+     c_bands:  1 eigenvalues not converged
+     ethr =  3.74E-08,  avg # of iterations =  4.3
 
-     total cpu time spent up to now is       63.8 secs
+     total cpu time spent up to now is       63.2 secs
 
-     total energy              =    -750.82914939 Ry
-     Harris-Foulkes estimate   =    -750.82915180 Ry
-     estimated scf accuracy    <       0.00000552 Ry
+     total energy              =    -750.82915051 Ry
+     Harris-Foulkes estimate   =    -750.82915042 Ry
+     estimated scf accuracy    <       0.00000043 Ry
  
-     Band energy sum           =     -50.22397664 Ry
+     Band energy sum           =     -50.23358005 Ry
 
      total magnetization       =     0.00 Bohr mag/cell
      absolute magnetization    =     2.75 Bohr mag/cell
 
-     iteration # 14     ecut=    40.00 Ry     beta= 0.30
+     iteration # 14     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  1.15E-08,  avg # of iterations =  2.4
+     c_bands:  1 eigenvalues not converged
+     ethr =  8.93E-10,  avg # of iterations =  5.2
 
-     total cpu time spent up to now is       68.4 secs
+     total cpu time spent up to now is       68.2 secs
 
-     total energy              =    -750.82915047 Ry
-     Harris-Foulkes estimate   =    -750.82915140 Ry
-     estimated scf accuracy    <       0.00000298 Ry
+     total energy              =    -750.82915070 Ry
+     Harris-Foulkes estimate   =    -750.82915063 Ry
+     estimated scf accuracy    <       0.00000009 Ry
  
-     Band energy sum           =     -50.24097223 Ry
+     Band energy sum           =     -50.22912228 Ry
+
+     total magnetization       =    -0.00 Bohr mag/cell
+     absolute magnetization    =     2.75 Bohr mag/cell
+
+     iteration # 15     ecut=    40.00 Ry     beta= 0.25
+     Davidson diagonalization with overlap
+     ethr =  1.89E-10,  avg # of iterations =  2.6
+
+     total cpu time spent up to now is       72.5 secs
+
+     total energy              =    -750.82915076 Ry
+     Harris-Foulkes estimate   =    -750.82915071 Ry
+     estimated scf accuracy    <       0.00000002 Ry
+ 
+     Band energy sum           =     -50.23099904 Ry
 
      total magnetization       =     0.00 Bohr mag/cell
      absolute magnetization    =     2.75 Bohr mag/cell
 
-     iteration # 15     ecut=    40.00 Ry     beta= 0.30
+     iteration # 16     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  6.20E-09,  avg # of iterations =  1.9
+     ethr =  4.21E-11,  avg # of iterations =  2.8
 
-     total cpu time spent up to now is       72.6 secs
+     total cpu time spent up to now is       77.0 secs
 
-     total energy              =    -750.82915075 Ry
+     total energy              =    -750.82915080 Ry
+     Harris-Foulkes estimate   =    -750.82915077 Ry
+     estimated scf accuracy    <          2.2E-09 Ry
+ 
+     Band energy sum           =     -50.23110912 Ry
+
+     total magnetization       =     0.00 Bohr mag/cell
+     absolute magnetization    =     2.75 Bohr mag/cell
+
+     iteration # 17     ecut=    40.00 Ry     beta= 0.25
+     Davidson diagonalization with overlap
+     ethr =  4.56E-12,  avg # of iterations =  3.1
+
+     total cpu time spent up to now is       81.2 secs
+
+     total energy              =    -750.82915082 Ry
      Harris-Foulkes estimate   =    -750.82915080 Ry
-     estimated scf accuracy    <       0.00000046 Ry
+     estimated scf accuracy    <          2.4E-10 Ry
  
-     Band energy sum           =     -50.22997085 Ry
+     Band energy sum           =     -50.23100996 Ry
 
      total magnetization       =    -0.00 Bohr mag/cell
      absolute magnetization    =     2.75 Bohr mag/cell
 
-     iteration # 16     ecut=    40.00 Ry     beta= 0.30
+     iteration # 18     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  9.63E-10,  avg # of iterations =  2.0
+     ethr =  5.02E-13,  avg # of iterations =  4.8
 
-     total cpu time spent up to now is       77.1 secs
-
-     total energy              =    -750.82915081 Ry
-     Harris-Foulkes estimate   =    -750.82915086 Ry
-     estimated scf accuracy    <       0.00000022 Ry
- 
-     Band energy sum           =     -50.22824560 Ry
-
-     total magnetization       =    -0.00 Bohr mag/cell
-     absolute magnetization    =     2.75 Bohr mag/cell
-
-     iteration # 17     ecut=    40.00 Ry     beta= 0.30
-     Davidson diagonalization with overlap
-     ethr =  4.49E-10,  avg # of iterations =  2.0
-
-     total cpu time spent up to now is       81.3 secs
+     total cpu time spent up to now is       85.9 secs
 
      total energy              =    -750.82915083 Ry
-     Harris-Foulkes estimate   =    -750.82915083 Ry
-     estimated scf accuracy    <       0.00000001 Ry
+     Harris-Foulkes estimate   =    -750.82915082 Ry
+     estimated scf accuracy    <          1.4E-10 Ry
  
-     Band energy sum           =     -50.23056423 Ry
+     Band energy sum           =     -50.23098177 Ry
 
      total magnetization       =    -0.00 Bohr mag/cell
      absolute magnetization    =     2.75 Bohr mag/cell
 
-     iteration # 18     ecut=    40.00 Ry     beta= 0.30
+     iteration # 19     ecut=    40.00 Ry     beta= 0.25
      Davidson diagonalization with overlap
-     ethr =  2.56E-11,  avg # of iterations =  2.0
-
-     total cpu time spent up to now is       85.8 secs
-
-     total energy              =    -750.82915084 Ry
-     Harris-Foulkes estimate   =    -750.82915084 Ry
-     estimated scf accuracy    <          2.7E-10 Ry
- 
-     Band energy sum           =     -50.23104513 Ry
-
-     total magnetization       =    -0.00 Bohr mag/cell
-     absolute magnetization    =     2.75 Bohr mag/cell
-
-     iteration # 19     ecut=    40.00 Ry     beta= 0.30
-     Davidson diagonalization with overlap
-     ethr =  5.67E-13,  avg # of iterations =  2.0
-
-     total cpu time spent up to now is       90.0 secs
-
-     total energy              =    -750.82915084 Ry
-     Harris-Foulkes estimate   =    -750.82915084 Ry
-     estimated scf accuracy    <          4.8E-11 Ry
- 
-     Band energy sum           =     -50.23103616 Ry
-
-     total magnetization       =     0.00 Bohr mag/cell
-     absolute magnetization    =     2.75 Bohr mag/cell
-
-     iteration # 20     ecut=    40.00 Ry     beta= 0.30
-     Davidson diagonalization with overlap
-     ethr =  1.01E-13,  avg # of iterations =  2.0
-
-     total cpu time spent up to now is       94.7 secs
-
-     total energy              =    -750.82915084 Ry
-     Harris-Foulkes estimate   =    -750.82915084 Ry
-     estimated scf accuracy    <          3.6E-11 Ry
- 
-     Band energy sum           =     -50.23098851 Ry
-
-     total magnetization       =     0.00 Bohr mag/cell
-     absolute magnetization    =     2.75 Bohr mag/cell
-
-     iteration # 21     ecut=    40.00 Ry     beta= 0.30
-     Davidson diagonalization with overlap
-     ethr =  1.00E-13,  avg # of iterations =  1.8
+     ethr =  2.93E-13,  avg # of iterations =  1.5
 
      Magnetic moment per site:
      atom:    1    charge:   15.7062    magn:    1.2476    constr:    0.0000
      atom:    2    charge:   15.7062    magn:   -1.2476    constr:    0.0000
-     atom:    3    charge:    5.6292    magn:    0.0000    constr:    0.0000
-     atom:    4    charge:    5.6292    magn:    0.0000    constr:    0.0000
+     atom:    3    charge:    5.6292    magn:   -0.0000    constr:    0.0000
+     atom:    4    charge:    5.6292    magn:   -0.0000    constr:    0.0000
 
-     total cpu time spent up to now is       99.1 secs
+     total cpu time spent up to now is       89.8 secs
 
      End of self-consistent calculation
 
@@ -714,7 +686,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
           k = 0.2500 0.2500-0.7500 (  1076 PWs)   bands (ev):
 
-   -89.8206 -88.1598 -50.6557 -50.6372 -50.6205 -49.0481 -49.0454 -49.0296
+   -89.8206 -88.1598 -50.6556 -50.6372 -50.6205 -49.0481 -49.0454 -49.0296
     -4.9327  -4.9238   6.4280   6.5130   7.8007   8.0580   8.3992   8.7906
     11.1277  11.8060  12.0779  12.1200  12.7590  12.8704  12.9817  13.1394
     14.1495  14.1725  20.8390  20.9595  23.0997
@@ -743,7 +715,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8206 -88.1598 -50.6554 -50.6330 -50.6247 -49.0452 -49.0434 -49.0342
     -5.0384  -4.8209   6.3956   6.9079   7.6919   8.0947   8.3154   8.4543
     11.5038  11.6782  11.8791  12.3329  12.4678  12.8319  12.9258  13.0942
-    13.9939  14.5154  20.5744  21.5453  23.3508
+    13.9939  14.5154  20.5744  21.5453  23.3507
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -756,7 +728,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8206 -88.1598 -50.6555 -50.6330 -50.6247 -49.0453 -49.0434 -49.0342
     -5.0848  -4.7772   6.4621   7.5082   7.5120   7.8723   8.1559   8.2520
     11.6079  11.8505  11.9035  12.2249  12.3371  12.6359  12.9088  13.0904
-    13.8283  14.8383  20.4713  21.8740  24.0649
+    13.8283  14.8383  20.4713  21.8740  24.0615
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -769,7 +741,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8206 -88.1598 -50.6555 -50.6372 -50.6205 -49.0480 -49.0452 -49.0296
     -4.9502  -4.8912   5.4344   6.7199   8.1104   8.1220   9.3336   9.3343
     10.4151  11.7398  11.9416  12.0744  12.3429  12.6792  12.9968  13.1176
-    14.8735  14.9175  19.0427  19.5540  23.3410
+    14.8735  14.9175  19.0427  19.5539  23.3410
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -779,7 +751,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
           k = 0.1250 0.1250 0.1250 (  1068 PWs)   bands (ev):
 
-   -89.8224 -88.1618 -50.6585 -50.6149 -50.6149 -49.0486 -49.0233 -49.0233
+   -89.8224 -88.1618 -50.6585 -50.6148 -50.6148 -49.0486 -49.0233 -49.0233
     -6.2002  -5.1976   6.0159   8.3041   8.3041   9.3840   9.8872   9.8872
     11.2563  11.2563  11.5463  12.3642  12.3642  12.5262  12.5262  12.7163
     14.5893  14.5893  16.0677  18.8454  23.7802
@@ -805,10 +777,10 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
           k = 0.3750 0.3750-0.6250 (  1065 PWs)   bands (ev):
 
-   -89.8206 -88.1598 -50.6555 -50.6371 -50.6205 -49.0480 -49.0452 -49.0296
+   -89.8206 -88.1598 -50.6554 -50.6371 -50.6205 -49.0480 -49.0452 -49.0295
     -4.9456  -4.9033   5.7523   6.7496   8.0082   8.2152   8.6127   9.0911
     10.8413  11.7879  11.9787  12.3061  12.4067  12.6626  12.9898  13.1300
-    14.5383  14.5717  19.9120  20.1065  23.1511
+    14.5384  14.5717  19.9120  20.1065  23.1511
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -821,7 +793,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8215 -88.1608 -50.6570 -50.6261 -50.6177 -49.0470 -49.0357 -49.0264
     -5.4490  -5.2418   6.7117   6.8914   8.4608   8.6642   8.9064   9.1645
     10.9896  11.6173  11.7774  12.1815  12.3958  12.6600  12.9796  12.9864
-    13.8668  14.5791  18.8520  19.8864  24.5499
+    13.8668  14.5791  18.8520  19.8864  24.5498
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -833,8 +805,8 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
    -89.8206 -88.1598 -50.6555 -50.6331 -50.6248 -49.0453 -49.0434 -49.0343
     -4.9294  -4.9272   6.4642   6.4770   7.8619   7.9500   8.5157   8.7046
-    11.3795  11.5098  11.8929  12.3880  12.6488  13.0077  13.0331  13.0653
-    14.1447  14.1484  20.8437  20.9584  23.0923
+    11.3795  11.5098  11.8929  12.3880  12.6488  13.0078  13.0331  13.0653
+    14.1447  14.1484  20.8437  20.9584  23.0921
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -846,7 +818,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
    -89.8224 -88.1618 -50.6586 -50.6150 -50.6150 -49.0488 -49.0234 -49.0234
     -5.7369  -5.7264   7.4710   7.5494   8.6901   8.6901   9.2026   9.2026
-    11.3130  11.3130  11.6470  12.4259  12.4259  12.5623  13.0651  13.0651
+    11.3130  11.3130  11.6470  12.4260  12.4260  12.5623  13.0651  13.0651
     14.1896  14.1896  17.7000  17.8112  25.5066
 
      occupation numbers 
@@ -915,7 +887,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8206 -88.1598 -50.6554 -50.6330 -50.6247 -49.0452 -49.0434 -49.0342
     -5.0384  -4.8209   6.3956   6.9079   7.6919   8.0947   8.3154   8.4543
     11.5038  11.6782  11.8791  12.3329  12.4678  12.8319  12.9258  13.0942
-    13.9939  14.5154  20.5744  21.5453  23.3508
+    13.9939  14.5154  20.5744  21.5453  23.3507
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -928,7 +900,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8206 -88.1598 -50.6555 -50.6330 -50.6247 -49.0453 -49.0434 -49.0342
     -5.0848  -4.7772   6.4621   7.5082   7.5120   7.8723   8.1559   8.2520
     11.6079  11.8505  11.9035  12.2249  12.3371  12.6359  12.9088  13.0904
-    13.8283  14.8383  20.4713  21.8740  24.0649
+    13.8283  14.8383  20.4713  21.8740  24.0615
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -939,7 +911,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
           k = 0.5000-0.5000-0.5000 (  1068 PWs)   bands (ev):
 
    -89.8206 -88.1598 -50.6555 -50.6372 -50.6205 -49.0480 -49.0452 -49.0296
-    -4.9501  -4.8912   5.4344   6.7199   8.1104   8.1220   9.3336   9.3343
+    -4.9502  -4.8912   5.4344   6.7199   8.1104   8.1220   9.3336   9.3343
     10.4151  11.7398  11.9416  12.0744  12.3429  12.6792  12.9968  13.1176
     14.8735  14.9175  19.0427  19.5539  23.3410
 
@@ -951,7 +923,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
           k = 0.1250 0.1250 0.1250 (  1068 PWs)   bands (ev):
 
-   -89.8224 -88.1618 -50.6585 -50.6148 -50.6148 -49.0486 -49.0233 -49.0233
+   -89.8224 -88.1618 -50.6585 -50.6149 -50.6149 -49.0486 -49.0233 -49.0233
     -6.2002  -5.1976   6.0159   8.3041   8.3041   9.3840   9.8872   9.8872
     11.2563  11.2563  11.5463  12.3642  12.3642  12.5262  12.5262  12.7163
     14.5893  14.5893  16.0677  18.8454  23.7802
@@ -993,7 +965,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8215 -88.1608 -50.6570 -50.6261 -50.6177 -49.0470 -49.0357 -49.0264
     -5.4490  -5.2418   6.7117   6.8914   8.4608   8.6642   8.9064   9.1645
     10.9896  11.6173  11.7774  12.1815  12.3958  12.6600  12.9796  12.9864
-    13.8668  14.5791  18.8520  19.8865  24.5498
+    13.8668  14.5791  18.8520  19.8864  24.5498
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -1006,7 +978,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
    -89.8206 -88.1598 -50.6555 -50.6331 -50.6248 -49.0453 -49.0434 -49.0343
     -4.9294  -4.9272   6.4642   6.4770   7.8619   7.9500   8.5157   8.7046
     11.3795  11.5098  11.8929  12.3880  12.6488  13.0078  13.0331  13.0653
-    14.1447  14.1484  20.8437  20.9584  23.0936
+    14.1447  14.1484  20.8437  20.9584  23.0921
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -1018,7 +990,7 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
    -89.8224 -88.1618 -50.6586 -50.6150 -50.6150 -49.0488 -49.0234 -49.0234
     -5.7369  -5.7264   7.4710   7.5494   8.6901   8.6901   9.2026   9.2026
-    11.3130  11.3130  11.6470  12.4259  12.4259  12.5623  13.0651  13.0651
+    11.3130  11.3130  11.6470  12.4260  12.4260  12.5623  13.0651  13.0651
     14.1896  14.1896  17.7000  17.8112  25.5066
 
      occupation numbers 
@@ -1030,38 +1002,38 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
      the Fermi energy is    13.4642 ev
 
 !    total energy              =    -750.82915084 Ry
-     Harris-Foulkes estimate   =    -750.82915084 Ry
-     estimated scf accuracy    <          9.3E-13 Ry
-     smearing contrib. (-TS)   =      -0.00353033 Ry
-     internal energy E=F+TS    =    -750.82562052 Ry
+     Harris-Foulkes estimate   =    -750.82915083 Ry
+     estimated scf accuracy    <          9.8E-12 Ry
+     smearing contrib. (-TS)   =      -0.00353034 Ry
+     internal energy E=F+TS    =    -750.82562051 Ry
 
      The total energy is F=E-TS. E is the sum of the following terms:
-     one-electron contribution =    -437.98830755 Ry
-     hartree contribution      =     247.19136388 Ry
-     xc contribution           =     -84.38362015 Ry
+     one-electron contribution =    -437.98827428 Ry
+     hartree contribution      =     247.19132740 Ry
+     xc contribution           =     -84.38361693 Ry
      ewald contribution        =    -475.64505670 Ry
  
-     Band energy sum           =     -50.23100563 Ry
+     Band energy sum           =     -50.23100293 Ry
 
-     total magnetization       =     0.00 Bohr mag/cell
+     total magnetization       =    -0.00 Bohr mag/cell
      absolute magnetization    =     2.75 Bohr mag/cell
 
-     convergence has been achieved in  21 iterations
+     convergence has been achieved in  19 iterations
 
-     evp_work_count     :       6782
-     num_loc_op_applied :      38684
+     evp_work_count     :       7360
+     num_loc_op_applied :      35188
 
      Forces acting on atoms (cartesian axes, Ry/au):
 
      atom    1 type  1   force =     0.00000000    0.00000000    0.00000000
-     atom    2 type  2   force =     0.00000000    0.00000000   -0.00000000
-     atom    3 type  3   force =     0.00000014    0.00000014    0.00000014
-     atom    4 type  3   force =    -0.00000014   -0.00000014   -0.00000014
-     The non-local contrib.  to forces
-     atom    1 type  1   force =    -0.00000000    0.00000000    0.00000000
      atom    2 type  2   force =     0.00000000   -0.00000000    0.00000000
-     atom    3 type  3   force =    -0.00000006   -0.00000006   -0.00000006
-     atom    4 type  3   force =     0.00000006    0.00000006    0.00000006
+     atom    3 type  3   force =     0.00000003    0.00000003    0.00000003
+     atom    4 type  3   force =    -0.00000003   -0.00000003   -0.00000003
+     The non-local contrib.  to forces
+     atom    1 type  1   force =     0.00000000   -0.00000000   -0.00000000
+     atom    2 type  2   force =     0.00000000    0.00000000   -0.00000000
+     atom    3 type  3   force =    -0.00000015   -0.00000015   -0.00000015
+     atom    4 type  3   force =     0.00000015    0.00000015    0.00000015
      The ionic contribution  to forces
      atom    1 type  1   force =    -0.00000000   -0.00000000   -0.00000000
      atom    2 type  2   force =     0.00000000    0.00000000    0.00000000
@@ -1070,8 +1042,8 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
      The local contribution  to forces
      atom    1 type  1   force =     0.00000000    0.00000000    0.00000000
      atom    2 type  2   force =     0.00000000    0.00000000    0.00000000
-     atom    3 type  3   force =     0.00000021    0.00000021    0.00000021
-     atom    4 type  3   force =    -0.00000021   -0.00000021   -0.00000021
+     atom    3 type  3   force =     0.00000068    0.00000068    0.00000068
+     atom    4 type  3   force =    -0.00000068   -0.00000068   -0.00000068
      The core correction contribution to forces
      atom    1 type  1   force =     0.00000000    0.00000000    0.00000000
      atom    2 type  2   force =     0.00000000    0.00000000    0.00000000
@@ -1083,40 +1055,41 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
      atom    3 type  3   force =     0.00000000    0.00000000    0.00000000
      atom    4 type  3   force =     0.00000000    0.00000000    0.00000000
      The SCF correction term to forces
-     atom    1 type  1   force =     0.00000000   -0.00000000   -0.00000000
-     atom    2 type  2   force =     0.00000000    0.00000000    0.00000000
-     atom    3 type  3   force =    -0.00000001   -0.00000001   -0.00000001
-     atom    4 type  3   force =     0.00000001    0.00000001    0.00000001
+     atom    1 type  1   force =    -0.00000000    0.00000000   -0.00000000
+     atom    2 type  2   force =    -0.00000000   -0.00000000   -0.00000000
+     atom    3 type  3   force =    -0.00000052   -0.00000052   -0.00000052
+     atom    4 type  3   force =     0.00000052    0.00000052    0.00000052
 
-     Total force =     0.000000     Total SCF correction =     0.000000
+     Total force =     0.000000     Total SCF correction =     0.000001
+     SCF correction compared to forces is large: reduce conv_thr to get better values
 
 
      Computing stress (Cartesian axis) and pressure
 
-          total   stress  (Ry/bohr**3)                   (kbar)     P=     -222.85
-  -0.00151489  -0.00003197  -0.00003197         -222.85       -4.70       -4.70
-  -0.00003197  -0.00151489  -0.00003197           -4.70     -222.85       -4.70
-  -0.00003197  -0.00003197  -0.00151489           -4.70       -4.70     -222.85
+          total   stress  (Ry/bohr**3)                   (kbar)     P=     -222.88
+  -0.00151514  -0.00003197  -0.00003197         -222.88       -4.70       -4.70
+  -0.00003197  -0.00151514  -0.00003197           -4.70     -222.88       -4.70
+  -0.00003197  -0.00003197  -0.00151514           -4.70       -4.70     -222.88
 
      kinetic stress (kbar)  47824.01    -12.12    -12.12
                               -12.12  47824.01    -12.12
                               -12.12    -12.12  47824.01
 
-     local   stress (kbar)  -5399.73     27.35     27.35
-                               27.35  -5399.73     27.35
-                               27.35     27.35  -5399.73
+     local   stress (kbar)  -5399.73     27.34     27.34
+                               27.34  -5399.73     27.34
+                               27.34     27.34  -5399.73
 
-     nonloc. stress (kbar)  17845.02    -10.32    -10.32
-                              -10.32  17845.02    -10.32
-                              -10.32    -10.32  17845.02
+     nonloc. stress (kbar)  17844.99    -10.32    -10.32
+                              -10.32  17844.99    -10.32
+                              -10.32    -10.32  17844.99
 
      hartree stress (kbar)  48612.74     -9.73     -9.73
                                -9.73  48612.74     -9.73
                                -9.73     -9.73  48612.74
 
-     exc-cor stress (kbar) -13122.24      0.00      0.00
-                                0.00 -13122.24      0.00
-                                0.00      0.00 -13122.24
+     exc-cor stress (kbar) -13122.23      0.00      0.00
+                                0.00 -13122.23      0.00
+                                0.00      0.00 -13122.23
 
      corecor stress (kbar)  -2442.12      0.12      0.12
                                 0.12  -2442.12      0.12
@@ -1150,70 +1123,70 @@ SIRIUS 7.2.0, git hash: b7bf4a5fc66ba778625467ac49c53619c71a811e
 
      Writing output data file ./nio.save/
 
-     init_run     :      4.00s CPU      3.27s WALL (       1 calls)
-     electrons    :    141.17s CPU     95.63s WALL (       1 calls)
-     forces       :      1.78s CPU      0.76s WALL (       1 calls)
-     stress       :      7.66s CPU      2.44s WALL (       1 calls)
+     init_run     :      3.99s CPU      3.27s WALL (       1 calls)
+     electrons    :    127.08s CPU     86.30s WALL (       1 calls)
+     forces       :      1.60s CPU      0.71s WALL (       1 calls)
+     stress       :      6.81s CPU      2.18s WALL (       1 calls)
 
      Called by init_run:
-     wfcinit      :      1.53s CPU      1.34s WALL (       1 calls)
+     wfcinit      :      1.54s CPU      1.34s WALL (       1 calls)
      wfcinit:atom :      0.01s CPU      0.01s WALL (      26 calls)
-     wfcinit:wfcr :      1.47s CPU      1.29s WALL (      26 calls)
+     wfcinit:wfcr :      1.48s CPU      1.29s WALL (      26 calls)
      potinit      :      0.21s CPU      0.10s WALL (       1 calls)
-     hinit0       :      1.37s CPU      1.38s WALL (       1 calls)
+     hinit0       :      1.36s CPU      1.37s WALL (       1 calls)
 
      Called by electrons:
-     c_bands      :     68.52s CPU     58.71s WALL (      21 calls)
-     sum_band     :     50.25s CPU     25.34s WALL (      21 calls)
-     v_of_rho     :      2.90s CPU      1.01s WALL (      22 calls)
-     v_h          :      0.26s CPU      0.28s WALL (      22 calls)
-     v_xc         :      2.89s CPU      0.79s WALL (      24 calls)
-     newd         :     18.99s CPU      9.30s WALL (      22 calls)
-     mix_rho      :      0.85s CPU      1.02s WALL (      21 calls)
+     c_bands      :     62.23s CPU     53.37s WALL (      19 calls)
+     sum_band     :     44.80s CPU     22.65s WALL (      19 calls)
+     v_of_rho     :      2.67s CPU      0.94s WALL (      20 calls)
+     v_h          :      0.24s CPU      0.25s WALL (      20 calls)
+     v_xc         :      2.67s CPU      0.74s WALL (      22 calls)
+     newd         :     17.02s CPU      8.28s WALL (      20 calls)
+     mix_rho      :      0.76s CPU      0.92s WALL (      19 calls)
 
      Called by c_bands:
-     init_us_2    :      0.61s CPU      0.22s WALL (    1170 calls)
-     cegterg      :     67.50s CPU     58.34s WALL (     546 calls)
+     init_us_2    :      0.55s CPU      0.20s WALL (    1066 calls)
+     cegterg      :     61.29s CPU     53.03s WALL (     494 calls)
 
      Called by sum_band:
-     sum_band:wei :      0.01s CPU      0.01s WALL (      21 calls)
-     sum_band:loo :     13.07s CPU     11.74s WALL (      21 calls)
-     sum_band:buf :      0.03s CPU      0.03s WALL (     546 calls)
-     sum_band:ini :      0.28s CPU      0.09s WALL (     546 calls)
-     sum_band:cal :      0.72s CPU      0.37s WALL (     546 calls)
-     sum_band:bec :      0.07s CPU      0.10s WALL (     546 calls)
-     addusdens    :     36.59s CPU     12.99s WALL (      21 calls)
-     addusd:skk   :      0.05s CPU      0.02s WALL (      63 calls)
-     addusd:dgemm :      9.10s CPU      5.49s WALL (     126 calls)
-     addusd:qvan2 :     26.99s CPU      6.25s WALL (     126 calls)
+     sum_band:wei :      0.01s CPU      0.01s WALL (      19 calls)
+     sum_band:loo :     11.77s CPU     10.62s WALL (      19 calls)
+     sum_band:buf :      0.02s CPU      0.02s WALL (     494 calls)
+     sum_band:ini :      0.25s CPU      0.08s WALL (     494 calls)
+     sum_band:cal :      0.64s CPU      0.33s WALL (     494 calls)
+     sum_band:bec :      0.07s CPU      0.09s WALL (     494 calls)
+     addusdens    :     32.52s CPU     11.50s WALL (      19 calls)
+     addusd:skk   :      0.05s CPU      0.02s WALL (      57 calls)
+     addusd:dgemm :      8.08s CPU      4.89s WALL (     114 calls)
+     addusd:qvan2 :     24.00s CPU      5.51s WALL (     114 calls)
 
      Called by *egterg:
-     cdiaghg      :      1.48s CPU      1.49s WALL (    1711 calls)
-     cegterg:over :      1.73s CPU      0.91s WALL (    1165 calls)
-     cegterg:upda :      1.07s CPU      0.37s WALL (    1165 calls)
-     cegterg:last :      2.61s CPU      0.82s WALL (    1086 calls)
-     h_psi        :     59.19s CPU     54.45s WALL (    1737 calls)
-     s_psi        :      1.79s CPU      0.53s WALL (    1737 calls)
-     g_psi        :      0.14s CPU      0.06s WALL (    1165 calls)
+     cdiaghg      :      1.69s CPU      1.70s WALL (    1928 calls)
+     cegterg:over :      1.60s CPU      0.85s WALL (    1434 calls)
+     cegterg:upda :      1.03s CPU      0.37s WALL (    1434 calls)
+     cegterg:last :      2.30s CPU      0.72s WALL (     964 calls)
+     h_psi        :     53.45s CPU     49.17s WALL (    1954 calls)
+     s_psi        :      1.66s CPU      0.50s WALL (    1954 calls)
+     g_psi        :      0.14s CPU      0.07s WALL (    1434 calls)
 
      Called by h_psi:
-     h_psi:calbec :      1.78s CPU      0.91s WALL (    1737 calls)
-     vloc_psi     :     55.45s CPU     52.87s WALL (    1737 calls)
-     add_vuspsi   :      1.83s CPU      0.57s WALL (    1737 calls)
+     h_psi:calbec :      1.62s CPU      0.84s WALL (    1954 calls)
+     vloc_psi     :     50.04s CPU     47.71s WALL (    1954 calls)
+     add_vuspsi   :      1.67s CPU      0.52s WALL (    1954 calls)
 
      General routines
-     calbec       :      2.68s CPU      1.38s WALL (    2413 calls)
-     fft          :      2.33s CPU      2.36s WALL (     246 calls)
-     ffts         :      0.08s CPU      0.09s WALL (      86 calls)
-     fftw         :     55.85s CPU     56.02s WALL (   93202 calls)
-     interpolate  :      0.53s CPU      0.56s WALL (      44 calls)
+     calbec       :      2.42s CPU      1.25s WALL (    2578 calls)
+     fft          :      2.07s CPU      2.09s WALL (     224 calls)
+     ffts         :      0.08s CPU      0.08s WALL (      78 calls)
+     fftw         :     50.43s CPU     50.57s WALL (   84702 calls)
+     interpolate  :      0.47s CPU      0.50s WALL (      40 calls)
 
      Parallel routines
 
-     PWSCF        :   2m34.88s CPU   1m42.42s WALL
+     PWSCF        :   2m19.74s CPU   1m32.78s WALL
 
 
-   This run was terminated on:  11:23:38  17Feb2021            
+   This run was terminated on:  15:23:34  17Feb2021            
 
 =------------------------------------------------------------------------------=
    JOB DONE.
