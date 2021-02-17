@@ -182,6 +182,12 @@ class qe_LiF_lda_paw_scf(qe_scf_base_test):
         self.tags = {'qe-%s'%variant, 'serial', 'paw'}
 
 @rfm.parameterized_test(['native'], ['sirius'])
+class qe_Fe_lda_uspp_scf(qe_scf_base_test):
+    def __init__(self, variant):
+        super().__init__(1, 1, 'Fe-lda-uspp', variant)
+        self.tags = {'qe-%s'%variant, 'serial'}
+
+@rfm.parameterized_test(['native'], ['sirius'])
 class qe_LiF_esm_scf(qe_scf_base_test):
     def __init__(self, variant):
         super().__init__(1, 1, 'LiF-esm', variant)
