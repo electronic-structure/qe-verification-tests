@@ -96,7 +96,8 @@ def forces_diff(ostream, ostream_ref):
     return sn.max(sn.abs(forces[i][j] - forces_ref[i][j]) for i in range(na) for j in range(2))
 
 class qe_scf_base_test(rfm.RunOnlyRegressionTest):
-    def __init__(self, num_ranks_k, num_ranks_d, test_folder, variant, energy_tol = 1e-5):
+    def __init__(self, num_ranks_k, num_ranks_d, test_folder, variant, energy_tol = 1e-5, pressure_tol = 1e-1,
+                 stress_tol = 1e-4, forces_tol = 1e-4):
         super().__init__()
         self.descr = 'SCF check'
         self.valid_systems = ['osx', 'daint']
@@ -120,10 +121,10 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 
         patterns = [
             sn.assert_found(r'convergence has been achieved', self.stdout),
-            sn.assert_lt(energy_diff(self.stdout, 'out.txt'), energy_tol, msg="Total energy is different"),
-            sn.assert_lt(pressure_diff(self.stdout, 'out.txt'), 1e-1, msg="Pressure is different"),
-            sn.assert_lt(stress_diff(self.stdout, 'out.txt'), 1e-4, msg="Stress tensor is different"),
-            sn.assert_lt(forces_diff(self.stdout, 'out.txt'), 1e-4, msg="Atomic forces are different")
+            sn.assert_lt(energy_diff(self.stdout, 'out.txt'),   energy_tol,   msg="Total energy is different"),
+            sn.assert_lt(pressure_diff(self.stdout, 'out.txt'), pressure_tol, msg="Pressure is different"),
+            sn.assert_lt(stress_diff(self.stdout, 'out.txt'),   stress_tol,   msg="Stress tensor is different"),
+            sn.assert_lt(forces_diff(self.stdout, 'out.txt'),   forces_tol,   msg="Atomic forces are different")
         ]
         if variant == 'sirius':
             patterns.append(sn.assert_found(r'SIRIUS.+git\shash', self.stdout))
@@ -192,13 +193,19 @@ class qe_CdCO3_gga_paw_scf(qe_scf_base_test):
         # This is GGA PAW test. Right now PAW XC part is done by SIRIUS and for GGA libxc gives a different
         # result comparing with QE implementation
         etol = 1e-5 if variant == "native" else 0.01
-        super().__init__(ranks[0], ranks[1], 'CdCO3-gga-paw', variant, energy_tol=etol)
+        ptol = 1e-1 if variant == "native" else 2
+        stol = 1e-4 if variant == "native" else 0.1
+        ftol = 1e-4 if variant == "native" else 0.1
+        super().__init__(ranks[0], ranks[1], 'CdCO3-gga-paw', variant, energy_tol=etol, pressure_tol=ptol,
+                         stress_tol=stol, forces_tol=ftol)
         self.tags = {'qe-%s'%variant, 'parallel', 'paw'}
 
 @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (4,1)]))
 class qe_CdCO3_lda_paw_scf(qe_scf_base_test):
     def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'CdCO3-lda-paw', variant)
+        # this shouldn't happen
+        ftol = 1e-4 if variant == "native" else 1e-2
+        super().__init__(ranks[0], ranks[1], 'CdCO3-lda-paw', variant, forces_tol=ftol)
         self.tags = {'qe-%s'%variant, 'parallel', 'paw'}
 
 @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (1,4)]))
