@@ -1,0 +1,44 @@
+&CONTROL
+  calculation = 'scf'
+  outdir = './out/'
+  prefix = 'scf'
+  pseudo_dir = './'
+  restart_mode = 'from_scratch'
+  verbosity = 'high'
+  tstress=.true.
+  tprnfor = .true.
+  disk_io = 'none'
+/
+&SYSTEM
+  assume_isolated = '2D'
+  degauss =   2.0000000000d-02
+  ecutrho =   8.0000000000d+02
+  ecutwfc =   8.0000000000d+01
+  ibrav = 0
+  nat = 3
+  nspin = 2
+  ntyp = 2
+  occupations = 'smearing'
+  smearing = 'cold'
+  starting_magnetization(1) =  -7.5000000000d-01
+  starting_magnetization(2) =   8.2000000000d-01
+/
+&ELECTRONS
+  conv_thr =   1.0000000000d-10
+  electron_maxstep = 100
+  mixing_beta =   1.0000000000d-01
+  diago_full_acc = .true.
+/
+ATOMIC_SPECIES
+Fe     55.845 Fe.pz-n-nc.UPF
+Se     78.96  Se.pz-n-nc.UPF
+ATOMIC_POSITIONS angstrom
+Se           3.9658747633      -0.0000000000      -1.2356190520 
+Fe           1.9829373816      -1.9829373816      -0.0000000000 
+Se           0.0000000000      -0.0000000000       1.2356190520 
+K_POINTS automatic
+8 8 1 0 0 0
+CELL_PARAMETERS angstrom
+      3.9658747633       0.0000000000       0.0000000000
+      0.0000000000       3.9658747633       0.0000000000
+      0.0000000000       0.0000000000      16.9424762079
