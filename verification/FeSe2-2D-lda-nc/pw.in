@@ -27,7 +27,7 @@
   conv_thr =   1.0000000000d-10
   electron_maxstep = 100
   mixing_beta =   1.0000000000d-01
-  diago_full_acc = .true.
+  diago_full_acc = .false.
 /
 ATOMIC_SPECIES
 Fe     55.845 Fe.pz-n-nc.UPF
