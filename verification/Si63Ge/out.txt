@@ -1,6 +1,10 @@
-SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
+SIRIUS 7.3.1, git hash: 8be157bcd256dae33dbaee388a186c736dcf26fc
 
-     Program PWSCF v.6.7GPU starts on 18Mar2021 at 18:31:47 
+     Program PWSCF v.7.0rc1 starts on 21Dec2021 at 13:46:44 
+        Git branch: ristretto
+        Last git commit: b5cdd86e46d52e63ae6adbdb81ea80069adf5932
+        Last git commit date: Fri Dec 3 15:09:03 2021 +0100
+        Last git commit subject: add XC_GGA_PW91                                   
 
      This program is part of the open-source Quantum ESPRESSO suite
      for quantum simulation of materials; please cite
@@ -17,6 +21,8 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
 
      MPI processes distributed on     4 nodes
      R & G space division:  proc/nbgrp/npool/nimage =       4
+     59136 MiB available memory on the printing compute node when the environment starts
+
      Reading input from pw.in
      Message from routine read_cards :
      DEPRECATED: no units specified in CELL_PARAMETERS card
@@ -24,9 +30,16 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      Current dimensions of program PWSCF are:
      Max number of different atomic species (ntypx) = 10
      Max number of k-points (npk) =  40000
-     Max angular momentum in pseudopotentials (lmaxx) =  3
+     Max angular momentum in pseudopotentials (lmaxx) =  4
      Message from routine cell_base_init:
      DEPRECATED: use true lattice parameter, not A to a.u. conversion factor
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= XC-000I-000I-101L-130L-000I-000I
+                           (   0   0 101 130   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
      Message from routine setup:
      using ibrav=0 with symmetry is DISCOURAGED, use correct ibrav instead
 
@@ -58,8 +71,8 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      scf convergence threshold =      1.0E-09
      mixing beta               =       0.7000
      number of iterations used =            8  plain     mixing
-     Exchange-correlation=  SLA  PW   PBX  PBC
-                           (   1   4   3   4   0   0   0)
+     Exchange-correlation= XC-000I-000I-101L-130L-000I-000I
+                           (   0   0 101 130   0   0   0)
 
      celldm(1)=   1.000000  celldm(2)=   0.000000  celldm(3)=   0.000000
      celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
@@ -196,14 +209,24 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
 
      Estimated total dynamical RAM >      13.86 GB
 
+     WARNING: libxc functional with ID  101 depends
+      on external parameters: check the user_guide of
+      QE if you need to modify them or to check their
+      default values.
+
+     WARNING: libxc functional with ID  130 depends
+      on external parameters: check the user_guide of
+      QE if you need to modify them or to check their
+      default values.
+
      Initial potential from superposition of free atoms
 
-     starting charge  265.96390, renormalised to  266.00000
+     starting charge     265.9639, renormalised to     266.0000
      Starting wfcs are  261 randomized atomic wfcs
 
-     total cpu time spent up to now is        7.0 secs
+     total cpu time spent up to now is        7.5 secs
 
-     per-process dynamical memory:  1189.5 Mb
+     per-process dynamical memory:  1269.1 Mb
 
      Self-consistent Calculation
 
@@ -217,34 +240,34 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      Davidson diagonalization with overlap
      ethr =  6.00E-04,  avg # of iterations =  2.0
 
-     total cpu time spent up to now is       23.8 secs
+     total cpu time spent up to now is       24.7 secs
 
-     total energy              =    -932.97712545 Ry
-     estimated scf accuracy    <       1.74019583 Ry
+     total energy              =    -932.97699167 Ry
+     estimated scf accuracy    <       1.74019474 Ry
  
-     Band energy sum           =       1.09482331 Ry
+     Band energy sum           =       1.09491037 Ry
 
      iteration #  2     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  6.54E-04,  avg # of iterations =  1.0
 
-     total cpu time spent up to now is       31.6 secs
+     total cpu time spent up to now is       32.8 secs
 
-     total energy              =    -933.04103310 Ry
+     total energy              =    -933.04089926 Ry
      estimated scf accuracy    <       0.08549520 Ry
  
-     Band energy sum           =       7.79242273 Ry
+     Band energy sum           =       7.79250118 Ry
 
      iteration #  3     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  3.21E-05,  avg # of iterations =  9.2
 
-     total cpu time spent up to now is       45.5 secs
+     total cpu time spent up to now is       47.0 secs
 
-     total energy              =    -933.05348654 Ry
-     estimated scf accuracy    <       0.01453125 Ry
+     total energy              =    -933.05335267 Ry
+     estimated scf accuracy    <       0.01453134 Ry
  
-     Band energy sum           =       9.72905108 Ry
+     Band energy sum           =       9.72913153 Ry
 
      iteration #  4     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
@@ -252,128 +275,128 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      c_bands:  1 eigenvalues not converged
      ethr =  5.46E-06,  avg # of iterations = 22.5
 
-     total cpu time spent up to now is       62.4 secs
+     total cpu time spent up to now is       63.9 secs
 
-     total energy              =    -933.05611764 Ry
-     estimated scf accuracy    <       0.02333457 Ry
+     total energy              =    -933.05598380 Ry
+     estimated scf accuracy    <       0.02333453 Ry
  
-     Band energy sum           =       9.07447710 Ry
+     Band energy sum           =       9.07455723 Ry
 
      iteration #  5     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  5.46E-06,  avg # of iterations =  7.2
 
-     total cpu time spent up to now is       74.9 secs
+     total cpu time spent up to now is       76.5 secs
 
-     total energy              =    -933.05944523 Ry
-     estimated scf accuracy    <       0.00161263 Ry
+     total energy              =    -933.05931138 Ry
+     estimated scf accuracy    <       0.00161264 Ry
  
-     Band energy sum           =       8.98245149 Ry
+     Band energy sum           =       8.98253086 Ry
 
      iteration #  6     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  6.06E-07,  avg # of iterations =  4.0
 
-     total cpu time spent up to now is       85.9 secs
+     total cpu time spent up to now is       87.9 secs
 
-     total energy              =    -933.05991069 Ry
+     total energy              =    -933.05977684 Ry
      estimated scf accuracy    <       0.00027013 Ry
  
-     Band energy sum           =       9.06855833 Ry
+     Band energy sum           =       9.06863763 Ry
 
      iteration #  7     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  1.02E-07,  avg # of iterations =  2.0
 
-     total cpu time spent up to now is       94.0 secs
+     total cpu time spent up to now is       96.3 secs
 
-     total energy              =    -933.05992043 Ry
+     total energy              =    -933.05978658 Ry
      estimated scf accuracy    <       0.00007362 Ry
  
-     Band energy sum           =       9.09957797 Ry
+     Band energy sum           =       9.09965738 Ry
 
      iteration #  8     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  2.77E-08,  avg # of iterations =  4.0
 
-     total cpu time spent up to now is      102.6 secs
+     total cpu time spent up to now is      105.1 secs
 
-     total energy              =    -933.05993081 Ry
-     estimated scf accuracy    <       0.00000395 Ry
+     total energy              =    -933.05979696 Ry
+     estimated scf accuracy    <       0.00000394 Ry
  
-     Band energy sum           =       9.10164559 Ry
+     Band energy sum           =       9.10172503 Ry
 
      iteration #  9     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  1.48E-09,  avg # of iterations =  5.0
 
-     total cpu time spent up to now is      113.4 secs
+     total cpu time spent up to now is      116.2 secs
 
-     total energy              =    -933.05993419 Ry
+     total energy              =    -933.05980034 Ry
      estimated scf accuracy    <       0.00000379 Ry
  
-     Band energy sum           =       9.10094370 Ry
+     Band energy sum           =       9.10102316 Ry
 
      iteration # 10     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  1.43E-09,  avg # of iterations =  1.5
 
-     total cpu time spent up to now is      121.3 secs
+     total cpu time spent up to now is      124.3 secs
 
-     total energy              =    -933.05993399 Ry
+     total energy              =    -933.05980014 Ry
      estimated scf accuracy    <       0.00000117 Ry
  
-     Band energy sum           =       9.10231979 Ry
+     Band energy sum           =       9.10239926 Ry
 
      iteration # 11     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  4.39E-10,  avg # of iterations =  4.0
 
-     total cpu time spent up to now is      130.1 secs
+     total cpu time spent up to now is      133.1 secs
 
-     total energy              =    -933.05993424 Ry
+     total energy              =    -933.05980039 Ry
      estimated scf accuracy    <       0.00000001 Ry
  
-     Band energy sum           =       9.10288713 Ry
+     Band energy sum           =       9.10296658 Ry
 
      iteration # 12     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  4.87E-12,  avg # of iterations =  5.8
 
-     total cpu time spent up to now is      141.6 secs
+     total cpu time spent up to now is      144.8 secs
 
-     total energy              =    -933.05993425 Ry
+     total energy              =    -933.05980040 Ry
      estimated scf accuracy    <       0.00000003 Ry
  
-     Band energy sum           =       9.10249449 Ry
+     Band energy sum           =       9.10257395 Ry
 
      iteration # 13     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  4.87E-12,  avg # of iterations =  2.2
 
-     total cpu time spent up to now is      149.7 secs
+     total cpu time spent up to now is      153.3 secs
 
-     total energy              =    -933.05993425 Ry
+     total energy              =    -933.05980040 Ry
      estimated scf accuracy    <          7.3E-09 Ry
  
-     Band energy sum           =       9.10245856 Ry
+     Band energy sum           =       9.10253801 Ry
 
      iteration # 14     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  2.75E-12,  avg # of iterations =  4.0
 
-     total cpu time spent up to now is      158.5 secs
+     total cpu time spent up to now is      162.3 secs
 
-     total energy              =    -933.05993425 Ry
+     total energy              =    -933.05980040 Ry
      estimated scf accuracy    <          1.1E-09 Ry
  
-     Band energy sum           =       9.10235321 Ry
+     Band energy sum           =       9.10243267 Ry
 
      iteration # 15     ecut=    30.00 Ry     beta= 0.70
      Davidson diagonalization with overlap
      ethr =  4.28E-13,  avg # of iterations =  2.0
 
-     total cpu time spent up to now is      166.5 secs
+     total cpu time spent up to now is      170.8 secs
 
      End of self-consistent calculation
 
@@ -394,8 +417,8 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      3.4034   3.4034   4.3646   4.3646   4.3646   4.3647   4.3647   4.3647
      4.3670   4.3670   4.3670   4.3764   4.3764   4.3764   4.9265   4.9265
      4.9265   4.9291   4.9291   4.9291   4.9291   4.9321   4.9321   4.9385
-     4.9385   4.9385   5.0556   5.0556   5.0556   5.0590   5.0590   5.0671
-     5.0671   5.0671   6.2663   6.2663   6.2663   6.9476   6.9803   6.9803
+     4.9385   4.9385   5.0556   5.0556   5.0556   5.0591   5.0591   5.0671
+     5.0671   5.0671   6.2663   6.2663   6.2663   6.9477   6.9803   6.9803
      6.9803   6.9810   6.9810   7.3687   7.3930   7.3930   7.4011   7.4011
      7.4011   7.7474   7.8033   7.8033   7.8033   8.6605   8.7058   8.7067
      8.7069   8.7116   8.7154   8.7233   8.7307   8.8231   8.8254   8.8287
@@ -405,7 +428,7 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
    -17.9801 -17.9799 -17.9799 -17.9505 -17.9501  -5.4884  -5.4318  -4.5686
     -4.3788  -4.3788  -4.3770  -4.3758  -4.3751  -4.3751  -4.3742  -3.6868
     -3.5345  -3.5345  -3.5321  -3.5312  -3.5311  -3.5311  -3.5309  -3.3316
-    -3.3135  -2.7047  -2.5932  -2.5887  -2.5887  -2.5881  -2.5881  -2.5878
+    -3.3134  -2.7047  -2.5932  -2.5887  -2.5887  -2.5881  -2.5881  -2.5878
     -2.5873  -1.5898  -1.4877  -1.4877  -1.4833  -1.4828  -1.4824  -1.4824
     -1.4824  -0.4208  -0.3164  -0.3164  -0.3135  -0.3135  -0.3131  -0.3129
     -0.3128  -0.1583  -0.1296  -0.1276  -0.1276  -0.1216  -0.1212  -0.1206
@@ -417,21 +440,21 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      3.6713   3.6714   3.6714   3.6731   3.6747   3.6747   3.6756   3.7798
      3.7927   3.7927   3.7949   3.7964   3.7978   3.7978   3.8010   4.8248
      4.8277   4.8277   4.8288   4.8319   4.8319   4.8325   4.8435   4.9118
-     4.9350   4.9873   4.9914   4.9914   4.9916   4.9916   4.9942   5.0008
+     4.9351   4.9873   4.9914   4.9914   4.9916   4.9916   4.9942   5.0008
      5.0008   5.4503   5.4503   5.4610   5.4610   6.8719   6.8859   7.8041
      7.8086   8.2123   8.2288   8.2309   8.2309   8.2343   8.2498   8.2520
      8.2520   8.2691   8.2816   8.5664   8.6162   8.6162   8.6188   8.6214
-     8.6219   8.6219   8.6609   8.7040   8.7058   8.7082   8.7087   8.7088
+     8.6219   8.6219   8.6609   8.7040   8.7058   8.7082   8.7088   8.7088
 
           k = 0.0000-0.0244-0.0244 ( 23980 PWs)   bands (ev):
 
-   -17.9798 -17.9794 -17.9794 -17.9510 -17.9509  -5.2736  -5.1650  -5.1650
-    -5.1637  -4.3259  -4.1543  -4.1492  -4.1492  -4.1480  -4.1480  -4.1479
+   -17.9798 -17.9793 -17.9793 -17.9510 -17.9509  -5.2736  -5.1650  -5.1650
+    -5.1637  -4.3258  -4.1543  -4.1492  -4.1492  -4.1480  -4.1480  -4.1479
     -4.1476  -3.2865  -3.1175  -3.1175  -3.1118  -3.1118  -3.1117  -3.1115
     -3.1115  -2.9194  -2.8374  -2.8374  -2.8353  -2.8351  -2.8348  -2.8344
     -2.8344  -2.0284  -1.9766  -1.9752  -1.9752  -1.0262  -0.9757  -0.9709
-    -0.9709  -0.5967  -0.5374  -0.5374  -0.5355  -0.5310  -0.5305  -0.5301
-    -0.5301   0.2039   0.2903   0.2914   0.2914   0.2915   0.2915   0.2918
+    -0.9709  -0.5967  -0.5374  -0.5374  -0.5355  -0.5310  -0.5305  -0.5300
+    -0.5300   0.2039   0.2904   0.2914   0.2914   0.2915   0.2915   0.2918
      0.2918   0.9211   0.9664   0.9664   0.9678   0.9709   0.9723   0.9723
      0.9753   1.9513   1.9513   1.9520   1.9560   2.7875   2.8032   2.8039
      2.8039   2.8052   2.8088   2.8092   2.8092   2.8896   2.8896   2.8922
@@ -441,9 +464,9 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      4.0981   4.0987   4.0987   4.1017   4.1039   4.4053   4.4224   4.4226
      4.4226   4.4244   4.4253   4.4253   4.4341   4.6269   4.6281   4.6281
      4.6412   4.6679   4.6682   4.6682   4.6700   4.6701   4.6715   4.6803
-     4.6803   5.9644   5.9654   5.9774   5.9774   7.4631   7.4631   7.4649
+     4.6803   5.9644   5.9655   5.9774   5.9774   7.4631   7.4631   7.4649
      7.4847   8.1857   8.2043   8.2070   8.2070   8.2129   8.2211   8.2294
-     8.2294   8.4870   8.5038   8.5051   8.5051   8.5061   8.5106   8.5106
+     8.2294   8.4870   8.5039   8.5051   8.5051   8.5061   8.5106   8.5106
      8.5487   8.8992   8.9059   8.9077   8.9084   8.9234   8.9256   8.9379
 
           k =-0.0244-0.0244-0.0244 ( 23984 PWs)   bands (ev):
@@ -453,7 +476,7 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
     -2.9959  -2.9877  -2.9877  -2.9876  -2.9876  -2.9876  -2.9871  -2.9871
     -2.9871  -2.9870  -2.9870  -2.9870  -2.9869  -2.9862  -2.9862  -2.9862
     -2.9861  -2.9861  -2.9859  -2.9859  -2.9859  -0.3641  -0.1387  -0.1387
-    -0.1387  -0.1278  -0.1278  -0.1278  -0.1271  -0.1271  -0.1270  -0.1270
+    -0.1387  -0.1278  -0.1278  -0.1278  -0.1270  -0.1270  -0.1270  -0.1270
     -0.1270  -0.1270  -0.1268  -0.1268  -0.1268  -0.1262  -0.1262  -0.1257
     -0.1257  -0.1257  -0.1250  -0.1250  -0.1250   2.2799   2.3262   2.3262
      2.3262   2.3284   2.3337   2.3337   2.3337   2.6894   2.7117   2.7117
@@ -463,31 +486,28 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      4.0491   4.0491   4.0491   4.0504   4.0504   4.0504   4.0512   4.0515
      4.0515   4.0515   4.0521   4.0521   4.0522   4.0522   4.0522   4.0522
      4.0538   4.0538   4.0607   4.0607   4.0607   5.4954   5.4954   5.4954
-     5.4968   5.4968   5.4971   5.4971   5.4971   5.4976   5.4976   5.4976
+     5.4969   5.4969   5.4971   5.4971   5.4971   5.4976   5.4976   5.4976
      5.4987   5.4987   5.5232   5.5232   5.5232   7.6931   7.7754   7.7754
      7.7754   7.7775   7.7789   7.7789   7.7789   7.7793   7.7793   7.7795
      7.7795   7.7795   7.7800   7.7800   7.7800   7.7809   7.7809   7.7809
-     7.8231   7.8231   7.8231   7.8282   7.8282   8.2183   8.2814   8.2861
+     7.8231   7.8231   7.8231   7.8283   7.8283   8.2183   8.2814   8.2861
 
      the Fermi energy is     6.6354 ev
 
-!    total energy              =    -933.05993425 Ry
+!    total energy              =    -933.05980040 Ry
      estimated scf accuracy    <          2.8E-10 Ry
      smearing contrib. (-TS)   =      -0.00000000 Ry
-     internal energy E=F+TS    =    -933.05993425 Ry
+     internal energy E=F+TS    =    -933.05980040 Ry
 
      The total energy is F=E-TS. E is the sum of the following terms:
-     one-electron contribution =     -44.53855520 Ry
-     hartree contribution      =     150.89722421 Ry
-     xc contribution           =    -446.10616944 Ry
+     one-electron contribution =     -44.53855052 Ry
+     hartree contribution      =     150.89721612 Ry
+     xc contribution           =    -446.10603217 Ry
      ewald contribution        =    -593.31243382 Ry
  
-     Band energy sum           =       9.10236724 Ry
+     Band energy sum           =       9.10244669 Ry
 
      convergence has been achieved in  15 iterations
-
-     evp_work_count     :       1478
-     num_loc_op_applied :      28405
 
      Forces acting on atoms (cartesian axes, Ry/au):
 
@@ -562,58 +582,59 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
      Computing stress (Cartesian axis) and pressure
 
           total   stress  (Ry/bohr**3)                   (kbar)     P=       19.16
-   0.00013023   0.00000000   0.00000000           19.16        0.00        0.00
-   0.00000000   0.00013023   0.00000000            0.00       19.16        0.00
-   0.00000000   0.00000000   0.00013023            0.00        0.00       19.16
+   0.00013024   0.00000000   0.00000000           19.16        0.00        0.00
+   0.00000000   0.00013024   0.00000000            0.00       19.16        0.00
+   0.00000000   0.00000000   0.00013024            0.00        0.00       19.16
 
 
-     Writing output data file ./scf_.save/
+     Writing all to output data dir ./scf_.save/
 
-     init_run     :     29.45s CPU      6.57s WALL (       1 calls)
-     electrons    :   1137.44s CPU    159.89s WALL (       1 calls)
-     forces       :     18.32s CPU      3.96s WALL (       1 calls)
-     stress       :    198.23s CPU     39.64s WALL (       1 calls)
+     init_run     :     27.66s CPU      6.93s WALL (       1 calls)
+     electrons    :   1086.29s CPU    163.56s WALL (       1 calls)
+     forces       :     17.81s CPU      4.24s WALL (       1 calls)
+     stress       :    195.27s CPU     40.21s WALL (       1 calls)
 
      Called by init_run:
-     wfcinit      :     23.44s CPU      2.82s WALL (       1 calls)
-     potinit      :      1.42s CPU      0.37s WALL (       1 calls)
-     hinit0       :      1.05s CPU      0.55s WALL (       1 calls)
+     wfcinit      :     21.80s CPU      2.80s WALL (       1 calls)
+     potinit      :      1.39s CPU      0.72s WALL (       1 calls)
+     hinit0       :      1.05s CPU      0.61s WALL (       1 calls)
 
      Called by electrons:
-     c_bands      :    851.37s CPU     87.70s WALL (      16 calls)
-     sum_band     :    225.13s CPU     35.58s WALL (      16 calls)
-     v_of_rho     :     17.29s CPU      4.54s WALL (      16 calls)
-     newd         :     43.89s CPU     33.14s WALL (      16 calls)
-     mix_rho      :      2.55s CPU      0.64s WALL (      16 calls)
+     c_bands      :    798.85s CPU     86.55s WALL (      16 calls)
+     sum_band     :    227.95s CPU     35.25s WALL (      16 calls)
+     v_of_rho     :     17.27s CPU     10.42s WALL (      16 calls)
+     newd         :     42.58s CPU     32.87s WALL (      16 calls)
+     mix_rho      :      2.07s CPU      0.54s WALL (      16 calls)
 
      Called by c_bands:
-     init_us_2    :      2.36s CPU      2.39s WALL (     140 calls)
-     cegterg      :    837.50s CPU     85.08s WALL (      65 calls)
+     init_us_2    :      2.23s CPU      2.27s WALL (     140 calls)
+     init_us_2:cp :      2.23s CPU      2.27s WALL (     140 calls)
+     cegterg      :    785.48s CPU     84.00s WALL (      65 calls)
 
      Called by *egterg:
-     cdiaghg      :    366.72s CPU     45.40s WALL (     381 calls)
-     h_psi        :    359.70s CPU     30.94s WALL (     389 calls)
-     s_psi        :     56.69s CPU      4.80s WALL (     389 calls)
-     g_psi        :      0.87s CPU      0.09s WALL (     320 calls)
+     cdiaghg      :    316.89s CPU     44.36s WALL (     381 calls)
+     h_psi        :    361.74s CPU     31.06s WALL (     389 calls)
+     s_psi        :     54.56s CPU      4.57s WALL (     389 calls)
+     g_psi        :      1.45s CPU      0.09s WALL (     320 calls)
 
      Called by h_psi:
-     h_psi:calbec :     56.78s CPU      4.63s WALL (     389 calls)
-     vloc_psi     :    248.62s CPU     21.40s WALL (     389 calls)
-     add_vuspsi   :     53.91s CPU      4.77s WALL (     389 calls)
+     h_psi:calbec :     56.89s CPU      4.58s WALL (     389 calls)
+     vloc_psi     :    252.86s CPU     21.74s WALL (     389 calls)
+     add_vuspsi   :     51.51s CPU      4.59s WALL (     389 calls)
 
      General routines
-     calbec       :     82.39s CPU      6.76s WALL (     473 calls)
-     fft          :      8.22s CPU      2.62s WALL (     232 calls)
-     ffts         :      0.26s CPU      0.03s WALL (      32 calls)
-     fftw         :    280.99s CPU     24.16s WALL (   67050 calls)
-     interpolate  :      0.74s CPU      0.19s WALL (      16 calls)
+     calbec       :     82.21s CPU      6.63s WALL (     473 calls)
+     fft          :      8.03s CPU      2.56s WALL (     232 calls)
+     ffts         :      0.20s CPU      0.03s WALL (      32 calls)
+     fftw         :    283.31s CPU     24.32s WALL (   67050 calls)
+     interpolate  :      0.66s CPU      0.18s WALL (      16 calls)
 
      Parallel routines
 
-     PWSCF        :  23m 3.97s CPU   3m32.09s WALL
+     PWSCF        :  22m 7.54s CPU   3m37.31s WALL
 
 
-   This run was terminated on:  18:35:19  18Mar2021            
+   This run was terminated on:  13:50:21  21Dec2021            
 
 =------------------------------------------------------------------------------=
    JOB DONE.
@@ -621,268 +642,273 @@ SIRIUS 7.2.0, git hash: eb4c41d310c5c049ae2b9c31aef5c8e9e1880bc2
 ============================================================================================================================
                                              #         Total          %     Self %        Median           Min           Max
 ----------------------------------------------------------------------------------------------------------------------------
-sirius                                       1     213.31 s      100.00       0.00     213.31 s      213.31 s      213.31 s 
-├ sirius::initialize                         1       1.09 s        0.51     100.00       1.09 s        1.09 s        1.09 s 
-├ PWSCF                                      1     212.09 s       99.43       0.18     212.09 s      212.09 s      212.09 s 
-│ ├ qe|setup                                 1      33.24 ms       0.02     100.00      33.24 ms      33.24 ms      33.24 ms
-│ ├ init_run                                 1       6.57 s        3.08      11.16       6.57 s        6.57 s        6.57 s 
-│ │ ├ hinit0                                 1     550.13 ms       0.26      11.20     550.13 ms     550.13 ms     550.13 ms
-│ │ │ ├ init_vloc                            1     124.46 ms       0.06     100.00     124.46 ms     124.46 ms     124.46 ms
-│ │ │ ├ init_us_1                            1     299.65 ms       0.14     100.00     299.65 ms     299.65 ms     299.65 ms
-│ │ │ ├ init_at_1                            1      13.88 ms       0.01     100.00      13.88 ms      13.88 ms      13.88 ms
-│ │ │ ├ qe|setlocal                          1      38.88 ms       0.02      44.01      38.88 ms      38.88 ms      38.88 ms
-│ │ │ │ └ fft                                1      21.77 ms       0.01      52.19      21.77 ms      21.77 ms      21.77 ms
-│ │ │ │   └ fft_scatter                      1      10.41 ms       0.00     100.00      10.41 ms      10.41 ms      10.41 ms
-│ │ │ └ fft                                  1      11.63 ms       0.01      16.32      11.63 ms      11.63 ms      11.63 ms
-│ │ │   └ fft_scatter                        1       9.73 ms       0.00     100.00       9.73 ms       9.73 ms       9.73 ms
-│ │ ├ potinit                                1     370.50 ms       0.17       7.79     370.50 ms     370.50 ms     370.50 ms
-│ │ │ ├ qe|paw_becsum                        1     849.00 ns       0.00     100.00     849.00 ns     849.00 ns     849.00 ns
-│ │ │ ├ fft                                  1      12.62 ms       0.01      15.05      12.62 ms      12.62 ms      12.62 ms
-│ │ │ │ └ fft_scatter                        1      10.72 ms       0.01     100.00      10.72 ms      10.72 ms      10.72 ms
-│ │ │ ├ v_of_rho                             1     313.09 ms       0.15       0.01     313.09 ms     313.09 ms     313.09 ms
-│ │ │ │ ├ v_xc                               1     283.54 ms       0.13      73.15     283.54 ms     283.54 ms     283.54 ms
-│ │ │ │ │ └ fft                              7      76.14 ms       0.04      14.53       9.47 ms       7.92 ms      17.67 ms
-│ │ │ │ │   └ fft_scatter                    7      65.07 ms       0.03     100.00       7.98 ms       6.41 ms      16.04 ms
-│ │ │ │ └ v_h                                1      29.52 ms       0.01      43.81      29.52 ms      29.52 ms      29.52 ms
-│ │ │ │   └ fft                              1      16.58 ms       0.01       9.70      16.58 ms      16.58 ms      16.58 ms
-│ │ │ │     └ fft_scatter                    1      14.98 ms       0.01     100.00      14.98 ms      14.98 ms      14.98 ms
-│ │ │ ├ qe|paw_potential                     1     291.00 ns       0.00     100.00     291.00 ns     291.00 ns     291.00 ns
-│ │ │ └ qe|set_vrs                           1      15.94 ms       0.01      24.12      15.94 ms      15.94 ms      15.94 ms
-│ │ │   └ interpolate                        1      12.10 ms       0.01      18.66      12.10 ms      12.10 ms      12.10 ms
-│ │ │     ├ fft                              1       8.63 ms       0.00      16.23       8.63 ms       8.63 ms       8.63 ms
-│ │ │     │ └ fft_scatter                    1       7.23 ms       0.00     100.00       7.23 ms       7.23 ms       7.23 ms
-│ │ │     └ ffts                             1       1.21 ms       0.00      17.09       1.21 ms       1.21 ms       1.21 ms
-│ │ │       └ fft_scatter                    1       1.00 ms       0.00     100.00       1.00 ms       1.00 ms       1.00 ms
-│ │ ├ newd                                   1       2.09 s        0.98      99.02       2.09 s        2.09 s        2.09 s 
-│ │ │ └ fft                                  1      20.54 ms       0.01       7.86      20.54 ms      20.54 ms      20.54 ms
-│ │ │   └ fft_scatter                        1      18.92 ms       0.01     100.00      18.92 ms      18.92 ms      18.92 ms
-│ │ └ wfcinit                                1       2.82 s        1.32      10.16       2.82 s        2.82 s        2.82 s 
-│ │   ├ init_us_2                            4     101.29 ms       0.05     100.00      17.44 ms      17.27 ms      49.14 ms
-│ │   ├ wfcinit:atomic                       4      33.73 ms       0.02       0.10       8.45 ms       8.34 ms       8.49 ms
-│ │   │ └ atomic_wfc                         4      33.70 ms       0.02     100.00       8.44 ms       8.33 ms       8.49 ms
-│ │   └ wfcinit:wfcrot                       4       2.40 s        1.13       0.00     597.12 ms     580.21 ms     626.24 ms
-│ │     └ wfcrot                             4       2.40 s        1.13       0.00     597.11 ms     580.20 ms     626.23 ms
-│ │       └ protwfck                         4       2.40 s        1.13       1.06     597.10 ms     580.20 ms     626.22 ms
-│ │         ├ protwfck:hpsi                  4       1.10 s        0.52       0.00     273.13 ms     265.06 ms     292.24 ms
-│ │         │ └ h_psi_bgrp                   4       1.10 s        0.52       0.00     273.13 ms     265.06 ms     292.23 ms
-│ │         │   └ h_psi                      4       1.10 s        0.52       0.44     273.13 ms     265.05 ms     292.23 ms
-│ │         │     └ h_psi:pot                4       1.10 s        0.52       0.01     271.90 ms     263.86 ms     291.02 ms
-│ │         │       ├ vloc_psi               4     785.69 ms       0.37       6.17     194.28 ms     184.73 ms     212.39 ms
-│ │         │       │ └ fftw              2088     737.18 ms       0.35      29.06     368.85 us     251.90 us       6.81 ms
-│ │         │       │   └ fft_scatter     2088     522.93 ms       0.25     100.00     269.74 us     147.14 us       6.57 ms
-│ │         │       ├ h_psi:calbec           4     159.10 ms       0.07       0.02      39.91 ms      37.75 ms      41.52 ms
-│ │         │       │ └ calbec               4     159.06 ms       0.07     100.00      39.90 ms      37.74 ms      41.51 ms
-│ │         │       └ add_vuspsi             4     153.81 ms       0.07     100.00      38.25 ms      37.94 ms      39.37 ms
-│ │         ├ protwfck:hc                    4     226.76 ms       0.11      30.24      56.52 ms      55.35 ms      58.37 ms
-│ │         │ └ s_psi_bgrp                   4     158.18 ms       0.07       3.01      39.61 ms      39.10 ms      39.86 ms
-│ │         │   └ s_psi                      4     153.42 ms       0.07     100.00      38.42 ms      37.90 ms      38.68 ms
-│ │         ├ protwfck:diag                  4       1.00 s        0.47       0.00     241.27 ms     238.84 ms     282.63 ms
-│ │         │ └ cdiaghg                      4       1.00 s        0.47      91.71     241.27 ms     238.84 ms     282.62 ms
-│ │         │   ├ cdiaghg:choldc             4      42.74 ms       0.02     100.00       1.33 ms       1.28 ms      38.82 ms
-│ │         │   ├ cdiaghg:inversion          4       3.13 ms       0.00     100.00     763.78 us     736.99 us     866.68 us
-│ │         │   └ cdiaghg:paragemm           8      37.33 ms       0.02     100.00       3.09 ms       2.20 ms      12.95 ms
-│ │         └ protwfck:evc                   4      40.94 ms       0.02     100.00       8.97 ms       8.13 ms      14.88 ms
-│ ├ electrons                                1     159.89 s       74.96       0.33     159.89 s      159.89 s      159.89 s 
-│ │ ├ c_bands                               16      87.70 s       41.11       1.75       4.14 s        3.09 s       12.26 s 
-│ │ │ ├ init_us_2                           64       1.08 s        0.51     100.00      16.99 ms      16.15 ms      17.44 ms
-│ │ │ └ cegterg                             65      85.08 s       39.89       0.82     999.05 ms     720.29 ms       4.50 s 
-│ │ │   ├ h_psi_bgrp                       385      29.84 s       13.99       0.01      46.26 ms       6.14 ms     196.06 ms
-│ │ │   │ └ h_psi                          385      29.83 s       13.99       0.43      46.25 ms       6.13 ms     196.06 ms
-│ │ │   │   └ h_psi:pot                    385      29.71 s       13.93       0.02      46.18 ms       6.10 ms     195.14 ms
-│ │ │   │     ├ vloc_psi                   385      20.61 s        9.66       6.20      31.37 ms       2.27 ms     142.87 ms
-│ │ │   │     │ └ fftw                   54722      19.34 s        9.06      29.36     366.56 us     247.67 us       4.37 ms
-│ │ │   │     │   └ fft_scatter          54722      13.66 s        6.40     100.00     268.25 us     142.22 us       4.19 ms
-│ │ │   │     ├ h_psi:calbec               385       4.47 s        2.10       0.08       5.77 ms       1.96 ms      30.02 ms
-│ │ │   │     │ └ calbec                   385       4.47 s        2.09     100.00       5.76 ms       1.95 ms      30.01 ms
-│ │ │   │     └ add_vuspsi                 385       4.62 s        2.16     100.00       7.40 ms       1.78 ms      26.14 ms
-│ │ │   ├ s_psi_bgrp                       385       4.78 s        2.24       2.86       7.46 ms       1.85 ms      26.79 ms
-│ │ │   │ └ s_psi                          385       4.64 s        2.18     100.00       7.33 ms       1.83 ms      26.00 ms
-│ │ │   ├ cegterg:init                      65     406.97 ms       0.19     100.00       5.91 ms       5.59 ms      11.51 ms
-│ │ │   ├ cegterg:update                   320       1.02 s        0.48     100.00       2.27 ms     648.68 us       8.39 ms
-│ │ │   ├ g_psi                            320      91.62 ms       0.04     100.00      91.74 us       9.01 us     898.89 us
-│ │ │   ├ cegterg:overlap                  320       1.76 s        0.82     100.00       2.27 ms     801.69 us      22.94 ms
-│ │ │   ├ cegterg:diag                     377      44.40 s       20.81       0.00      25.27 ms      10.66 ms     312.22 ms
-│ │ │   │ └ cdiaghg                        377      44.40 s       20.81      94.62      25.27 ms      10.65 ms     312.21 ms
-│ │ │   │   ├ cdiaghg:choldc               377     515.26 ms       0.24     100.00       1.11 ms     614.80 us       4.52 ms
-│ │ │   │   ├ cdiaghg:inversion            377     278.98 ms       0.13     100.00     502.60 us     119.13 us       2.11 ms
-│ │ │   │   └ cdiaghg:paragemm             754       1.59 s        0.75     100.00       1.21 ms     241.05 us      46.83 ms
-│ │ │   └ cegterg:last                     143       2.10 s        0.98     100.00      21.51 ms       3.16 ms      28.05 ms
-│ │ ├ sum_band                              16      35.58 s       16.68       0.17       2.22 s        2.16 s        2.27 s 
-│ │ │ ├ sum_band:weights                    16       1.26 ms       0.00     100.00      78.38 us      67.65 us      86.34 us
-│ │ │ ├ sum_band:loop                       16       7.28 s        3.41       4.71     451.43 ms     437.06 ms     483.03 ms
-│ │ │ │ ├ sum_band:buffer                   64     148.97 ms       0.07     100.00       2.32 ms       2.25 ms       2.43 ms
-│ │ │ │ ├ sum_band:init_us_2                64       1.07 s        0.50       0.07      16.62 ms      16.29 ms      17.68 ms
-│ │ │ │ │ └ init_us_2                       64       1.07 s        0.50     100.00      16.61 ms      16.27 ms      17.66 ms
-│ │ │ │ ├ fftw                           10240       4.08 s        1.91      25.66     379.85 us     360.41 us       3.87 ms
-│ │ │ │ │ └ fft_scatter                  10240       3.03 s        1.42     100.00     278.27 us     259.79 us       3.69 ms
-│ │ │ │ ├ sum_band:calbec                   64       1.57 s        0.74       0.04      24.63 ms      22.97 ms      29.25 ms
-│ │ │ │ │ └ calbec                          64       1.57 s        0.73     100.00      24.62 ms      22.96 ms      29.24 ms
-│ │ │ │ └ sum_band:becsum                   64      68.99 ms       0.03     100.00       1.07 ms     947.77 us       1.33 ms
-│ │ │ ├ ffts                                16      14.21 ms       0.01      21.66     864.92 us     820.29 us     988.07 us
-│ │ │ │ └ fft_scatter                       16      11.13 ms       0.01     100.00     672.00 us     627.13 us     804.78 us
-│ │ │ ├ addusdens                           16      26.87 s       12.60      22.68       1.67 s        1.64 s        1.73 s 
-│ │ │ │ ├ addusd:skk                        32     502.76 ms       0.24     100.00      15.65 ms     637.77 us      30.98 ms
-│ │ │ │ ├ addusd:dgemm                      32       3.98 s        1.87     100.00     124.37 ms     114.54 ms     134.73 ms
-│ │ │ │ └ addusd:qvan2                      32      16.30 s        7.64     100.00     506.35 ms     493.00 ms     555.83 ms
-│ │ │ └ sum_band:sym_rho                    16       1.36 s        0.64      86.25      88.49 ms      47.94 ms     137.67 ms
-│ │ │   └ fft                               16     186.85 ms       0.09      14.95      11.69 ms      11.44 ms      11.89 ms
-│ │ │     └ fft_scatter                     16     158.91 ms       0.07     100.00       9.94 ms       9.70 ms      10.13 ms
-│ │ ├ qe|mix                                16     637.50 ms       0.30       0.03      44.65 ms     510.04 us      49.64 ms
-│ │ │ └ mix_rho                             16     637.31 ms       0.30      48.05      44.64 ms     502.87 us      49.63 ms
-│ │ │   └ fft                               28     331.10 ms       0.16      14.78      11.69 ms      11.28 ms      14.25 ms
-│ │ │     └ fft_scatter                     28     282.15 ms       0.13     100.00       9.94 ms       9.58 ms      12.53 ms
-│ │ ├ v_of_rho                              15       4.23 s        1.98       0.01     281.23 ms     279.85 ms     286.21 ms
-│ │ │ ├ v_xc                                15       3.82 s        1.79      71.93     254.29 ms     253.42 ms     259.27 ms
-│ │ │ │ └ fft                              105       1.07 s        0.50      15.46       9.35 ms       7.88 ms      15.60 ms
-│ │ │ │   └ fft_scatter                    105     906.47 ms       0.42     100.00       7.84 ms       6.48 ms      13.95 ms
-│ │ │ └ v_h                                 15     404.97 ms       0.19      47.87      26.92 ms      25.88 ms      28.32 ms
-│ │ │   └ fft                               15     211.12 ms       0.10      13.43      13.92 ms      12.98 ms      15.38 ms
-│ │ │     └ fft_scatter                     15     182.76 ms       0.09     100.00      12.05 ms      11.07 ms      13.46 ms
-│ │ ├ interpolate                           15     175.32 ms       0.08      20.54      11.62 ms      11.37 ms      12.82 ms
-│ │ │ ├ fft                                 15     124.08 ms       0.06      16.93       8.21 ms       8.01 ms       8.67 ms
-│ │ │ │ └ fft_scatter                       15     103.08 ms       0.05     100.00       6.83 ms       6.57 ms       7.27 ms
-│ │ │ └ ffts                                15      15.22 ms       0.01      13.97     971.58 us     880.56 us       1.71 ms
-│ │ │   └ fft_scatter                       15      13.10 ms       0.01     100.00     831.68 us     743.50 us       1.53 ms
-│ │ └ newd                                  15      31.04 s       14.55      99.24       2.07 s        2.05 s        2.08 s 
-│ │   └ fft                                 15     237.12 ms       0.11       9.87      14.97 ms      12.76 ms      27.28 ms
-│ │     └ fft_scatter                       15     213.71 ms       0.10     100.00      13.40 ms      11.21 ms      25.75 ms
-│ ├ ions                                     1      43.59 s       20.44       0.00      43.59 s       43.59 s       43.59 s 
-│ │ ├ forces                                 1       3.96 s        1.86       2.66       3.96 s        3.96 s        3.96 s 
-│ │ │ ├ frc_us                               1       3.02 s        1.42      84.99       3.02 s        3.02 s        3.02 s 
-│ │ │ │ ├ init_us_2                          4      66.55 ms       0.03     100.00      16.64 ms      16.54 ms      16.73 ms
-│ │ │ │ ├ calbec                            16     376.94 ms       0.18     100.00      23.43 ms      23.20 ms      24.82 ms
-│ │ │ │ └ fft                                1      10.34 ms       0.00      13.76      10.34 ms      10.34 ms      10.34 ms
-│ │ │ │   └ fft_scatter                      1       8.92 ms       0.00     100.00       8.92 ms       8.92 ms       8.92 ms
-│ │ │ ├ frc_lc                               1     130.82 ms       0.06      92.78     130.82 ms     130.82 ms     130.82 ms
-│ │ │ │ └ fft                                1       9.44 ms       0.00      14.72       9.44 ms       9.44 ms       9.44 ms
-│ │ │ │   └ fft_scatter                      1       8.05 ms       0.00     100.00       8.05 ms       8.05 ms       8.05 ms
-│ │ │ ├ frc_cc                               1     493.58 ms       0.23      43.00     493.58 ms     493.58 ms     493.58 ms
-│ │ │ │ ├ v_xc                               1     262.88 ms       0.12      66.82     262.88 ms     262.88 ms     262.88 ms
-│ │ │ │ │ └ fft                              7      87.23 ms       0.04      12.78      10.65 ms      10.03 ms      17.78 ms
-│ │ │ │ │   └ fft_scatter                    7      76.08 ms       0.04     100.00       9.17 ms       8.50 ms      16.15 ms
-│ │ │ │ └ fft                                1      18.46 ms       0.01       9.14      18.46 ms      18.46 ms      18.46 ms
-│ │ │ │   └ fft_scatter                      1      16.77 ms       0.01     100.00      16.77 ms      16.77 ms      16.77 ms
-│ │ │ └ frc_scc                              1     204.77 ms       0.10      94.04     204.77 ms     204.77 ms     204.77 ms
-│ │ │   └ fft                                1      12.20 ms       0.01      13.50      12.20 ms      12.20 ms      12.20 ms
-│ │ │     └ fft_scatter                      1      10.55 ms       0.00     100.00      10.55 ms      10.55 ms      10.55 ms
-│ │ └ stress                                 1      39.64 s       18.58      97.95      39.64 s       39.64 s       39.64 s 
-│ │   ├ fft                                  7      84.23 ms       0.04      13.83      11.78 ms       9.27 ms      16.48 ms
-│ │   │ └ fft_scatter                        7      72.58 ms       0.03     100.00       9.89 ms       7.73 ms      14.80 ms
-│ │   ├ v_xc                                 1     253.38 ms       0.12      71.53     253.38 ms     253.38 ms     253.38 ms
-│ │   │ └ fft                                7      72.15 ms       0.03      15.42       9.17 ms       8.26 ms      14.65 ms
-│ │   │   └ fft_scatter                      7      61.02 ms       0.03     100.00       7.61 ms       6.77 ms      13.01 ms
-│ │   ├ init_us_2                            4      66.46 ms       0.03     100.00      16.74 ms      16.21 ms      16.78 ms
-│ │   ├ calbec                               4     191.55 ms       0.09     100.00      35.70 ms      23.21 ms      96.93 ms
-│ │   ├ stres_us31                           4     224.06 us       0.00     100.00      54.97 us      38.86 us      75.27 us
-│ │   ├ stres_us32                           4       3.77 ms       0.00     100.00     951.47 us     863.28 us     998.83 us
-│ │   ├ stres_us33                           4       6.77 ms       0.00     100.00       1.68 ms       1.61 ms       1.80 ms
-│ │   └ stres_us34                           4     204.79 ms       0.10     100.00      51.44 ms      49.37 ms      52.55 ms
-│ └ qe|punch                                 1       1.61 s        0.75     100.00       1.61 s        1.61 s        1.61 s 
-└ sirius::finalize                           1     132.35 ms       0.06     100.00     132.35 ms     132.35 ms     132.35 ms
+sirius                                       1     219.14 s      100.00       0.00     219.14 s      219.14 s      219.14 s 
+├ sirius::initialize                         1       1.69 s        0.77     100.00       1.69 s        1.69 s        1.69 s 
+├ PWSCF                                      1     217.31 s       99.17       1.09     217.31 s      217.31 s      217.31 s 
+│ ├ init_run                                 1       6.93 s        3.16      10.66       6.93 s        6.93 s        6.93 s 
+│ │ ├ hinit0                                 1     608.48 ms       0.28      16.43     608.48 ms     608.48 ms     608.48 ms
+│ │ │ ├ init_vloc                            1     124.37 ms       0.06     100.00     124.37 ms     124.37 ms     124.37 ms
+│ │ │ ├ init_us_1                            1     296.04 ms       0.14     100.00     296.04 ms     296.04 ms     296.04 ms
+│ │ │ └ fft                                  2      88.09 ms       0.04      76.56      44.05 ms      12.98 ms      75.11 ms
+│ │ │   └ fft_scatter                        2      20.65 ms       0.01     100.00      10.33 ms       9.50 ms      11.15 ms
+│ │ ├ potinit                                1     720.84 ms       0.33       4.56     720.84 ms     720.84 ms     720.84 ms
+│ │ │ ├ fft                                  1      12.07 ms       0.01      15.37      12.07 ms      12.07 ms      12.07 ms
+│ │ │ │ └ fft_scatter                        1      10.22 ms       0.00     100.00      10.22 ms      10.22 ms      10.22 ms
+│ │ │ ├ v_of_rho                             1     664.07 ms       0.30       0.00     664.07 ms     664.07 ms     664.07 ms
+│ │ │ │ ├ v_xc                               1     641.17 ms       0.29      88.79     641.17 ms     641.17 ms     641.17 ms
+│ │ │ │ │ └ fft                              7      71.84 ms       0.03      14.84       9.15 ms       7.79 ms      14.63 ms
+│ │ │ │ │   └ fft_scatter                    7      61.18 ms       0.03     100.00       7.64 ms       6.40 ms      12.75 ms
+│ │ │ │ └ v_h                                1      22.87 ms       0.01      47.26      22.87 ms      22.87 ms      22.87 ms
+│ │ │ │   └ fft                              1      12.06 ms       0.01      15.44      12.06 ms      12.06 ms      12.06 ms
+│ │ │ │     └ fft_scatter                    1      10.20 ms       0.00     100.00      10.20 ms      10.20 ms      10.20 ms
+│ │ │ └ interpolate                          1      11.86 ms       0.01      19.92      11.86 ms      11.86 ms      11.86 ms
+│ │ │   ├ fft                                1       8.53 ms       0.00      16.07       8.53 ms       8.53 ms       8.53 ms
+│ │ │   │ └ fft_scatter                      1       7.16 ms       0.00     100.00       7.16 ms       7.16 ms       7.16 ms
+│ │ │   └ ffts                               1     964.99 us       0.00      20.96     964.99 us     964.99 us     964.99 us
+│ │ │     └ fft_scatter                      1     762.68 us       0.00     100.00     762.68 us     762.68 us     762.68 us
+│ │ ├ newd                                   1       2.07 s        0.94      99.44       2.07 s        2.07 s        2.07 s 
+│ │ │ └ fft                                  1      11.57 ms       0.01      13.02      11.57 ms      11.57 ms      11.57 ms
+│ │ │   └ fft_scatter                        1      10.06 ms       0.00     100.00      10.06 ms      10.06 ms      10.06 ms
+│ │ └ wfcinit                                1       2.80 s        1.28      10.21       2.80 s        2.80 s        2.80 s 
+│ │   ├ init_us_2                            4      97.74 ms       0.04       0.07      16.44 ms      16.14 ms      48.71 ms
+│ │   │ └ init_us_2:cpu                      4      97.67 ms       0.04     100.00      16.42 ms      16.13 ms      48.70 ms
+│ │   ├ wfcinit:atomic                       4      42.02 ms       0.02       0.08       9.46 ms       7.83 ms      15.27 ms
+│ │   │ └ atomic_wfc                         4      41.99 ms       0.02     100.00       9.45 ms       7.82 ms      15.26 ms
+│ │   └ wfcinit:wfcrot                       4       2.37 s        1.08       0.00     586.09 ms     573.33 ms     626.40 ms
+│ │     └ wfcrot                             4       2.37 s        1.08       0.00     586.08 ms     573.32 ms     626.39 ms
+│ │       └ protwfck                         4       2.37 s        1.08       1.37     586.08 ms     573.32 ms     626.38 ms
+│ │         ├ protwfck:hpsi                  4       1.09 s        0.50       0.00     272.88 ms     270.98 ms     275.91 ms
+│ │         │ └ h_psi_bgrp                   4       1.09 s        0.50       0.00     272.88 ms     270.97 ms     275.90 ms
+│ │         │   └ h_psi                      4       1.09 s        0.50       0.45     272.88 ms     270.97 ms     275.90 ms
+│ │         │     └ h_psi:pot                4       1.09 s        0.50       0.01     271.65 ms     269.77 ms     274.66 ms
+│ │         │       ├ vloc_psi               4     777.01 ms       0.35       7.41     193.12 ms     192.97 ms     197.80 ms
+│ │         │       │ └ fftw              2088     719.45 ms       0.33      28.40     376.52 us     260.48 us       2.02 ms
+│ │         │       │   └ fft_scatter     2088     515.10 ms       0.24     100.00     283.92 us     159.28 us       1.81 ms
+│ │         │       ├ h_psi:calbec           4     157.55 ms       0.07       0.02      37.98 ms      37.70 ms      43.88 ms
+│ │         │       │ └ calbec               4     157.52 ms       0.07     100.00      37.98 ms      37.69 ms      43.87 ms
+│ │         │       └ add_vuspsi             4     153.09 ms       0.07     100.00      38.23 ms      37.78 ms      38.85 ms
+│ │         ├ protwfck:hc                    4     221.94 ms       0.10      29.28      54.60 ms      53.58 ms      59.16 ms
+│ │         │ └ s_psi_bgrp                   4     156.96 ms       0.07       3.01      39.26 ms      38.81 ms      39.63 ms
+│ │         │   └ s_psi                      4     152.23 ms       0.07     100.00      38.08 ms      37.64 ms      38.43 ms
+│ │         ├ protwfck:diag                  4     983.02 ms       0.45       0.00     240.74 ms     233.80 ms     267.75 ms
+│ │         │ └ cdiaghg                      4     983.00 ms       0.45      86.62     240.73 ms     233.80 ms     267.74 ms
+│ │         │   ├ cdiaghg:choldc             4      30.66 ms       0.01     100.00       3.48 ms       1.67 ms      22.03 ms
+│ │         │   ├ cdiaghg:inversion          4       3.18 ms       0.00     100.00     802.83 us     747.53 us     824.61 us
+│ │         │   └ cdiaghg:paragemm           8      97.67 ms       0.04     100.00       4.03 ms       1.21 ms      60.79 ms
+│ │         └ protwfck:evc                   4      41.77 ms       0.02     100.00       9.45 ms       7.97 ms      14.90 ms
+│ ├ electrons                                1     163.56 s       74.64       0.30     163.56 s      163.56 s      163.56 s 
+│ │ ├ c_bands                               16      86.55 s       39.50       1.76       3.98 s        3.10 s       11.92 s 
+│ │ │ ├ init_us_2                           64       1.03 s        0.47       0.09      16.06 ms      15.31 ms      16.80 ms
+│ │ │ │ └ init_us_2:cpu                     64       1.03 s        0.47     100.00      16.05 ms      15.30 ms      16.79 ms
+│ │ │ └ cegterg                             65      84.00 s       38.33       0.90     965.05 ms     724.13 ms       4.43 s 
+│ │ │   ├ h_psi_bgrp                       385      29.97 s       13.68       0.01      39.02 ms       6.11 ms     182.24 ms
+│ │ │   │ └ h_psi                          385      29.96 s       13.67       0.44      39.01 ms       6.10 ms     182.24 ms
+│ │ │   │   └ h_psi:pot                    385      29.83 s       13.61       0.02      38.94 ms       6.07 ms     181.41 ms
+│ │ │   │     ├ vloc_psi                   385      20.96 s        9.57       7.23      27.10 ms       2.27 ms     131.57 ms
+│ │ │   │     │ └ fftw                   54722      19.45 s        8.88      27.69     374.90 us     250.13 us       3.63 ms
+│ │ │   │     │   └ fft_scatter          54722      14.06 s        6.42     100.00     282.56 us     149.36 us       3.41 ms
+│ │ │   │     ├ h_psi:calbec               385       4.42 s        2.02       0.09       5.49 ms       1.95 ms      28.62 ms
+│ │ │   │     │ └ calbec                   385       4.42 s        2.02     100.00       5.48 ms       1.94 ms      28.62 ms
+│ │ │   │     └ add_vuspsi                 385       4.44 s        2.03     100.00       6.39 ms       1.77 ms      25.53 ms
+│ │ │   ├ s_psi_bgrp                       385       4.55 s        2.08       3.00       6.55 ms       1.83 ms      26.12 ms
+│ │ │   │ └ s_psi                          385       4.41 s        2.01     100.00       6.43 ms       1.81 ms      25.29 ms
+│ │ │   ├ cegterg:init                      65     412.13 ms       0.19     100.00       6.19 ms       5.53 ms       8.45 ms
+│ │ │   ├ cegterg:update                   320       1.02 s        0.47     100.00       2.26 ms     657.42 us       9.32 ms
+│ │ │   ├ g_psi                            320      89.78 ms       0.04     100.00      93.52 us       9.27 us     920.74 us
+│ │ │   ├ cegterg:overlap                  320       1.75 s        0.80     100.00       2.33 ms     791.85 us      18.55 ms
+│ │ │   ├ cegterg:diag                     377      43.38 s       19.80       0.00      22.56 ms      11.11 ms     307.71 ms
+│ │ │   │ └ cdiaghg                        377      43.38 s       19.79      93.87      22.55 ms      11.11 ms     307.70 ms
+│ │ │   │   ├ cdiaghg:choldc               377     339.12 ms       0.15     100.00     640.71 us     308.24 us       4.39 ms
+│ │ │   │   ├ cdiaghg:inversion            377     194.02 ms       0.09     100.00     299.44 us     106.87 us       1.20 ms
+│ │ │   │   └ cdiaghg:paragemm             754       2.13 s        0.97     100.00     983.54 us     285.47 us     106.36 ms
+│ │ │   └ cegterg:last                     143       2.07 s        0.95     100.00      21.26 ms       3.04 ms      26.56 ms
+│ │ ├ sum_band                              16      35.25 s       16.09       0.17       2.19 s        2.18 s        2.26 s 
+│ │ │ ├ sum_band:weights                    16       1.12 ms       0.00     100.00      68.24 us      55.45 us      94.17 us
+│ │ │ ├ sum_band:loop                       16       7.30 s        3.33       5.25     453.73 ms     448.64 ms     478.86 ms
+│ │ │ │ ├ sum_band:buffer                   64     151.28 ms       0.07     100.00       2.36 ms       2.28 ms       2.50 ms
+│ │ │ │ ├ sum_band:init_us_2                64       1.02 s        0.46       0.02      15.83 ms      15.44 ms      16.75 ms
+│ │ │ │ │ └ init_us_2                       64       1.02 s        0.46       0.07      15.83 ms      15.44 ms      16.74 ms
+│ │ │ │ │   └ init_us_2:cpu                 64       1.02 s        0.46     100.00      15.82 ms      15.43 ms      16.73 ms
+│ │ │ │ ├ fftw                           10240       4.14 s        1.89      23.45     385.56 us     363.06 us       3.69 ms
+│ │ │ │ │ └ fft_scatter                  10240       3.17 s        1.45     100.00     291.01 us     266.51 us       3.50 ms
+│ │ │ │ ├ sum_band:calbec                   64       1.54 s        0.70       0.04      24.03 ms      23.07 ms      25.87 ms
+│ │ │ │ │ └ calbec                          64       1.54 s        0.70     100.00      24.02 ms      23.06 ms      25.87 ms
+│ │ │ │ └ sum_band:becsum                   64      69.72 ms       0.03     100.00       1.09 ms     989.12 us       1.20 ms
+│ │ │ ├ ffts                                16      13.94 ms       0.01      19.76     850.62 us     783.36 us       1.00 ms
+│ │ │ │ └ fft_scatter                       16      11.19 ms       0.01     100.00     681.64 us     605.28 us     839.66 us
+│ │ │ ├ addusdens                           16      26.88 s       12.27      21.64       1.67 s        1.65 s        1.75 s 
+│ │ │ │ ├ addusd:skk                        32     503.81 ms       0.23     100.00      15.61 ms     594.68 us      31.08 ms
+│ │ │ │ ├ addusd:dgemm                      32       4.01 s        1.83     100.00     124.37 ms     115.59 ms     137.26 ms
+│ │ │ │ └ addusd:qvan2                      32      16.55 s        7.55     100.00     513.36 ms     496.74 ms     568.57 ms
+│ │ │ └ sum_band:sym_rho                    16     994.91 ms       0.45      85.13      56.17 ms      46.62 ms      96.06 ms
+│ │ │   └ fft                               16     147.92 ms       0.07      17.23       9.17 ms       8.92 ms      10.70 ms
+│ │ │     └ fft_scatter                     16     122.43 ms       0.06     100.00       7.55 ms       7.32 ms       9.12 ms
+│ │ ├ mix_rho                               16     539.36 ms       0.25      52.01      38.22 ms     505.28 us      42.44 ms
+│ │ │ └ fft                                 28     258.82 ms       0.12      16.82       9.20 ms       8.90 ms       9.68 ms
+│ │ │   └ fft_scatter                       28     215.28 ms       0.10     100.00       7.66 ms       7.36 ms       8.11 ms
+│ │ ├ v_of_rho                              15       9.75 s        4.45       0.00     643.80 ms     638.98 ms     688.27 ms
+│ │ │ ├ v_xc                                15       9.45 s        4.31      87.65     623.47 ms     618.70 ms     668.04 ms
+│ │ │ │ └ fft                              105       1.17 s        0.53      13.99       9.06 ms       7.66 ms      59.95 ms
+│ │ │ │   └ fft_scatter                    105       1.00 s        0.46     100.00       7.57 ms       6.22 ms      58.42 ms
+│ │ │ └ v_h                                 15     301.15 ms       0.14      41.22      20.11 ms      19.76 ms      20.38 ms
+│ │ │   └ fft                               15     177.03 ms       0.08      12.96      11.77 ms      11.44 ms      12.11 ms
+│ │ │     └ fft_scatter                     15     154.09 ms       0.07     100.00      10.26 ms       9.94 ms      10.59 ms
+│ │ ├ interpolate                           15     172.35 ms       0.08      21.15      11.45 ms      11.35 ms      11.72 ms
+│ │ │ ├ fft                                 15     122.84 ms       0.06      16.84       8.13 ms       8.06 ms       8.42 ms
+│ │ │ │ └ fft_scatter                       15     102.15 ms       0.05     100.00       6.77 ms       6.69 ms       7.03 ms
+│ │ │ └ ffts                                15      13.06 ms       0.01      14.58     869.16 us     840.82 us     906.49 us
+│ │ │   └ fft_scatter                       15      11.15 ms       0.01     100.00     740.73 us     713.66 us     780.86 us
+│ │ └ newd                                  15      30.80 s       14.06      99.29       2.05 s        2.04 s        2.09 s 
+│ │   └ fft                                 15     217.77 ms       0.10       9.13      11.36 ms       9.86 ms      37.01 ms
+│ │     └ fft_scatter                       15     197.88 ms       0.09     100.00      10.00 ms       8.53 ms      35.71 ms
+│ └ ions                                     1      44.45 s       20.28       0.00      44.45 s       44.45 s       44.45 s 
+│   ├ forces                                 1       4.24 s        1.94       2.49       4.24 s        4.24 s        4.24 s 
+│   │ ├ frc_us                               1       3.00 s        1.37      85.04       3.00 s        3.00 s        3.00 s 
+│   │ │ ├ init_us_2                          4      63.13 ms       0.03       0.11      15.81 ms      15.66 ms      15.85 ms
+│   │ │ │ └ init_us_2:cpu                    4      63.06 ms       0.03     100.00      15.79 ms      15.64 ms      15.84 ms
+│   │ │ ├ calbec                            16     375.92 ms       0.17     100.00      23.19 ms      22.61 ms      25.25 ms
+│   │ │ └ fft                                1      10.30 ms       0.00      13.79      10.30 ms      10.30 ms      10.30 ms
+│   │ │   └ fft_scatter                      1       8.88 ms       0.00     100.00       8.88 ms       8.88 ms       8.88 ms
+│   │ ├ frc_lc                               1     131.86 ms       0.06      92.58     131.86 ms     131.86 ms     131.86 ms
+│   │ │ └ fft                                1       9.79 ms       0.00      13.78       9.79 ms       9.79 ms       9.79 ms
+│   │ │   └ fft_scatter                      1       8.44 ms       0.00     100.00       8.44 ms       8.44 ms       8.44 ms
+│   │ ├ frc_cc                               1     817.74 ms       0.37      22.50     817.74 ms     817.74 ms     817.74 ms
+│   │ │ ├ v_xc                               1     622.45 ms       0.28      88.15     622.45 ms     622.45 ms     622.45 ms
+│   │ │ │ └ fft                              7      73.74 ms       0.03      14.73       9.56 ms       8.03 ms      15.11 ms
+│   │ │ │   └ fft_scatter                    7      62.88 ms       0.03     100.00       8.05 ms       6.61 ms      13.19 ms
+│   │ │ └ fft                                1      11.30 ms       0.01      12.58      11.30 ms      11.30 ms      11.30 ms
+│   │ │   └ fft_scatter                      1       9.88 ms       0.00     100.00       9.88 ms       9.88 ms       9.88 ms
+│   │ └ frc_scc                              1     184.44 ms       0.08      94.81     184.44 ms     184.44 ms     184.44 ms
+│   │   └ fft                                1       9.57 ms       0.00      14.89       9.57 ms       9.57 ms       9.57 ms
+│   │     └ fft_scatter                      1       8.15 ms       0.00     100.00       8.15 ms       8.15 ms       8.15 ms
+│   └ stress                                 1      40.21 s       18.35      97.22      40.21 s       40.21 s       40.21 s 
+│     ├ fft                                  7      72.70 ms       0.03      14.80       9.49 ms       8.38 ms      13.74 ms
+│     │ └ fft_scatter                        7      61.94 ms       0.03     100.00       8.11 ms       6.94 ms      11.78 ms
+│     ├ v_xc                                 1     630.05 ms       0.29      88.16     630.05 ms     630.05 ms     630.05 ms
+│     │ └ fft                                7      74.57 ms       0.03      15.27       9.27 ms       8.12 ms      15.96 ms
+│     │   └ fft_scatter                      7      63.18 ms       0.03     100.00       7.75 ms       6.64 ms      14.04 ms
+│     ├ init_us_2                            4      63.40 ms       0.03       0.09      15.80 ms      15.51 ms      16.28 ms
+│     │ └ init_us_2:cpu                      4      63.34 ms       0.03     100.00      15.79 ms      15.50 ms      16.27 ms
+│     ├ calbec                               4     137.58 ms       0.06     100.00      24.48 ms      23.06 ms      65.55 ms
+│     ├ stres_us31                           4     197.19 us       0.00     100.00      50.28 us      39.23 us      57.41 us
+│     ├ stres_us32                           4       3.26 ms       0.00     100.00     810.69 us     787.31 us     852.25 us
+│     ├ stres_us33                           4       6.49 ms       0.00     100.00       1.62 ms       1.61 ms       1.64 ms
+│     └ stres_us34                           4     203.88 ms       0.09     100.00      50.68 ms      49.36 ms      53.16 ms
+└ sirius::finalize                           1     134.09 ms       0.06     100.00     134.09 ms     134.09 ms     134.09 ms
 
 ============================================================================================================================
 ===========================================================================================================
                             #         Total          %     Self %        Median           Min           Max
 -----------------------------------------------------------------------------------------------------------
-sirius                      1     213.31 s      100.00       0.00     213.31 s      213.31 s      213.31 s 
-├ PWSCF                     1     212.09 s       99.43     100.00     212.09 s      212.09 s      212.09 s 
-├ electrons                 1     159.89 s       74.96     100.00     159.89 s      159.89 s      159.89 s 
-├ c_bands                  16      87.70 s       41.11     100.00       4.14 s        3.09 s       12.26 s 
-├ cegterg                  65      85.08 s       39.89     100.00     999.05 ms     720.29 ms       4.50 s 
-├ cdiaghg                 381      45.40 s       21.28     100.00      25.42 ms      10.65 ms     312.21 ms
-├ cegterg:diag            377      44.40 s       20.81     100.00      25.27 ms      10.66 ms     312.22 ms
-├ ions                      1      43.59 s       20.44     100.00      43.59 s       43.59 s       43.59 s 
-├ stress                    1      39.64 s       18.58     100.00      39.64 s       39.64 s       39.64 s 
-├ sum_band                 16      35.58 s       16.68     100.00       2.22 s        2.16 s        2.27 s 
-├ newd                     16      33.14 s       15.53     100.00       2.07 s        2.05 s        2.09 s 
-├ h_psi_bgrp              389      30.94 s       14.50     100.00      50.03 ms       6.14 ms     292.23 ms
-├ h_psi                   389      30.94 s       14.50     100.00      50.03 ms       6.13 ms     292.23 ms
-├ h_psi:pot               389      30.80 s       14.44     100.00      49.94 ms       6.10 ms     291.02 ms
-├ addusdens                16      26.87 s       12.60     100.00       1.67 s        1.64 s        1.73 s 
-├ fftw                  67050      24.15 s       11.32     100.00     370.12 us     247.67 us       6.81 ms
-├ vloc_psi                389      21.40 s       10.03     100.00      33.26 ms       2.27 ms     212.39 ms
-├ fft_scatter           67314      19.48 s        9.13     100.00     271.58 us     142.22 us      25.75 ms
-├ addusd:qvan2             32      16.30 s        7.64     100.00     506.35 ms     493.00 ms     555.83 ms
-├ sum_band:loop            16       7.28 s        3.41     100.00     451.43 ms     437.06 ms     483.03 ms
-├ calbec                  473       6.76 s        3.17     100.00      14.49 ms       1.95 ms      96.93 ms
-├ init_run                  1       6.57 s        3.08     100.00       6.57 s        6.57 s        6.57 s 
-├ s_psi_bgrp              389       4.94 s        2.31     100.00       7.87 ms       1.85 ms      39.86 ms
-├ s_psi                   389       4.79 s        2.25     100.00       7.71 ms       1.83 ms      38.68 ms
-├ add_vuspsi              389       4.77 s        2.24     100.00       8.00 ms       1.78 ms      39.37 ms
-├ h_psi:calbec            389       4.63 s        2.17     100.00       6.81 ms       1.96 ms      41.52 ms
-├ v_xc                     18       4.62 s        2.17     100.00     254.32 ms     253.38 ms     283.54 ms
-├ v_of_rho                 16       4.54 s        2.13     100.00     281.26 ms     279.85 ms     313.09 ms
-├ addusd:dgemm             32       3.98 s        1.87     100.00     124.37 ms     114.54 ms     134.73 ms
-├ forces                    1       3.96 s        1.86     100.00       3.96 s        3.96 s        3.96 s 
-├ frc_us                    1       3.02 s        1.42     100.00       3.02 s        3.02 s        3.02 s 
-├ wfcinit                   1       2.82 s        1.32     100.00       2.82 s        2.82 s        2.82 s 
-├ fft                     232       2.62 s        1.23     100.00      11.39 ms       7.88 ms      27.28 ms
-├ wfcinit:wfcrot            4       2.40 s        1.13     100.00     597.12 ms     580.21 ms     626.24 ms
-├ wfcrot                    4       2.40 s        1.13     100.00     597.11 ms     580.20 ms     626.23 ms
-├ protwfck                  4       2.40 s        1.13     100.00     597.10 ms     580.20 ms     626.22 ms
-├ init_us_2               140       2.39 s        1.12     100.00      16.77 ms      16.15 ms      49.14 ms
-├ cegterg:last            143       2.10 s        0.98     100.00      21.51 ms       3.16 ms      28.05 ms
-├ cegterg:overlap         320       1.76 s        0.82     100.00       2.27 ms     801.69 us      22.94 ms
-├ cdiaghg:paragemm        762       1.63 s        0.76     100.00       1.22 ms     241.05 us      46.83 ms
-├ qe|punch                  1       1.61 s        0.75     100.00       1.61 s        1.61 s        1.61 s 
-├ sum_band:calbec          64       1.57 s        0.74     100.00      24.63 ms      22.97 ms      29.25 ms
-├ sum_band:sym_rho         16       1.36 s        0.64     100.00      88.49 ms      47.94 ms     137.67 ms
-├ protwfck:hpsi             4       1.10 s        0.52     100.00     273.13 ms     265.06 ms     292.24 ms
-├ sirius::initialize        1       1.09 s        0.51     100.00       1.09 s        1.09 s        1.09 s 
-├ sum_band:init_us_2       64       1.07 s        0.50     100.00      16.62 ms      16.29 ms      17.68 ms
-├ cegterg:update          320       1.02 s        0.48     100.00       2.27 ms     648.68 us       8.39 ms
-├ protwfck:diag             4       1.00 s        0.47     100.00     241.27 ms     238.84 ms     282.63 ms
-├ qe|mix                   16     637.50 ms       0.30     100.00      44.65 ms     510.04 us      49.64 ms
-├ mix_rho                  16     637.31 ms       0.30     100.00      44.64 ms     502.87 us      49.63 ms
-├ cdiaghg:choldc          381     558.00 ms       0.26     100.00       1.11 ms     614.80 us      38.82 ms
-├ hinit0                    1     550.13 ms       0.26     100.00     550.13 ms     550.13 ms     550.13 ms
-├ addusd:skk               32     502.76 ms       0.24     100.00      15.65 ms     637.77 us      30.98 ms
-├ frc_cc                    1     493.58 ms       0.23     100.00     493.58 ms     493.58 ms     493.58 ms
-├ v_h                      16     434.49 ms       0.20     100.00      26.97 ms      25.88 ms      29.52 ms
-├ cegterg:init             65     406.97 ms       0.19     100.00       5.91 ms       5.59 ms      11.51 ms
-├ potinit                   1     370.50 ms       0.17     100.00     370.50 ms     370.50 ms     370.50 ms
-├ init_us_1                 1     299.65 ms       0.14     100.00     299.65 ms     299.65 ms     299.65 ms
-├ cdiaghg:inversion       381     282.11 ms       0.13     100.00     508.48 us     119.13 us       2.11 ms
-├ protwfck:hc               4     226.76 ms       0.11     100.00      56.52 ms      55.35 ms      58.37 ms
-├ stres_us34                4     204.79 ms       0.10     100.00      51.44 ms      49.37 ms      52.55 ms
-├ frc_scc                   1     204.77 ms       0.10     100.00     204.77 ms     204.77 ms     204.77 ms
-├ interpolate              16     187.42 ms       0.09     100.00      11.62 ms      11.37 ms      12.82 ms
-├ sum_band:buffer          64     148.97 ms       0.07     100.00       2.32 ms       2.25 ms       2.43 ms
-├ sirius::finalize          1     132.35 ms       0.06     100.00     132.35 ms     132.35 ms     132.35 ms
-├ frc_lc                    1     130.82 ms       0.06     100.00     130.82 ms     130.82 ms     130.82 ms
-├ init_vloc                 1     124.46 ms       0.06     100.00     124.46 ms     124.46 ms     124.46 ms
-├ g_psi                   320      91.62 ms       0.04     100.00      91.74 us       9.01 us     898.89 us
-├ sum_band:becsum          64      68.99 ms       0.03     100.00       1.07 ms     947.77 us       1.33 ms
-├ protwfck:evc              4      40.94 ms       0.02     100.00       8.97 ms       8.13 ms      14.88 ms
-├ qe|setlocal               1      38.88 ms       0.02     100.00      38.88 ms      38.88 ms      38.88 ms
-├ wfcinit:atomic            4      33.73 ms       0.02     100.00       8.45 ms       8.34 ms       8.49 ms
-├ atomic_wfc                4      33.70 ms       0.02     100.00       8.44 ms       8.33 ms       8.49 ms
-├ qe|setup                  1      33.24 ms       0.02     100.00      33.24 ms      33.24 ms      33.24 ms
-├ ffts                     32      30.64 ms       0.01     100.00     942.41 us     820.29 us       1.71 ms
-├ qe|set_vrs                1      15.94 ms       0.01     100.00      15.94 ms      15.94 ms      15.94 ms
-├ init_at_1                 1      13.88 ms       0.01     100.00      13.88 ms      13.88 ms      13.88 ms
-├ stres_us33                4       6.77 ms       0.00     100.00       1.68 ms       1.61 ms       1.80 ms
-├ stres_us32                4       3.77 ms       0.00     100.00     951.47 us     863.28 us     998.83 us
-├ sum_band:weights         16       1.26 ms       0.00     100.00      78.38 us      67.65 us      86.34 us
-├ stres_us31                4     224.06 us       0.00     100.00      54.97 us      38.86 us      75.27 us
-├ qe|paw_becsum             1     849.00 ns       0.00     100.00     849.00 ns     849.00 ns     849.00 ns
-└ qe|paw_potential          1     291.00 ns       0.00     100.00     291.00 ns     291.00 ns     291.00 ns
+sirius                      1     219.14 s      100.00       0.00     219.14 s      219.14 s      219.14 s 
+├ PWSCF                     1     217.31 s       99.17     100.00     217.31 s      217.31 s      217.31 s 
+├ electrons                 1     163.56 s       74.64     100.00     163.56 s      163.56 s      163.56 s 
+├ c_bands                  16      86.55 s       39.50     100.00       3.98 s        3.10 s       11.92 s 
+├ cegterg                  65      84.00 s       38.33     100.00     965.05 ms     724.13 ms       4.43 s 
+├ ions                      1      44.45 s       20.28     100.00      44.45 s       44.45 s       44.45 s 
+├ cdiaghg                 381      44.36 s       20.24     100.00      22.72 ms      11.11 ms     307.70 ms
+├ cegterg:diag            377      43.38 s       19.80     100.00      22.56 ms      11.11 ms     307.71 ms
+├ stress                    1      40.21 s       18.35     100.00      40.21 s       40.21 s       40.21 s 
+├ sum_band                 16      35.25 s       16.09     100.00       2.19 s        2.18 s        2.26 s 
+├ newd                     16      32.87 s       15.00     100.00       2.05 s        2.04 s        2.09 s 
+├ h_psi_bgrp              389      31.06 s       14.17     100.00      46.79 ms       6.11 ms     275.90 ms
+├ h_psi                   389      31.06 s       14.17     100.00      46.79 ms       6.10 ms     275.90 ms
+├ h_psi:pot               389      30.92 s       14.11     100.00      46.69 ms       6.07 ms     274.66 ms
+├ addusdens                16      26.88 s       12.27     100.00       1.67 s        1.65 s        1.75 s 
+├ fftw                  67050      24.31 s       11.09     100.00     379.68 us     250.13 us       3.69 ms
+├ vloc_psi                389      21.74 s        9.92     100.00      32.44 ms       2.27 ms     197.80 ms
+├ fft_scatter           67314      19.91 s        9.09     100.00     286.19 us     149.36 us      58.42 ms
+├ addusd:qvan2             32      16.55 s        7.55     100.00     513.36 ms     496.74 ms     568.57 ms
+├ v_xc                     18      11.34 s        5.18     100.00     623.48 ms     618.70 ms     668.04 ms
+├ v_of_rho                 16      10.42 s        4.75     100.00     643.84 ms     638.98 ms     688.27 ms
+├ sum_band:loop            16       7.30 s        3.33     100.00     453.73 ms     448.64 ms     478.86 ms
+├ init_run                  1       6.93 s        3.16     100.00       6.93 s        6.93 s        6.93 s 
+├ calbec                  473       6.63 s        3.03     100.00      14.65 ms       1.94 ms      65.55 ms
+├ s_psi_bgrp              389       4.71 s        2.15     100.00       7.32 ms       1.83 ms      39.63 ms
+├ add_vuspsi              389       4.59 s        2.10     100.00       7.40 ms       1.77 ms      38.85 ms
+├ h_psi:calbec            389       4.58 s        2.09     100.00       6.84 ms       1.95 ms      43.88 ms
+├ s_psi                   389       4.57 s        2.08     100.00       7.16 ms       1.81 ms      38.43 ms
+├ forces                    1       4.24 s        1.94     100.00       4.24 s        4.24 s        4.24 s 
+├ addusd:dgemm             32       4.01 s        1.83     100.00     124.37 ms     115.59 ms     137.26 ms
+├ frc_us                    1       3.00 s        1.37     100.00       3.00 s        3.00 s        3.00 s 
+├ wfcinit                   1       2.80 s        1.28     100.00       2.80 s        2.80 s        2.80 s 
+├ fft                     232       2.56 s        1.17     100.00       9.22 ms       7.66 ms      75.11 ms
+├ wfcinit:wfcrot            4       2.37 s        1.08     100.00     586.09 ms     573.33 ms     626.40 ms
+├ wfcrot                    4       2.37 s        1.08     100.00     586.08 ms     573.32 ms     626.39 ms
+├ protwfck                  4       2.37 s        1.08     100.00     586.08 ms     573.32 ms     626.38 ms
+├ init_us_2               140       2.27 s        1.03     100.00      15.90 ms      15.31 ms      48.71 ms
+├ init_us_2:cpu           140       2.27 s        1.03     100.00      15.89 ms      15.30 ms      48.70 ms
+├ cdiaghg:paragemm        762       2.23 s        1.02     100.00     993.59 us     285.47 us     106.36 ms
+├ cegterg:last            143       2.07 s        0.95     100.00      21.26 ms       3.04 ms      26.56 ms
+├ cegterg:overlap         320       1.75 s        0.80     100.00       2.33 ms     791.85 us      18.55 ms
+├ sirius::initialize        1       1.69 s        0.77     100.00       1.69 s        1.69 s        1.69 s 
+├ sum_band:calbec          64       1.54 s        0.70     100.00      24.03 ms      23.07 ms      25.87 ms
+├ protwfck:hpsi             4       1.09 s        0.50     100.00     272.88 ms     270.98 ms     275.91 ms
+├ cegterg:update          320       1.02 s        0.47     100.00       2.26 ms     657.42 us       9.32 ms
+├ sum_band:init_us_2       64       1.02 s        0.46     100.00      15.83 ms      15.44 ms      16.75 ms
+├ sum_band:sym_rho         16     994.91 ms       0.45     100.00      56.17 ms      46.62 ms      96.06 ms
+├ protwfck:diag             4     983.02 ms       0.45     100.00     240.74 ms     233.80 ms     267.75 ms
+├ frc_cc                    1     817.74 ms       0.37     100.00     817.74 ms     817.74 ms     817.74 ms
+├ potinit                   1     720.84 ms       0.33     100.00     720.84 ms     720.84 ms     720.84 ms
+├ hinit0                    1     608.48 ms       0.28     100.00     608.48 ms     608.48 ms     608.48 ms
+├ mix_rho                  16     539.36 ms       0.25     100.00      38.22 ms     505.28 us      42.44 ms
+├ addusd:skk               32     503.81 ms       0.23     100.00      15.61 ms     594.68 us      31.08 ms
+├ cegterg:init             65     412.13 ms       0.19     100.00       6.19 ms       5.53 ms       8.45 ms
+├ cdiaghg:choldc          381     369.77 ms       0.17     100.00     644.00 us     308.24 us      22.03 ms
+├ v_h                      16     324.02 ms       0.15     100.00      20.14 ms      19.76 ms      22.87 ms
+├ init_us_1                 1     296.04 ms       0.14     100.00     296.04 ms     296.04 ms     296.04 ms
+├ protwfck:hc               4     221.94 ms       0.10     100.00      54.60 ms      53.58 ms      59.16 ms
+├ stres_us34                4     203.88 ms       0.09     100.00      50.68 ms      49.36 ms      53.16 ms
+├ cdiaghg:inversion       381     197.20 ms       0.09     100.00     300.49 us     106.87 us       1.20 ms
+├ frc_scc                   1     184.44 ms       0.08     100.00     184.44 ms     184.44 ms     184.44 ms
+├ interpolate              16     184.21 ms       0.08     100.00      11.48 ms      11.35 ms      11.86 ms
+├ sum_band:buffer          64     151.28 ms       0.07     100.00       2.36 ms       2.28 ms       2.50 ms
+├ sirius::finalize          1     134.09 ms       0.06     100.00     134.09 ms     134.09 ms     134.09 ms
+├ frc_lc                    1     131.86 ms       0.06     100.00     131.86 ms     131.86 ms     131.86 ms
+├ init_vloc                 1     124.37 ms       0.06     100.00     124.37 ms     124.37 ms     124.37 ms
+├ g_psi                   320      89.78 ms       0.04     100.00      93.52 us       9.27 us     920.74 us
+├ sum_band:becsum          64      69.72 ms       0.03     100.00       1.09 ms     989.12 us       1.20 ms
+├ wfcinit:atomic            4      42.02 ms       0.02     100.00       9.46 ms       7.83 ms      15.27 ms
+├ atomic_wfc                4      41.99 ms       0.02     100.00       9.45 ms       7.82 ms      15.26 ms
+├ protwfck:evc              4      41.77 ms       0.02     100.00       9.45 ms       7.97 ms      14.90 ms
+├ ffts                     32      27.96 ms       0.01     100.00     861.36 us     783.36 us       1.00 ms
+├ stres_us33                4       6.49 ms       0.00     100.00       1.62 ms       1.61 ms       1.64 ms
+├ stres_us32                4       3.26 ms       0.00     100.00     810.69 us     787.31 us     852.25 us
+├ sum_band:weights         16       1.12 ms       0.00     100.00      68.24 us      55.45 us      94.17 us
+└ stres_us31                4     197.19 us       0.00     100.00      50.28 us      39.23 us      57.41 us
 
 ===========================================================================================================
 
 
-Batch Job Summary Report (version 21.01.1) for Job "rfm_qe_Si63Ge_scf_native__1__4__job" (29995063) on daint
+Batch Job Summary Report (version 21.01.1) for Job "rfm_qe_Si63Ge_scf_native__1__4__job" (35607424) on daint
 
 Job information (1/2)
 -----------------------------------------------------------------------------------------------------
              Submit            Eligible               Start                 End    Elapsed Time limit
 ------------------- ------------------- ------------------- ------------------- ---------- ----------
-2021-03-18T18:31:35 2021-03-18T18:31:35 2021-03-18T18:31:36 2021-03-18T18:35:21   00:03:45   00:10:00
+2021-12-21T13:36:45 2021-12-21T13:36:45 2021-12-21T13:46:14 2021-12-21T13:50:22   00:04:08   00:10:00
 -----------------------------------------------------------------------------------------------------
 
 Job information (2/2)
 -------------------------------------------------------------
     Username      Account    Partition   NNodes        Energy
 ------------ ------------ ------------ -------- -------------
-      antonk      csstaff       normal        4    127.160 kJ
+      antonk      csstaff       normal        4 not available kJ
+
+
+
+Batch Job Summary Report (version 21.01.1) for Job "rfm_qe_Si63Ge_scf_native__1__4__job" (35607424) on daint
+
+Job information (1/2)
+-----------------------------------------------------------------------------------------------------
+             Submit            Eligible               Start                 End    Elapsed Time limit
+------------------- ------------------- ------------------- ------------------- ---------- ----------
+2021-12-21T13:36:45 2021-12-21T13:36:45 2021-12-21T13:46:14 2021-12-21T13:50:22   00:04:08   00:10:00
+-----------------------------------------------------------------------------------------------------
+
+Job information (2/2)
+-------------------------------------------------------------
+    Username      Account    Partition   NNodes        Energy
+------------ ------------ ------------ -------- -------------
+      antonk      csstaff       normal        2    124.112 kJ
 

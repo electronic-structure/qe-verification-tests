@@ -17,6 +17,7 @@
   ntyp = 3
   occupations = 'smearing'
   smearing = 'gauss'
+  input_dft = 'XC-000i-000i-101L-130L-000i-000i'
 /
 &ELECTRONS
   conv_thr =   1.0000000000d-12

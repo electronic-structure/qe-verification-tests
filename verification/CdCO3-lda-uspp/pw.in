@@ -10,8 +10,8 @@
 /
 &SYSTEM
   degauss =   1.0000000000d-02
-  ecutrho = 200
-  ecutwfc = 10
+  ecutrho = 600
+  ecutwfc = 20
   ibrav = 0
   nat = 10
   ntyp = 3

@@ -3,7 +3,7 @@ import re
 import reframe as rfm
 import reframe.utility.sanity as sn
 
-@sn.sanity_function
+@sn.deferrable
 def get_energy(ostream):
     ''' Get energy from the output stream'''
 
@@ -11,7 +11,7 @@ def get_energy(ostream):
     return sn.extractsingle(r'!\s+total energy\s+=\s+(?P<energy>\S+) Ry',
                             ostream, 'energy', float, item=-1)
 
-@sn.sanity_function
+@sn.deferrable
 def get_pressure(ostream):
     ''' Get pressure from the output stream'''
 
@@ -19,7 +19,7 @@ def get_pressure(ostream):
     return sn.extractsingle(r'\s+total\s+stress.+\(kbar\)\s+P\=\s*(?P<pressure>\S+)',
                             ostream, 'pressure', float, item=-1)
 
-@sn.sanity_function
+@sn.deferrable
 def get_stress(ostream):
     ''' Get stress tensor from the output stream'''
 
@@ -34,7 +34,7 @@ def get_stress(ostream):
 
     return stress
 
-@sn.sanity_function
+@sn.deferrable
 def get_forces(ostream):
     ''' Get forces from the output stream'''
 
@@ -61,17 +61,17 @@ def get_forces(ostream):
 
     return forces
 
-@sn.sanity_function
+@sn.deferrable
 def energy_diff(ostream, ostream_ref):
     ''' Return the difference between obtained and reference total energies'''
     return sn.abs(get_energy(ostream) - get_energy(ostream_ref))
 
-@sn.sanity_function
+@sn.deferrable
 def pressure_diff(ostream, ostream_ref):
     ''' Return the difference between obtained and reference total energies'''
     return sn.abs(get_pressure(ostream) - get_pressure(ostream_ref))
 
-@sn.sanity_function
+@sn.deferrable
 def stress_diff(ostream, ostream_ref):
     ''' Return the difference between obtained and reference stress tensor components'''
 
@@ -79,7 +79,7 @@ def stress_diff(ostream, ostream_ref):
     stress_ref = get_stress(ostream_ref)
     return sn.max(sn.abs(stress_ref[i][j] - stress[i][j]) for i in range(2) for j in range(2))
 
-@sn.sanity_function
+@sn.deferrable
 def forces_diff(ostream, ostream_ref):
     ''' Return the difference between obtained and reference atomic forces'''
 
@@ -101,7 +101,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         super().__init__()
         self.descr = 'SCF check'
         self.valid_systems = ['osx', 'daint']
-        self.valid_prog_environs = ['PrgEnv-gnu', 'PrgEnv-intel']
+        self.valid_prog_environs = ['PrgEnv-gnu', 'PrgEnv-intel', 'builtin']
 
         self.num_tasks = num_ranks_k * num_ranks_d
         if self.current_system.name == 'daint':
@@ -134,159 +134,198 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
 
         self.sanity_patterns = sn.all(patterns)
 
-    @rfm.run_after('setup')
+    @run_after('setup')
     def set_launcher_options(self):
         if self.current_system.name in ['daint']:
             self.job.launcher.options = ["-c %i"%self.num_cpus_per_task, "-n %i"%self.num_tasks, '--hint=nomultithread']
 
-#--------------------------#
-# Example of a simple test #
-#--------------------------#
-#@rfm.simple_test
-#class qe_Si(qe_scf_base_test):
-#    def __init__(self):
-#        super().__init__(1, 1, 'Si', 'native')
-#        self.tags = {'serial', 'qe-native'}
-
-@rfm.parameterized_test(['native'], ['sirius'])
+#---------------#
+# List of tests #
+#---------------#
+@rfm.simple_test
 class qe_Si_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        super().__init__(1, 1, 'Si', variant)
-        self.tags = {'qe-%s'%variant, 'serial'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'Si', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'nc', 'lda'}
 
-@rfm.parameterized_test(['native'], ['sirius'])
+@rfm.simple_test
 class qe_B6Ni8_gga_uspp_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        etol = 1e-6 if variant == "native" else 1e-4
-        super().__init__(1, 1, 'B6Ni8-gga-uspp', variant, energy_tol=etol)
-        self.tags = {'qe-%s'%variant, 'serial', 'uspp'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'B6Ni8-gga-uspp', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'uspp', 'gga'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
+@rfm.simple_test
 class qe_Si_vc_relax(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'Si-vc-relax', variant)
-        self.tags = {'qe-%s'%variant, 'vc-relax'}
+    variant = parameter(['native', 'sirius'])
+    ranks = parameter([(1,1), (2,1), (3,1)])
+    def __init__(self):
+        super().__init__(self.ranks[0], self.ranks[1], 'Si-vc-relax', self.variant)
+        self.tags = {f'qe-{self.variant}', 'vc-relax', 'nc', 'lda'}
 
-@rfm.parameterized_test(['native'], ['sirius'])
+@rfm.simple_test
 class qe_LiF_gga_nc_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        etol = 1e-6 if variant == "native" else 1e-4
-        super().__init__(1, 1, 'LiF-gga-nc', variant, energy_tol=etol)
-        self.tags = {'qe-%s'%variant, 'serial', 'gga'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'LiF-gga-nc', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'gga', 'nc'}
 
-@rfm.parameterized_test(['native'], ['sirius'])
+@rfm.simple_test
 class qe_LiF_lda_nc_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        super().__init__(1, 1, 'LiF-lda-nc', variant)
-        self.tags = {'qe-%s'%variant, 'serial'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'LiF-lda-nc', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'lda', 'nc'}
 
-@rfm.parameterized_test(['native'], ['sirius'])
+@rfm.simple_test
 class qe_LiF_lda_uspp_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        super().__init__(1, 1, 'LiF-lda-uspp', variant)
-        self.tags = {'qe-%s'%variant, 'serial', 'uspp'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'LiF-lda-uspp', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'lda', 'uspp'}
 
-@rfm.parameterized_test(['native'], ['sirius'])
+@rfm.simple_test
 class qe_LiF_lda_paw_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        super().__init__(1, 1, 'LiF-lda-paw', variant)
-        self.tags = {'qe-%s'%variant, 'serial', 'paw'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'LiF-lda-paw', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'lda', 'paw'}
 
-@rfm.parameterized_test(['native'], ['sirius'])
+@rfm.simple_test
 class qe_Fe_lda_uspp_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        super().__init__(1, 1, 'Fe-lda-uspp', variant)
-        self.tags = {'qe-%s'%variant, 'serial', 'magn', 'uspp'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'Fe-lda-uspp', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'lda', 'uspp'}
 
-@rfm.parameterized_test(['native'], ['sirius'])
+@rfm.simple_test
 class qe_LiF_esm_scf(qe_scf_base_test):
-    def __init__(self, variant):
-        super().__init__(1, 1, 'LiF-esm', variant)
-        self.tags = {'qe-%s'%variant, 'serial'}
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'LiF-esm', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'esm'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (4,1)]))
+@rfm.simple_test
 class qe_CdCO3_gga_paw_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
+    variant = parameter(['native', 'sirius'])
+    ranks = parameter([(1,1), (2,1), (4,1)])
+    def __init__(self):
+        #
         # This is GGA PAW test. Right now PAW XC part is done by SIRIUS and for GGA libxc gives a different
-        # result comparing with QE implementation
-        etol = 1e-6 if variant == "native" else 1e-4
-        ptol = 1e-1 if variant == "native" else 2
-        stol = 1e-4 if variant == "native" else 0.1
-        ftol = 1e-4 if variant == "native" else 0.1
-        super().__init__(ranks[0], ranks[1], 'CdCO3-gga-paw', variant, energy_tol=etol, pressure_tol=ptol,
-                         stress_tol=stol, forces_tol=ftol)
-        self.tags = {'qe-%s'%variant, 'parallel', 'paw'}
+        # result comparing with QE implementation. Also, for PAW radial integrals are computed differently.
+        #
+        etol = 1e-6 if self.variant == "native" else 5e-3
+        super().__init__(self.ranks[0], self.ranks[1], 'CdCO3-gga-paw', self.variant, energy_tol=etol)
+        self.tags = {f'qe-{self.variant}', 'parallel', 'paw', 'gga'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (4,1)]))
+@rfm.simple_test
 class qe_CdCO3_lda_paw_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        # For PAW the radial integrals are computed differently in QE and SIRIUS
-        etol = 1e-6 if variant == "native" else 1e-4
-        ftol = 1e-4 if variant == "native" else 1e-2
-        super().__init__(ranks[0], ranks[1], 'CdCO3-lda-paw', variant, energy_tol=etol, forces_tol=ftol)
-        self.tags = {'qe-%s'%variant, 'parallel', 'paw'}
+    variant = parameter(['native', 'sirius'])
+    ranks = parameter([(1,1), (2,1), (4,1)])
+    def __init__(self):
+        #
+        # For PAW the radial integrals are computed differently in QE and SIRIUS and also the spherical coverage
+        # to compute XC potential is different, so we can't expect the full numerical reproducibility here
+        #
+        etol = 1e-6 if self.variant == "native" else 1e-4
+        ftol = 1e-4 if self.variant == "native" else 1e-3
+        super().__init__(self.ranks[0], self.ranks[1], 'CdCO3-lda-paw', self.variant, energy_tol=etol, forces_tol=ftol)
+        self.tags = {f'qe-{self.variant}', 'parallel', 'paw', 'lda'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (1,4)]))
+@rfm.simple_test
+class qe_CdCO3_lda_uspp_scf(qe_scf_base_test):
+    variant = parameter(['native', 'sirius'])
+    ranks = parameter([(1,1), (2,1), (4,1)])
+    def __init__(self):
+        super().__init__(self.ranks[0], self.ranks[1], 'CdCO3-lda-uspp', self.variant)
+        self.tags = {f'qe-{self.variant}', 'parallel', 'lda', 'uspp'}
+
+@rfm.simple_test
 class qe_Si63Ge_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        etol = 1e-6 if variant == "native" else 1e-3
-        super().__init__(ranks[0], ranks[1], 'Si63Ge', variant, energy_tol=etol)
-        self.tags = {'qe-%s'%variant, 'parallel', 'uspp'}
+    variant = parameter(['native', 'sirius'])
+    ranks = parameter([(4,1), (1,4)])
+    def __init__(self):
+        #etol = 1e-6 if variant == "native" else 1e-3
+        #super().__init__(ranks[0], ranks[1], 'Si63Ge', variant, energy_tol=etol)
+        super().__init__(self.ranks[0], self.ranks[1], 'Si63Ge', self.variant)
+        self.tags = {f'qe-{self.variant}', 'parallel', 'uspp', 'gga'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(2,4), (2,8)]))
-class qe_Au_surf_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'Au-surf', variant)
-        self.tags = {'qe-%s'%variant, 'parallel', 'Au-surf'}
-        self.time_limit = '20m'
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(2,4), (2,8)]))
+#= class qe_Au_surf_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         # GGA of libxc is slighly different
+#=         etol = 1e-6 if variant == "native" else 1e-3
+#=         super().__init__(ranks[0], ranks[1], 'Au-surf', variant, energy_tol=etol)
+#=         self.tags = {'qe-%s'%variant, 'parallel', 'Au-surf', 'gga'}
+#=         self.time_limit = '20m'
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
+#= class qe_HfNi5_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         # GGA of libxc is slighly different
+#=         etol = 1e-6 if variant == "native" else 1e-3
+#=         super().__init__(ranks[0], ranks[1], 'HfNi5', variant, energy_tol=etol)
+#=         self.tags = {'qe-%s'%variant, 'parallel', 'hfni5', 'gga'}
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(3,1), (5,1)]))
+#= class qe_NiO_afm_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         etol = 1e-6 if variant == "native" else 1e-3
+#=         super().__init__(ranks[0], ranks[1], 'NiO-afm', variant, energy_tol=etol)
+#=         self.tags = {'qe-%s'%variant, 'parallel', 'magn', 'gga', 'paw'}
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1)]))
+#= class qe_NiO_lda_uspp_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         super().__init__(ranks[0], ranks[1], 'NiO-lda-uspp', variant)
+#=         self.tags = {'qe-%s'%variant, 'magn', 'uspp'}
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
+#= class qe_FeSe2_2D_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         super().__init__(ranks[0], ranks[1], 'FeSe2-2D', variant)
+#=         self.tags = {'qe-%s'%variant, 'parallel'}
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
+#= class qe_FeSe2_2D_lda_uspp_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         super().__init__(ranks[0], ranks[1], 'FeSe2-2D-lda-uspp', variant)
+#=         self.tags = {'qe-%s'%variant, 'parallel', 'uspp', 'magn'}
+#= 
+#= @rfm.simple_test
+#= class qe_FeSe2_2D_lda_nc_scf(qe_scf_base_test):
+#=     variant = parameter(['native', 'sirius'])
+#=     ranks = parameter([(4,1), (8,1)])
+#=     def __init__(self):
+#=         super().__init__(self.ranks[0], self.ranks[1], 'FeSe2-2D-lda-nc', self.variant)
+#=         self.tags = {f'qe-{self.variant}', 'parallel', 'nc', 'magn'}
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
+#= class qe_Ni_ldapu_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         super().__init__(ranks[0], ranks[1], 'Ni-ldapu', variant)
+#=         self.tags = {'qe-%s'%variant, 'parallel'}
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
+#= class qe_PrNiO_ldapu_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         super().__init__(ranks[0], ranks[1], 'PrNiO-LDA+U', variant)
+#=         self.tags = {'qe-%s'%variant, 'parallel'}
+#= 
+#= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
+#= class qe_MnO_ldapu_scf(qe_scf_base_test):
+#=     def __init__(self, variant, ranks):
+#=         super().__init__(ranks[0], ranks[1], 'MnO-LDA+U', variant)
+#=         self.tags = {'qe-%s'%variant, 'parallel'}
+#= 
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
-class qe_HfNi5_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'HfNi5', variant)
-        self.tags = {'qe-%s'%variant, 'parallel', 'hfni5'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(3,1), (5,1)]))
-class qe_NiO_afm_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'NiO-afm', variant)
-        self.tags = {'qe-%s'%variant, 'parallel', 'magn'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1)]))
-class qe_NiO_lda_uspp_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'NiO-lda-uspp', variant)
-        self.tags = {'qe-%s'%variant, 'magn', 'uspp'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
-class qe_FeSe2_2D_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'FeSe2-2D', variant)
-        self.tags = {'qe-%s'%variant, 'parallel'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
-class qe_FeSe2_2D_lda_uspp_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'FeSe2-2D-lda-uspp', variant)
-        self.tags = {'qe-%s'%variant, 'parallel', 'uspp', 'magn'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
-class qe_Ni_ldapu_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'Ni-ldapu', variant)
-        self.tags = {'qe-%s'%variant, 'parallel'}
 
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
-class qe_PrNiO_ldapu_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'PrNiO-LDA+U', variant)
-        self.tags = {'qe-%s'%variant, 'parallel'}
-
-@rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1), (3,1)]))
-class qe_MnO_ldapu_scf(qe_scf_base_test):
-    def __init__(self, variant, ranks):
-        super().__init__(ranks[0], ranks[1], 'MnO-LDA+U', variant)
-        self.tags = {'qe-%s'%variant, 'parallel'}
 
 #@rfm.simple_test
 #class qe_LiF_nc_vc_relax(qe_scf_base_test):
@@ -323,4 +362,4 @@ class qe_MnO_ldapu_scf(qe_scf_base_test):
 #    def __init__(self):
 #        super().__init__(1, 'LiF-uspp', 'pw.in', True, -63.36416794)
 #        self.tags = {'serial'}
-#
+

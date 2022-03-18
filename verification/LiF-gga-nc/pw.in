@@ -12,6 +12,7 @@
     ibrav=0, celldm(1)=7.60501685, nat=2, ntyp=2, nosym=false
     ecutwfc=30.0, ecutrho = 800,
     occupations = 'smearing', smearing = 'gauss', degauss = 0.02
+    input_dft = 'XC-000i-000i-109L-134L-000i-000i'
  /
  &electrons
     conv_thr =  1.0d-11,
