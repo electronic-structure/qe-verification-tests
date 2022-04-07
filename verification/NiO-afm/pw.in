@@ -8,15 +8,18 @@
  /
  &system
     ibrav=  0, celldm(1)=7.93, nat=  4, ntyp= 3,
-    ecutwfc = 40.0, ecutrho = 600.0,
+    ecutwfc = 64.0, ecutrho = 625.0,
     occupations='smearing', smearing='gauss', degauss=0.02,
     nspin=2, 
-    starting_magnetization(1)= 0.2,
-    starting_magnetization(2)=-0.2
+    starting_magnetization(1)= 0.1,
+    starting_magnetization(2)=-0.1,
+    input_dft = 'XC-000i-000i-101L-130L-000i-000i'
  /
  &electrons
-    conv_thr =  1.0d-11
+    conv_thr =  1.0d-13
     mixing_beta = 0.2
+    diago_full_acc=.true.
+    electron_maxstep=100
  /
 CELL_PARAMETERS
 1.00 0.50 0.50
@@ -25,9 +28,9 @@ CELL_PARAMETERS
 ATOMIC_SPECIES
  Ni1  1.  ni_pbe_v1.4.uspp.F.UPF
  Ni2  1.  ni_pbe_v1.4.uspp.F.UPF
- O    1.  O.pbe-n-kjpaw_psl.0.1.UPF
+ O    1.  o_pbe_v1.2.uspp.F.UPF
 ATOMIC_POSITIONS crystal
- Ni1 0.0  0.0  0.0 
+ Ni1 0.0  0.0  0.0
  Ni2 0.5  0.5  0.5
  O  0.25 0.25 0.25
  O  0.75 0.75 0.75
