@@ -1,4 +1,4 @@
-# Regression tests for QE+SIRIUS code
+# Regression tests for QE code
 
 ## How to run tests
 We use ReFrame to describe and run regression tests. To run tests on Daint use the following command:
