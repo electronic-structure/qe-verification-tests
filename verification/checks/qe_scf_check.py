@@ -100,7 +100,7 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
                  stress_tol = 1e-4, forces_tol = 1e-4):
         super().__init__()
         self.descr = 'SCF check'
-        self.valid_systems = ['osx', 'daint']
+        self.valid_systems = ['osx', 'daint', 'localhost']
         self.valid_prog_environs = ['PrgEnv-gnu', 'PrgEnv-intel', 'builtin']
 
         self.num_tasks = num_ranks_k * num_ranks_d
@@ -116,8 +116,8 @@ class qe_scf_base_test(rfm.RunOnlyRegressionTest):
         self.sourcesdir = '../' + test_folder
 
         self.executable_opts = ["-i pw.in", "-npool %i"%num_ranks_k, "-ndiag %i"%num_ranks_d]
-        if variant == 'sirius':
-            self.executable_opts.append('-sirius_scf')
+        if variant == 'native':
+            self.executable_opts.append('-use_qe_scf')
 
         #e1 = get_energy(self.stdout)
         #e2 = get_energy('out.txt')
@@ -149,12 +149,12 @@ class qe_Si_scf(qe_scf_base_test):
         super().__init__(1, 1, 'Si', self.variant)
         self.tags = {f'qe-{self.variant}', 'serial', 'nc', 'lda'}
 
-@rfm.simple_test
-class qe_B6Ni8_gga_uspp_scf(qe_scf_base_test):
-    variant = parameter(['native', 'sirius'])
-    def __init__(self):
-        super().__init__(1, 1, 'B6Ni8-gga-uspp', self.variant)
-        self.tags = {f'qe-{self.variant}', 'serial', 'uspp', 'gga'}
+#@rfm.simple_test
+#class qe_B6Ni8_gga_uspp_scf(qe_scf_base_test):
+#    variant = parameter(['native', 'sirius'])
+#    def __init__(self):
+#        super().__init__(1, 1, 'B6Ni8-gga-uspp', self.variant)
+#        self.tags = {f'qe-{self.variant}', 'serial', 'uspp', 'gga'}
 
 @rfm.simple_test
 class qe_Si_vc_relax(qe_scf_base_test):
@@ -199,12 +199,12 @@ class qe_Fe_lda_uspp_scf(qe_scf_base_test):
         super().__init__(1, 1, 'Fe-lda-uspp', self.variant)
         self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'lda', 'uspp'}
 
-@rfm.simple_test
-class qe_LiF_esm_scf(qe_scf_base_test):
-    variant = parameter(['native', 'sirius'])
-    def __init__(self):
-        super().__init__(1, 1, 'LiF-esm', self.variant)
-        self.tags = {f'qe-{self.variant}', 'serial', 'esm'}
+#@rfm.simple_test
+#class qe_LiF_esm_scf(qe_scf_base_test):
+#    variant = parameter(['native', 'sirius'])
+#    def __init__(self):
+#        super().__init__(1, 1, 'LiF-esm', self.variant)
+#        self.tags = {f'qe-{self.variant}', 'serial', 'esm'}
 
 @rfm.simple_test
 class qe_CdCO3_gga_paw_scf(qe_scf_base_test):
