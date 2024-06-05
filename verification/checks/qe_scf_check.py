@@ -157,6 +157,13 @@ class qe_Si_scf(qe_scf_base_test):
 #        self.tags = {f'qe-{self.variant}', 'serial', 'uspp', 'gga'}
 
 @rfm.simple_test
+class qe_Si_vc_relax_serial(qe_scf_base_test):
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'Si-vc-relax', self.variant)
+        self.tags = {f'qe-{self.variant}', 'vc-relax', 'serial', 'nc', 'lda'}
+
+@rfm.simple_test
 class qe_Si_vc_relax(qe_scf_base_test):
     variant = parameter(['native', 'sirius'])
     ranks = parameter([(1,1), (2,1), (3,1)])
@@ -198,6 +205,20 @@ class qe_Fe_lda_uspp_scf(qe_scf_base_test):
     def __init__(self):
         super().__init__(1, 1, 'Fe-lda-uspp', self.variant)
         self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'lda', 'uspp'}
+
+@rfm.simple_test
+class qe_NiO_afm_scf(qe_scf_base_test):
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'NiO-afm', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'gga', 'uspp'}
+
+@rfm.simple_test
+class qe_NiO_ldapu_scf(qe_scf_base_test):
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        super().__init__(1, 1, 'NiO-ldapu', self.variant)
+        self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'gga', 'uspp', 'ldapu'}
 
 #@rfm.simple_test
 #class qe_LiF_esm_scf(qe_scf_base_test):
