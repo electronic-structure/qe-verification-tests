@@ -220,6 +220,24 @@ class qe_NiO_ldapu_scf(qe_scf_base_test):
         super().__init__(1, 1, 'NiO-ldapu', self.variant)
         self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'gga', 'uspp', 'ldapu'}
 
+@rfm.simple_test
+class qe_NiO_ldapuv_scf(qe_scf_base_test):
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        # QE enforces occupation matrix to be real, this causes some larger energy difference
+        etol = 1e-6 if self.variant == "native" else 2e-5
+        super().__init__(1, 1, 'NiO-ldapuv', self.variant, energy_tol=etol)
+        self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'gga', 'uspp', 'ldapu'}
+
+@rfm.simple_test
+class qe_NiO_ldapuv_ortho_scf(qe_scf_base_test):
+    variant = parameter(['native', 'sirius'])
+    def __init__(self):
+        # QE enforces occupation matrix to be real, this causes some larger energy difference
+        etol = 1e-6 if self.variant == "native" else 2e-5
+        super().__init__(1, 1, 'NiO-ldapuv-ortho', self.variant, energy_tol=etol)
+        self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'gga', 'uspp', 'ldapu'}
+
 #@rfm.simple_test
 #class qe_LiF_esm_scf(qe_scf_base_test):
 #    variant = parameter(['native', 'sirius'])
