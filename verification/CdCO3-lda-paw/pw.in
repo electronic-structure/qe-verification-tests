@@ -17,6 +17,9 @@
   ntyp = 3
   occupations = 'smearing'
   smearing = 'gauss'
+  nspin = 2,
+  starting_magnetization(3)=0.01,
+  starting_magnetization(4)=-0.01
 /
 &ELECTRONS
   conv_thr =   1.0000000000d-12

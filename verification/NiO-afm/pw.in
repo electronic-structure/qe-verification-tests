@@ -11,9 +11,9 @@
     ecutwfc = 64.0, ecutrho = 625.0,
     occupations='smearing', smearing='gauss', degauss=0.02,
     nspin=2, 
-    starting_magnetization(1)= 0.1,
-    starting_magnetization(2)=-0.1,
-    input_dft = 'XC-000i-000i-101L-130L-000i-000i'
+    starting_magnetization(1)= 0.5,
+    starting_magnetization(2)=-0.5,
+ !   input_dft = 'XC-000i-000i-101L-130L-000i-000i'
  /
  &electrons
     conv_thr =  1.0d-13

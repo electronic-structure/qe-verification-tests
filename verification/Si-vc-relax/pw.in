@@ -4,10 +4,11 @@ restart_mode='from_scratch',
 pseudo_dir = './',
 outdir='./',
 prefix = 'scf_',
-verbosity='low'
+verbosity='high'
+nstep = 20
 /
 &system
-ibrav=0, celldm(1)=1, ecutwfc=10, ecutrho = 100,
+ibrav=0, celldm(1)=1, ecutwfc=40, ecutrho = 800,
 occupations = 'smearing', smearing = 'gauss', degauss = 0.002
 nat=2 ntyp=1, nbnd=8
 /
@@ -29,7 +30,7 @@ CELL_PARAMETERS
         5.130000000       0.00000000        5.13000000
         5.13000000        5.13000000        0.00000000
 ATOMIC_POSITIONS (crystal)
-Si          0.10000000         0.00000000         0.00000000
+Si          0.0000000         0.00000000         0.00000000
 Si          0.25000000         0.2500000         0.25000000
 K_POINTS (automatic)
 4 4 4 0 0 0
