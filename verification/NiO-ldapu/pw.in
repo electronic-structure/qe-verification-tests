@@ -36,6 +36,6 @@ ATOMIC_POSITIONS crystal
  O  0.75 0.75 0.75
 K_POINTS automatic
 4 4 4 0 0 0
-HUBBARD (ortho-atomic)
+HUBBARD (atomic)
 U Ni1-3d 8.0
 U Ni2-3d 8.0

@@ -12,7 +12,7 @@
 &SYSTEM
   assume_isolated = '2D'
   degauss =   2.0000000000d-02
-  ecutrho =   1200
+  ecutrho =   8.0000000000d+02
   ecutwfc =   8.0000000000d+01
   ibrav = 0
   nat = 3
@@ -26,7 +26,6 @@
 &ELECTRONS
   conv_thr =   1.0000000000d-10
   electron_maxstep = 100
-  diago_full_acc = .true.
   mixing_beta =   3.0000000000d-01
 /
 ATOMIC_SPECIES

@@ -26,7 +26,7 @@
 &ELECTRONS
   conv_thr =   1.0000000000d-10
   electron_maxstep = 100
-  mixing_beta =   3.0000000000d-01
+  mixing_beta =   1.0000000000d-01
   diago_full_acc = .false.
 /
 ATOMIC_SPECIES
