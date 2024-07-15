@@ -7,12 +7,36 @@ site_configuration = {
             'resourcesdir': '',
             'partitions': [
                 {
-                    'name' : 'cpu',
+                    'name' : 'local_partition',
                     'scheduler': 'local',
                     'launcher' : 'local',
                     'environs': ['builtin'],
-                    'descr': 'CPU execution',
+                    'descr': 'local execution without a scheduler',
                     'max_jobs': 1
+                }
+            ]
+        },
+        {
+            'name' : 'todi',
+            'descr' : 'vcluster todi',
+            'hostnames' : ['todi'],
+            'resourcesdir' : '',
+            'partitions' : [
+                {
+                    'name' : 'normal',
+                    'scheduler' : 'slurm',
+                    'time_limit': '10m',
+                    'launcher' : 'srun',
+                    'max_jobs' : 100,
+                    'environs' : ['builtin'],
+                    'features' : ['gpu', 'alps'],
+                    'devices': [
+                        {
+                            'type': 'gpu',
+                            'arch': 'sm_90',
+                            'num_devices': 4
+                        }
+                    ]
                 }
             ]
         }
