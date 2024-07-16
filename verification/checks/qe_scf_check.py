@@ -98,7 +98,6 @@ def forces_diff(ostream, ostream_ref):
 class qe_scf_test_base(rfm.RunOnlyRegressionTest):
     valid_systems = ['todi', 'localhost']
     valid_prog_environs = ['builtin']
-    executable = '$SCRATCH/mps-wrapper.sh pw.x'
     energy_tol = 1e-6
     pressure_tol = 1e-1
     stress_tol = 1e-4
@@ -110,12 +109,17 @@ class qe_scf_test_base(rfm.RunOnlyRegressionTest):
         self.num_ranks_k = self.ranks[0]
         self.num_ranks_d = self.ranks[1]
 
+        if self.current_system.name == 'todi':
+            self.executable = '$SCRATCH/mps-wrapper.sh pw.x'
+        else:
+            self.executable = 'pw.x'
+
         self.executable_opts = ['-in', 'pw.in', '-npool', f"{self.num_ranks_k}", '-ndiag', f"{self.num_ranks_d}"]
         if self.variant == 'native':
             self.executable_opts.append('-use_qe_scf')
 
         self.sourcesdir = f"../{self.test_folder}"
-        self.tags.add(f"qe-{self.variant}")
+        self.tags.add(f"{self.variant}")
         if self.ranks[0] == 1 and self.ranks[1] == 1:
             self.tags.add('serial')
         else:
@@ -149,7 +153,8 @@ class qe_scf_test_base(rfm.RunOnlyRegressionTest):
         self.num_tasks_per_node = int(num_cores / self.num_cpus_per_task)
         if not self.env_vars:
             self.env_vars = {}
-        self.env_vars['OMP_NUM_THREADS'] = '$SLURM_CPUS_PER_TASK'
+        if self.current_system.name != 'localhost':
+            self.env_vars['OMP_NUM_THREADS'] = '$SLURM_CPUS_PER_TASK'
         #self.env_vars['OMP_PLACES'] = 'cores'
         #self.env_vars['OMP_PROC_BIND'] = 'close'
 
