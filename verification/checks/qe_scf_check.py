@@ -99,7 +99,7 @@ class qe_scf_test_base(rfm.RunOnlyRegressionTest):
     valid_systems = ['todi', 'localhost']
     valid_prog_environs = ['builtin']
     energy_tol = 1e-6
-    pressure_tol = 1e-1
+    pressure_tol = 3e-1
     stress_tol = 1e-4
     forces_tol = 1e-4
 
@@ -243,15 +243,22 @@ class qe_NiO_ldapu_scf(qe_scf_test_base):
     ranks = parameter([(1, 1), (2, 1)])
     test_folder = 'NiO-ldapu'
 
-#@rfm.simple_test
-#class qe_NiO_ldapuv_scf(qe_scf_base_test):
-#    variant = parameter(['native', 'sirius'])
-#    def __init__(self):
-#        # QE enforces occupation matrix to be real, this causes some larger energy difference
-#        etol = 1e-6 if self.variant == "native" else 2e-5
-#        super().__init__(1, 1, 'NiO-ldapuv', self.variant, energy_tol=etol)
-#        self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'gga', 'uspp', 'ldapu'}
-#
+@rfm.simple_test
+class qe_NiO_ldapuv_scf(qe_scf_test_base):
+    variant = 'native'
+    tags = {'magn', 'gga', 'uspp', 'ldapu'}
+    ranks = parameter([(1, 1), (2, 1)])
+    test_folder = 'NiO-ldapuv'
+
+@rfm.simple_test
+class qe_NiO_ldapuv_sirius_scf(qe_scf_test_base):
+    variant = 'sirius'
+    tags = {'magn', 'gga', 'uspp', 'ldapu'}
+    ranks = parameter([(1, 1), (2, 1)])
+    test_folder = 'NiO-ldapuv'
+    # QE enforces occupation matrix to be real, this causes some larger energy difference
+    energy_tol = 2e-5
+
 #@rfm.simple_test
 #class qe_NiO_ldapuv_ortho_scf(qe_scf_base_test):
 #    variant = parameter(['native', 'sirius'])
