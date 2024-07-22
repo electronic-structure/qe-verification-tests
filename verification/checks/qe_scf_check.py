@@ -259,35 +259,42 @@ class qe_NiO_ldapuv_sirius_scf(qe_scf_test_base):
     # QE enforces occupation matrix to be real, this causes some larger energy difference
     energy_tol = 2e-5
 
-#@rfm.simple_test
-#class qe_NiO_ldapuv_ortho_scf(qe_scf_base_test):
-#    variant = parameter(['native', 'sirius'])
-#    def __init__(self):
-#        # QE enforces occupation matrix to be real, this causes some larger energy difference
-#        etol = 1e-6 if self.variant == "native" else 2e-5
-#        super().__init__(1, 1, 'NiO-ldapuv-ortho', self.variant, energy_tol=etol)
-#        self.tags = {f'qe-{self.variant}', 'serial', 'magn', 'gga', 'uspp', 'ldapu'}
-#
-##@rfm.simple_test
-##class qe_LiF_esm_scf(qe_scf_base_test):
-##    variant = parameter(['native', 'sirius'])
-##    def __init__(self):
-##        super().__init__(1, 1, 'LiF-esm', self.variant)
-##        self.tags = {f'qe-{self.variant}', 'serial', 'esm'}
-#
-#@rfm.simple_test
-#class qe_CdCO3_gga_paw_scf(qe_scf_base_test):
-#    variant = parameter(['native', 'sirius'])
-#    ranks = parameter([(1,1), (2,1), (4,1)])
-#    def __init__(self):
-#        #
-#        # This is GGA PAW test. Right now PAW XC part is done by SIRIUS and for GGA libxc gives a different
-#        # result comparing with QE implementation. Also, for PAW radial integrals are computed differently.
-#        #
-#        etol = 1e-6 if self.variant == "native" else 5e-3
-#        super().__init__(self.ranks[0], self.ranks[1], 'CdCO3-gga-paw', self.variant, energy_tol=etol)
-#        self.tags = {f'qe-{self.variant}', 'parallel', 'paw', 'gga'}
-#
+@rfm.simple_test
+class qe_NiO_ldapuv_ortho_scf(qe_scf_test_base):
+    variant = 'native'
+    tags = {'magn', 'gga', 'uspp', 'ldapu'}
+    ranks = parameter([(1, 1), (2, 1)])
+    test_folder = 'NiO-ldapuv-ortho'
+
+@rfm.simple_test
+class qe_NiO_ldapuv_ortho_sirius_scf(qe_scf_test_base):
+    variant = 'sirius'
+    tags = {'magn', 'gga', 'uspp', 'ldapu'}
+    ranks = parameter([(1, 1), (2, 1)])
+    test_folder = 'NiO-ldapuv-ortho'
+    # QE enforces occupation matrix to be real, this causes some larger energy difference
+    energy_tol = 2e-5
+
+@rfm.simple_test
+class qe_CdCO3_gga_paw_scf(qe_scf_test_base):
+    variant = 'native'
+    tags = {'paw', 'gga'}
+    ranks = parameter([(1,1), (2,1), (4,1)])
+    test_folder = 'CdCO3-gga-paw'
+
+@rfm.simple_test
+class qe_CdCO3_gga_paw_sirius_scf(qe_scf_test_base):
+    variant = 'sirius'
+    tags = {'paw', 'gga'}
+    ranks = parameter([(1,1), (2,1), (4,1)])
+    test_folder = 'CdCO3-gga-paw'
+    #
+    # This is GGA PAW test. Right now PAW XC part is done by SIRIUS and for GGA libxc gives a different
+    # result comparing with QE implementation. Also, for PAW radial integrals are computed differently.
+    #
+    energy_tol = 5e-3
+
+
 #@rfm.simple_test
 #class qe_CdCO3_lda_paw_scf(qe_scf_base_test):
 #    variant = parameter(['native', 'sirius'])
