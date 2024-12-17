@@ -245,35 +245,17 @@ class qe_NiO_ldapu_scf(qe_scf_test_base):
 
 @rfm.simple_test
 class qe_NiO_ldapuv_scf(qe_scf_test_base):
-    variant = 'native'
+    variant = parameter(['native', 'sirius'])
     tags = {'magn', 'gga', 'uspp', 'ldapu'}
     ranks = parameter([(1, 1), (2, 1)])
     test_folder = 'NiO-ldapuv'
-
-@rfm.simple_test
-class qe_NiO_ldapuv_sirius_scf(qe_scf_test_base):
-    variant = 'sirius'
-    tags = {'magn', 'gga', 'uspp', 'ldapu'}
-    ranks = parameter([(1, 1), (2, 1)])
-    test_folder = 'NiO-ldapuv'
-    # QE enforces occupation matrix to be real, this causes some larger energy difference
-    energy_tol = 2e-5
 
 @rfm.simple_test
 class qe_NiO_ldapuv_ortho_scf(qe_scf_test_base):
-    variant = 'native'
+    variant = parameter(['native', 'sirius'])
     tags = {'magn', 'gga', 'uspp', 'ldapu'}
     ranks = parameter([(1, 1), (2, 1)])
     test_folder = 'NiO-ldapuv-ortho'
-
-@rfm.simple_test
-class qe_NiO_ldapuv_ortho_sirius_scf(qe_scf_test_base):
-    variant = 'sirius'
-    tags = {'magn', 'gga', 'uspp', 'ldapu'}
-    ranks = parameter([(1, 1), (2, 1)])
-    test_folder = 'NiO-ldapuv-ortho'
-    # QE enforces occupation matrix to be real, this causes some larger energy difference
-    energy_tol = 2e-5
 
 @rfm.simple_test
 class qe_CdCO3_gga_paw_scf(qe_scf_test_base):
@@ -283,50 +265,46 @@ class qe_CdCO3_gga_paw_scf(qe_scf_test_base):
     test_folder = 'CdCO3-gga-paw'
 
 @rfm.simple_test
-class qe_CdCO3_gga_paw_sirius_scf(qe_scf_test_base):
+class qe_CdCO3_gga_paw_sirius_scf(qe_CdCO3_gga_paw_scf):
     variant = 'sirius'
-    tags = {'paw', 'gga'}
-    ranks = parameter([(1,1), (2,1), (4,1)])
-    test_folder = 'CdCO3-gga-paw'
     #
     # This is GGA PAW test. Right now PAW XC part is done by SIRIUS and for GGA libxc gives a different
     # result comparing with QE implementation. Also, for PAW radial integrals are computed differently.
     #
     energy_tol = 5e-3
+    forces_tol = 1e-3
 
+@rfm.simple_test
+class qe_CdCO3_lda_paw_scf(qe_scf_test_base):
+    variant = 'native'
+    tags = {'paw', 'gga'}
+    ranks = parameter([(1,1), (2,1), (4,1)])
+    test_folder = 'CdCO3-lda-paw'
 
-#@rfm.simple_test
-#class qe_CdCO3_lda_paw_scf(qe_scf_base_test):
-#    variant = parameter(['native', 'sirius'])
-#    ranks = parameter([(1,1), (2,1), (4,1)])
-#    def __init__(self):
-#        #
-#        # For PAW the radial integrals are computed differently in QE and SIRIUS and also the spherical coverage
-#        # to compute XC potential is different, so we can't expect the full numerical reproducibility here
-#        #
-#        etol = 1e-6 if self.variant == "native" else 1e-4
-#        ftol = 1e-4 if self.variant == "native" else 1e-3
-#        super().__init__(self.ranks[0], self.ranks[1], 'CdCO3-lda-paw', self.variant, energy_tol=etol, forces_tol=ftol)
-#        self.tags = {f'qe-{self.variant}', 'parallel', 'paw', 'lda'}
-#
-#@rfm.simple_test
-#class qe_CdCO3_lda_uspp_scf(qe_scf_base_test):
-#    variant = parameter(['native', 'sirius'])
-#    ranks = parameter([(1,1), (2,1), (4,1)])
-#    def __init__(self):
-#        super().__init__(self.ranks[0], self.ranks[1], 'CdCO3-lda-uspp', self.variant)
-#        self.tags = {f'qe-{self.variant}', 'parallel', 'lda', 'uspp'}
-#
-#@rfm.simple_test
-#class qe_Si63Ge_scf(qe_scf_base_test):
-#    variant = parameter(['native', 'sirius'])
-#    ranks = parameter([(4,1), (1,4)])
-#    def __init__(self):
-#        #etol = 1e-6 if variant == "native" else 1e-3
-#        #super().__init__(ranks[0], ranks[1], 'Si63Ge', variant, energy_tol=etol)
-#        super().__init__(self.ranks[0], self.ranks[1], 'Si63Ge', self.variant)
-#        self.tags = {f'qe-{self.variant}', 'parallel', 'uspp', 'gga'}
-#
+@rfm.simple_test
+class qe_CdCO3_lda_paw_sirius_scf(qe_CdCO3_lda_paw_scf):
+    variant = 'sirius'
+    #
+    # This is GGA PAW test. Right now PAW XC part is done by SIRIUS and for GGA libxc gives a different
+    # result comparing with QE implementation. Also, for PAW radial integrals are computed differently.
+    #
+    energy_tol = 5e-3
+    forces_tol = 1e-3
+
+@rfm.simple_test
+class qe_CdCO3_lda_uspp_scf(qe_scf_test_base):
+    variant = parameter(['native', 'sirius'])
+    tags = {'lda', 'uspp'}
+    ranks = parameter([(1,1), (2,1), (4,1)])
+    test_folder = 'CdCO3-lda-uspp'
+
+@rfm.simple_test
+class qe_Si63Ge_scf(qe_scf_test_base):
+    variant = parameter(['native', 'sirius'])
+    tags = {'uspp', 'gga'}
+    ranks = parameter([(1,1), (4,1), (1,4)])
+    test_folder = 'Si63Ge'
+
 ##= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(2,4), (2,8)]))
 ##= class qe_Au_surf_scf(qe_scf_base_test):
 ##=     def __init__(self, variant, ranks):
@@ -344,18 +322,6 @@ class qe_CdCO3_gga_paw_sirius_scf(qe_scf_test_base):
 ##=         super().__init__(ranks[0], ranks[1], 'HfNi5', variant, energy_tol=etol)
 ##=         self.tags = {'qe-%s'%variant, 'parallel', 'hfni5', 'gga'}
 ##= 
-##= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(3,1), (5,1)]))
-##= class qe_NiO_afm_scf(qe_scf_base_test):
-##=     def __init__(self, variant, ranks):
-##=         etol = 1e-6 if variant == "native" else 1e-3
-##=         super().__init__(ranks[0], ranks[1], 'NiO-afm', variant, energy_tol=etol)
-##=         self.tags = {'qe-%s'%variant, 'parallel', 'magn', 'gga', 'paw'}
-##= 
-##= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(1,1), (2,1)]))
-##= class qe_NiO_lda_uspp_scf(qe_scf_base_test):
-##=     def __init__(self, variant, ranks):
-##=         super().__init__(ranks[0], ranks[1], 'NiO-lda-uspp', variant)
-##=         self.tags = {'qe-%s'%variant, 'magn', 'uspp'}
 ##= 
 ##= @rfm.parameterized_test(*([variant, ranks] for variant in ['native', 'sirius'] for ranks in [(4,1), (8,1)]))
 ##= class qe_FeSe2_2D_scf(qe_scf_base_test):

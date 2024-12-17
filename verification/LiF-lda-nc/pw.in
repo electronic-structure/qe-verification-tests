@@ -1,9 +1,9 @@
 &control
     calculation='scf',
-    restart_mode='from_scratch',
+    restart_mode='restart',
     pseudo_dir = './',
     outdir='./',
-    prefix = 'LiF_',
+    prefix = 'out',
     verbosity='high',
     tstress = true
     tprnfor = true
